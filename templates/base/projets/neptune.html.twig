@@ -1,0 +1,159 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Projet Hotel Neptune
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Projet Hotel Neptune
+		</h1>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
+						<p class="text-muted">
+							Le projet Hôtel Neptune consiste à développer une plateforme web complète permettant à un hôtel de gérer ses chambres, ses clients et ses réservations, tout en proposant une interface intuitive pour les utilisateurs.
+																												Le site est développé en PHP avec une base de données MySQL, et structuré selon une architecture MVC avec l’utilisation de Twig pour les vues.
+																												Deux interfaces distinctes composent l’application :
+							<ul class="text-muted">
+								<li>Interface administrateur, dédiée à la gestion complète de l’hôtel (chambres, clients, réservations, photos).</li>
+								<li>Interface client, permettant la consultation des chambres, la réservation, la gestion du compte et la simulation de paiement.</li>
+							</ul>
+							Ce projet s’inscrit dans le module TPRW207 – Conception et exploitation d’une base de données dans un environnement web.
+						</p>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
+						<p class="text-muted fw-bold mb-2">Objectifs fonctionnels</p>
+						<ul class="text-muted ms-3">
+							<li>Concevoir un site web permettant :</li>
+							<ul>
+								<li>La gestion complète des chambres : ajout, modification, suppression, tri, recherche et gestion des photos.</li>
+								<li>La gestion des clients : création de compte, modification, suppression, authentification sécurisée.</li>
+								<li>La gestion des réservations : consultation, filtrage par date, annulation et historique complet.</li>
+							</ul>
+							<li>Proposer un espace client permettant :</li>
+							<ul>
+								<li>La consultation des chambres et de leurs disponibilités.</li>
+								<li>La réservation de chambres avec choix des dates.</li>
+								<li>La simulation de paiement.</li>
+								<li>L’annulation d’une réservation.</li>
+							</ul>
+						</ul>
+						<p class="text-muted fw-bold mt-4 mb-2">Objectifs techniques</p>
+						<ul class="text-muted ms-3">
+							<li>Concevoir une base de données relationnelle complète (MCD/MLD, dictionnaire de données).</li>
+							<li>Implémenter une architecture MVC propre, maintenable et sécurisée.</li>
+							<li>Utiliser un système de routing inspiré des frameworks modernes.</li>
+							<li>Sécuriser le site : rôles utilisateurs, filtrage des entrées, protections contre les attaques classiques.</li>
+							<li>Produire un site responsive, ergonomique et évolutif.</li>
+						</ul>
+
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
+
+						<h4 class="fw-bold text-secondary">Développement web & programmation</h4>
+						<ul class="text-muted mb-4">
+							<li>Utilisation de PHP pour la gestion du routing, des contrôleurs, modèles et interactions avec la base de données.</li>
+							<li>Utilisation de Twig pour générer des pages dynamiques et modulaires.</li>
+							<li>Mise en place d'une architecture MVC (Model / View / Controller) propre et structurée.</li>
+							<li>Gestion des rôles utilisateurs (administrateur / client) ainsi que des sessions et de l’authentification.</li>
+						</ul>
+
+						<h4 class="fw-bold text-secondary">Base de données</h4>
+						<ul class="text-muted mb-4">
+							<li>Conception du MCD, MLD et du dictionnaire de données complet.</li>
+							<li>Création et structuration d’une base MySQL relationnelle.</li>
+							<li>Implémentation des contraintes d'intégrité, clés primaires, clés étrangères et relations entre les tables.</li>
+							<li>Gestion des tables : Users, Rooms, Reservations, Options, Images, Invoices…</li>
+						</ul>
+
+						<h4 class="fw-bold text-secondary">Gestion de projet</h4>
+						<ul class="text-muted mb-4">
+							<li>Analyse des besoins et brainstorming avant développement.</li>
+							<li>Rédaction d'un dossier projet détaillé incluant explications techniques et documentation.</li>
+							<li>Travail collaboratif et versionnement via GitHub.</li>
+							<li>Production des maquettes, wireframes et schémas techniques.</li>
+						</ul>
+
+						<h4 class="fw-bold text-secondary">Sécurité & bonnes pratiques</h4>
+						<ul class="text-muted mb-4">
+							<li>Filtrage et validation des entrées utilisateurs (filter_input, sanitation…).</li>
+							<li>Sécurisation des pages et routes selon le rôle de l'utilisateur.</li>
+							<li>Hachage sécurisé des mots de passe.</li>
+							<li>Prévention des attaques courantes (SQL Injection, XSS…).</li>
+						</ul>
+
+						<h4 class="fw-bold text-secondary">Expérience utilisateur</h4>
+						<ul class="text-muted mb-4">
+							<li>Design responsive grâce à CSS et Bootstrap.</li>
+							<li>Navigation fluide entre l’interface client et l’interface administrateur.</li>
+							<li>Affichage clair des chambres, photos, détails, disponibilité et réservations.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
+
+						<div
+							class="row g-4">
+							<!-- Compétence 1 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Mettre à disposition des utilisateurs un service informatique</p>
+									<a href="{{ path('app_service_info') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+
+							<!-- Compétence 2 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
+									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
+						<a href="{{ asset('documents/projets/neptune/Documentation_Projet_Hotel_Neptune.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger la fiche projet
+						</a>
+
+						<a href="{{ asset('documents/projets/neptune/Diaporama_Projet_Hotel_Neptune.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger le diaporama
+						</a>
+
+					</div>
+				</div>
+
+				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
+					⟵ Retour aux projets
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

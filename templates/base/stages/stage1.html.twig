@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Stage 1
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-briefcase-fill"></i>
+			Stage n°1 – Réseau Infrapole SNCF
+		</h1>
+
+		<p class="text-secondary fs-7">
+			J’ai effectué mon stage de première année au réseau Infrapole de la SNCF Pas-de-Calais, une entité de SNCF Réseau chargée de la gestion, de l’entretien et de la modernisation des infrastructures ferroviaires (voies, caténaires, signalisation, télécommunications…). Intégré au siège de Lille, j’ai réalisé une mission principale d’un mois, consistant à intégrer des tableaux de bord Power BI dans des présentations PowerPoint destinées aux revues des différentes Unités Territoriales de Maintenance. Cette intégration permettait d’avoir des graphiques automatiquement mis à jour à chaque nouvelle revue. En parallèle, j’ai mené deux missions complémentaires : la création d’un Power BI regroupant les informations des employés pour ma tutrice, et la mise en place d’un Power Automate automatisant l’envoi d’un e-mail au directeur du réseau. Ce stage m’a permis de découvrir un environnement professionnel structuré, de travailler sur des outils de data-visualisation et d’automatisation, et de développer mes compétences techniques ainsi que mon autonomie.
+		</p>
+
+		<h3 class="mt-4 fw-bold">Missions :</h3>
+		<ul class="text-muted">
+			<li>Intégration de tableaux de bord Power BI...</li>
+			<li>Création d’un Power BI spécifique...</li>
+			<li>Conception d’un Power Automate...</li>
+			<li>Découverte du fonctionnement des UTM...</li>
+		</ul>
+
+		<a href="{{ asset('documents/stages/Rapport_de_stage.pdf') }}" download class="btn btn-primary w-100 mt-3">
+			Télécharger le rapport du stage 1
+		</a>
+
+		<a href="{{ asset('documents/stages/Diaporama_stage.pdf') }}" download class="btn btn-primary w-100 mt-3">
+			Télécharger le diaporama du stage 1
+		</a>
+
+		<a href="{{ path('app_stages') }}" class="btn btn-outline-secondary mt-3">
+			⟵ Retour aux stages
+		</a>
+	</div>
+{% endblock %}

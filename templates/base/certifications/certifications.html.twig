@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ parent() }}Certfications
+{% endblock %}
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Mes Certfications
+		</h1>
+		<p class="text-center text-secondary fs-4 mb-5">
+            Voici les différentes certifications que j'ai pu passer pendant ma formation
+		</p>
+		<div class="row g-4">
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-code-slash"></i>
+							Atelier CNIL
+						</h4>
+						<p class="text-muted">
+							Explication atelier CNIL
+						</p>
+						<a href="{{ path('app_atelier_CNIL') }}" class="btn btn-outline-primary w-100 mt-3">
+							<i class="bi bi-eye"></i>
+							Voir les détails de l'atelier CNIL
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-phone-fill"></i>
+							Certification 2
+						</h4>
+						<p class="text-muted">
+							Explication certification 2
+						</p>
+						<a href="#" class="btn btn-outline-primary w-100 mt-3">
+							<i class="bi bi-eye"></i>
+							Voir le justificatif de certification 2
+						</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

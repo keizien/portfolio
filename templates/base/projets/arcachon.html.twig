@@ -1,0 +1,164 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Projet Arcachon
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Projet Arcachon
+		</h1>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
+						<p class="text-muted">
+							Ce projet avait pour objectif d’analyser la situation touristique du Bassin d’Arcachon après la période du Covid-19, 
+																					afin de proposer des stratégies permettant d’attirer de nouveaux visiteurs et d’augmenter la fréquentation du territoire. 
+																					Nous avons étudié plusieurs aspects clés : capacité d’accueil, hébergements, activités, provenance de la clientèle, 
+														                            âge des visiteurs, transports, ainsi que le bilan de la saison 2024.  
+																					Grâce à ces analyses, nous avons élaboré des propositions concrètes : campagnes de communication, activités adaptées à 
+														                            la saison, brochures, mails promotionnels, publications réseaux sociaux, et estimation de budgets pour différents projets
+														                            touristiques (marché de Noël, cuisine extérieure, actions publicitaires…).
+						</p>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
+
+						<p class="text-muted fw-bold mb-1">Objectifs principaux</p>
+						<ul class="text-muted">
+							<li>Analyser la situation touristique actuelle du Bassin d’Arcachon.</li>
+							<li>Comprendre les besoins, habitudes et profils de la clientèle.</li>
+							<li>Identifier les limites actuelles du territoire (hébergements, fréquentation, activités…).</li>
+							<li>Définir des actions pour attirer davantage de visiteurs, notamment hors saison.</li>
+							<li>Créer des supports de communication adaptés (mails, brochures, réseaux sociaux).</li>
+							<li>Construire un planning de publication cohérent et efficace.</li>
+							<li>Établir un budget pour les projets touristiques proposés.</li>
+						</ul>
+
+						<p class="text-muted fw-bold mb-1">Problématiques étudiées</p>
+						<ul class="text-muted">
+							<li>Capacité d’accueil du Bassin.</li>
+							<li>Types d’hébergements et préférences des visiteurs.</li>
+							<li>Activités disponibles et possibilités d’amélioration.</li>
+							<li>Fréquentation touristique selon les saisons.</li>
+							<li>Origine géographique et profil des visiteurs.</li>
+							<li>Accessibilité et transports utilisés.</li>
+						</ul>
+
+						<p class="text-muted fw-bold mb-1">Solutions proposées</p>
+						<ul class="text-muted">
+							<li>Promotion des chambres d’hôtes labellisées.</li>
+							<li>Campagnes ciblées pour les périodes creuses.</li>
+							<li>Création de brochures touristiques et publications réseaux sociaux.</li>
+							<li>Organisation d’événements (marché de Noël, cuisine extérieure).</li>
+							<li>Valorisation des activités locales et des sites emblématiques.</li>
+							<li>Planification stratégique des posts sur les réseaux sociaux.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
+
+						<p class="text-muted fw-bold mb-1">Analyse & traitement de données</p>
+						<ul class="text-muted">
+							<li>Analyse de données touristiques (hébergements, fréquentation, transports…).</li>
+							<li>Études statistiques sur les profils des visiteurs.</li>
+							<li>Identification des besoins et attentes selon les âges et origines.</li>
+						</ul>
+
+						<p class="text-muted fw-bold mb-1">Communication & marketing</p>
+						<ul class="text-muted">
+							<li>Conception de mails promotionnels.</li>
+							<li>Réalisation de brochures touristiques informatives.</li>
+							<li>Création de publications pour réseaux sociaux.</li>
+							<li>Élaboration d’un planning complet de communication digitale.</li>
+						</ul>
+
+						<p class="text-muted fw-bold mb-1">Gestion de projet</p>
+						<ul class="text-muted">
+							<li>Organisation du travail en équipe.</li>
+							<li>Répartition des tâches (maquettes, analyses, budget, planning…).</li>
+							<li>Structuration d’un dossier complet et professionnel.</li>
+						</ul>
+
+						<p class="text-muted fw-bold mb-1">Économie & budgétisation</p>
+						<ul class="text-muted">
+							<li>Évaluation des coûts d’événements touristiques (marché de Noël, cuisine extérieure…).</li>
+							<li>Estimation du budget communication : panneaux, bus, arrêts de bus…</li>
+							<li>Analyse coûts/bénéfices pour optimiser les dépenses.</li>
+						</ul>
+
+						<p class="text-muted fw-bold mb-1">Créativité & conception</p>
+						<ul class="text-muted">
+							<li>Conception de maquettes visuelles.</li>
+							<li>Création de supports illustrés (brochures, visuels Instagram…).</li>
+							<li>Proposition d’activités innovantes et adaptées au public.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
+
+						<div
+							class="row g-4">
+							<!-- Compétence 1 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Développer la présence en ligne de l'organisation</p>
+									<a href="{{ path('app_presence_ligne') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+
+							<!-- Compétence 2 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
+									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
+						<a href="{{ asset('documents/projets/arcachon/Documentation_projet_Arcachon.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger la fiche projet
+						</a>
+
+						<a href="{{ asset('documents/projets/arcachon/Diaporama_projet_Arcachon.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger le support de présentation
+						</a>
+
+					</div>
+				</div>
+
+				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
+					⟵ Retour aux projets
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

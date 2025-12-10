@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}Stages
+{% endblock %}
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-briefcase-fill"></i>
+			Mes Stages
+		</h1>
+		<p class="text-center text-secondary fs-4 mb-5">
+			Voici les expériences professionnelles que j’ai réalisées durant ma formation.
+		</p>
+		<div class="row g-4">
+			<div class="col-md-6">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-building-fill"></i>
+							Stage n°1 – Réseau Infrapole SNCF
+						</h4>
+						<h5 class="fw-bold mt-3 mb-2">Missions :</h5>
+						<ul class="text-muted">
+							<li>Intégration de tableaux de bord Power BI dans des présentations PowerPoint pour automatiser la mise à jour mensuelle des données.</li>
+							<li>Création d’un Power BI spécifique regroupant les informations d’affiliation des employés.</li>
+							<li>Conception d’un Power Automate pour automatiser certaines tâches internes.</li>
+							<li>Participation à la découverte du fonctionnement des UTM et des outils métier utilisés par l’Infrapole.</li>
+						</ul>
+						<a href="{{ path('app_stage1') }}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du stage 1
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-building-fill"></i>
+							Stage n°2 – ...
+						</h4>
+						<p class="text-muted">
+							...
+						</p>
+						<h5 class="fw-bold mt-3 mb-2">Missions :</h5>
+						<ul class="text-muted">
+							<li>...</li>
+						</ul>
+						<a href="{{ path('app_stage2') }}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du stage 2
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

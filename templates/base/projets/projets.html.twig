@@ -1,0 +1,131 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+	{{ parent() }}Projets
+{% endblock %}
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Mes Projets
+		</h1>
+		<p class="text-center text-secondary fs-4 mb-5">
+			Voici une sélection de projets que j’ai réalisés au cours de ma formation et en autonomie.
+		</p>
+		<div class="row g-4">
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-code-slash"></i>
+							Projet Solution Web
+						</h4>
+						<p class="text-muted">
+							Explication projet Solution Web
+						</p>
+						<a href="{{ path('app_solution_web') }}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du projet Solution Web
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-phone-fill"></i>
+							Projet Hotel Neptune
+						</h4>
+						<p class="text-muted">
+							Explication projet Hotel Neptune
+						</p>
+						<a href="{{path('app_neptune')}}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du projet Hotel Neptune
+						</a>
+
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-cloud-arrow-up-fill"></i>
+							Projet Arcachon
+						</h4>
+						<p class="text-muted">
+							Explication projet Arcachon
+						</p>
+						<a href="{{path('app_arcachon')}}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du projet Arcachon
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-cloud-arrow-up-fill"></i>
+							Projet Infrastructure Réseau
+						</h4>
+						<p class="text-muted">
+							Explication projet infrastructure réseau
+						</p>
+						<a href="{{path('app_infra_reseau')}}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du projet infrastructure Réseau
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-cloud-arrow-up-fill"></i>
+							Workshop SN1
+						</h4>
+						<p class="text-muted">
+							Explication workshop SN1
+						</p>
+						<a href="{{path('app_workshop_SN1')}}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du workshop SN1
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-cloud-arrow-up-fill"></i>
+							Workshop SN2
+						</h4>
+						<p class="text-muted">
+							Explication workshop SN2
+						</p>
+						<a href="{{path('app_workshop_SN2')}}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du workshop SN2
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-lg-4">
+				<div class="card shadow border-0 h-100">
+					<div class="card-body">
+						<h4 class="text-primary fw-bold mb-2">
+							<i class="bi bi-phone-fill"></i>
+							Projet AP 1
+						</h4>
+						<p class="text-muted">
+							Explication projet AP 1
+						</p>
+						<a href="{{path('app_apProjet')}}" class="btn btn-primary w-100 mt-3">
+							Voir les détails du projet AP 1
+						</a>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

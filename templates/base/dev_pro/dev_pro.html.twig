@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Organiser son développement professionnel
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+
+		<h1 class="text-center text-primary display-4 fw-bold mb-4">
+			<i class="bi bi-person-lines-fill"></i>
+			Organiser son développement professionnel
+		</h1>
+
+		<p class="text-center text-secondary fs-4 mb-5">
+			Compétence axée sur l’amélioration continue, la veille technologique
+			        et la construction d’un environnement professionnel efficace et structuré.
+		</p>
+
+		<div class="card shadow border-0 p-4">
+			<h3 class="fw-bold text-primary mb-3">Projets associés</h3>
+
+			<ul class="fs-5 text-muted">
+				<li>Mettre en place son environnement d’apprentissage personnel</li>
+				<li>Mettre en œuvre des outils et stratégies de veille informationnelle</li>
+				<li>Gérer son identité professionnelle</li>
+				<li>Développer son projet professionnel</li>
+			</ul>
+
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Création du portfolio</h5>
+						<a href="{{ path('app_accueil') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
+			<i class="bi bi-arrow-left"></i>
+			Retour aux compétences
+		</a>
+
+	</div>
+{% endblock %}

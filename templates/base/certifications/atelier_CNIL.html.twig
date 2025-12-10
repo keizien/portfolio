@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Atelier CNIL – Protection des données
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="text-center text-primary display-4 fw-bold mb-4">
+        <i class="bi bi-shield-lock-fill"></i>
+        Atelier CNIL – Protection des données
+    </h1>
+
+    <p class="text-center text-secondary fs-4 mb-5">
+        Explication
+    </p>
+
+    {# Tableau des liens des attestations #}
+    {% set links = [
+        'documents/atelier_CNIL/Attestation_de_suivi.pdf',
+        'documents/atelier_CNIL/Attestation_de_suivi_2.pdf',
+        'documents/atelier_CNIL/Attestation module 3.pdf',
+        'documents/atelier_CNIL/Attestation module 4.pdf',
+        'documents/atelier_CNIL/Attestation module 5.pdf',
+        'documents/atelier_CNIL/Attestation module 6.pdf'
+    ] %}
+
+    <div class="card shadow-lg border-0 p-4 mb-5">
+        <h3 class="fw-bold text-primary">Attestations de suivi</h3>
+        <p class="text-muted">Voici les attestations obtenues à la suite des différents modules suivis dans le cadre de l’atelier CNIL.</p>
+    </div>
+
+    <div class="row g-4">
+        {% for i in 1..6 %}
+            <div class="col-md-4">
+                <div class="card shadow text-center p-4 h-100">
+                    <h4 class="fw-bold text-primary mb-2">Attestation {{ i }}</h4>
+                    <p class="text-muted mb-3">Explication</p>
+
+                    <a class="btn btn-primary w-100"
+                       href="{{ asset(links[i-1]) }}"
+                       download>
+                        <i class="bi bi-download"></i> Télécharger
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="mt-5">
+        <a href="{{ path('app_certifications') }}" class="btn btn-secondary">
+            RETOUR
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}Accueil
+{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <div class="text-center mb-5">
+        <h1 class="display-2 fw-bold text-primary mb-3">
+            <i class="bi bi-person-badge-fill"></i> Portfolio
+        </h1>
+        <p class="fs-4 text-secondary">
+            Bienvenue sur mon portfolio — découvrez mes projets, mes compétences et mon parcours.
+        </p>
+    </div>
+    <div class="card shadow-lg border-0 mb-5">
+        <div class="card-body p-5 text-center">
+            <h2 class="fw-bold text-primary mb-3">
+                <i class="bi bi-stars"></i> Qui suis-je ?
+            </h2>
+            <p class="text-muted fs-5">
+                Étudiant en BTS SIO option SLAM, passionné par le développement 
+                web, la création d’applications et les technologies modernes.  
+                Mon objectif : devenir un développeur capable de concevoir des solutions fiables,
+                performantes et adaptées aux besoins réels.
+            </p>
+            <a href="{{ path('app_contact') }}" class="btn btn-primary btn-lg mt-3">
+                <i class="bi bi-envelope-fill"></i> Me contacter
+            </a>
+        </div>
+    </div>
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0 text-center p-4">
+                <i class="bi bi-code-slash text-primary display-3 mb-3"></i>
+                <h3 class="fw-bold text-primary mb-2">Mes Projets</h3>
+                <p class="text-muted">Découvrez toutes mes réalisations : applications, sites web, ateliers, travaux pratiques…</p>
+                <a href="{{ path('app_projets') }}" class="btn btn-primary mt-3">Voir les projets</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0 text-center p-4">
+                <i class="bi bi-layers-fill text-primary display-3 mb-3"></i>
+                <h3 class="fw-bold text-primary mb-2">Compétences</h3>
+                <p class="text-muted">Accédez aux compétences du BTS SIO, illustrées par mes projets et expériences.</p>
+                <a href="{{ path('app_competences') }}" class="btn btn-primary mt-3">Voir les compétences</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card h-100 shadow border-0 text-center p-4">
+                <i class="bi bi-file-earmark-check-fill text-primary display-3 mb-3"></i>
+                <h3 class="fw-bold text-primary mb-2">Certifications</h3>
+                <p class="text-muted">Toutes mes attestations, formations suivies et certifications professionnelles.</p>
+                <a href="{{ path('app_certifications') }}" class="btn btn-primary mt-3">Voir les certifications</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

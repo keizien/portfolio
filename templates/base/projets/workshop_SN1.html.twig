@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Workshop SN1
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Workshop SN1
+		</h1>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
+						<p class="text-muted"></p>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
+						<ul class="text-muted"></ul>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
+						<ul class="text-muted"></ul>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
+						<a href="{{ asset('documents/projets/workshop_SN2/Documentation_WORKSHOP_2025.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger la fiche projet
+						</a>
+
+						<a href="{{ asset('documents/projets/workshop_SN2/Diaporama_Workshop_2025.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger le diaporama
+						</a>
+					</div>
+				</div>
+
+				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
+					⟵ Retour aux projets
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

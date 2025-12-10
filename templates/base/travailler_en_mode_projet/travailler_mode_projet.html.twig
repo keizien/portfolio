@@ -1,0 +1,80 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Travailler en mode projet{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="text-center text-primary display-4 fw-bold mb-4">
+        <i class="bi bi-kanban-fill"></i>
+        Travailler en mode projet
+    </h1>
+
+    <p class="text-center text-secondary fs-4 mb-5">
+        Compétence démontrée lors de la gestion, du suivi et de l’organisation de plusieurs projets, 
+        notamment grâce à l’utilisation d’outils comme Trello et Notion.
+    </p>
+
+    <div class="card shadow border-0 p-4">
+        <h3 class="fw-bold mb-3 text-primary">Projets associés</h3>
+
+        <div class="row g-4">
+            <!-- Projet 1 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow h-100 border-0 p-3">
+                    <h5 class="fw-bold text-primary">Projet Arcachon</h5>
+                    <p class="text-muted">Développement complet d’un site web en MVC.</p>
+                    <a href="{{ path('app_arcachon') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projet 2 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow h-100 border-0 p-3">
+                    <h5 class="fw-bold text-primary">Projet Infra-Réseau</h5>
+                    <p class="text-muted">Conception complète d’une infrastructure réseau sécurisée.</p>
+                    <a href="{{ path('app_infra_reseau') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow h-100 border-0 p-3">
+                    <h5 class="fw-bold text-primary">Projet Neptune</h5>
+                    <p class="text-muted">Conception et exploitation d'une base de données.</p>
+                    <a href="{{ path('app_neptune') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projet 3 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow h-100 border-0 p-3">
+                    <h5 class="fw-bold text-primary">Workshop MI6 – Time2Spy</h5>
+                    <p class="text-muted">Projet collaboratif mêlant électronique, Python et cryptographie.</p>
+                    <a href="{{ path('app_workshop_SN2') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+
+            <!-- Projet 4 -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow h-100 border-0 p-3">
+                    <h5 class="fw-bold text-primary">Projet Solution Web</h5>
+                    <p class="text-muted">Développement d'un gestionnaire de livrables en PHP.</p>
+                    <a href="{{ path('app_solution_web') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+	<a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
+		<i class="bi bi-arrow-left"></i> Retour aux compétences
+	</a>
+</div>
+{% endblock %}

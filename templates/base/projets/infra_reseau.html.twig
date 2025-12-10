@@ -1,0 +1,136 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Projet Infrastructure Réseau
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Projet Infrastructure Réseau
+		</h1>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
+						<p class="text-muted">
+							Ce projet consiste à analyser, concevoir et déployer une architecture réseau segmentée pour une entreprise fictive.
+							Les travaux incluent le découpage en zones (accueil, bureaux, laboratoire, DMZ, serveurs internes), la sélection d’équipements,
+							la sécurisation, la configuration du routage inter-zones, le déploiement des services (DHCP, DNS, serveur web), la sauvegarde des
+							configurations et la proposition d’une solution NAS pour répondre aux besoins de stockage sur plusieurs années.
+						</p>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
+
+						<ul class="text-muted">
+							<li>
+								<strong>Organisation</strong>: découper le réseau en zones et isoler les ressources sensibles.</li>
+							<li>
+								<strong>Équipements</strong>: choisir et configurer switches et routeurs adaptés au besoin.</li>
+							<li>
+								<strong>Sécurité</strong>: mettre en place ACL, segmentation VLAN, accès administrateur sécurisé (SSH), port-security, sauvegarde des configs.</li>
+							<li>
+								<strong>Routage</strong>: configurer le routage inter-zones et les trunks VLAN pour permettre les communications contrôlées.</li>
+							<li>
+								<strong>Services</strong>: déployer DHCP, DNS et un serveur web pour héberger des services internes/externes.</li>
+							<li>
+								<strong>Tolérance</strong>: améliorer la résilience (haute disponibilité, plan de sauvegarde/restauration).</li>
+							<li>
+								<strong>Stockage</strong>: proposer une solution NAS dimensionnée et sécurisée pour la croissance des données.</li>
+							<li>
+								<strong>Automatisation / déploiement</strong>: proposer des méthodes pour déployer rapidement un parc de postes (WDS/MDT/SCCM, PXE).</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
+
+						<div class="row">
+							<div class="col-md-6">
+								<h5 class="fw-bold">Conception et administration réseau</h5>
+								<ul class="text-muted">
+									<li>Analyse et découpage en zones (VLANs, DMZ, serveurs internes).</li>
+									<li>Configuration des équipements (switches/routers).</li>
+									<li>Mise en place du routage inter-zones et des trunks VLAN.</li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<h5 class="fw-bold">Sécurité et sauvegarde</h5>
+								<ul class="text-muted">
+									<li>ACLs, port-security, SSH, HTTPS pour l’administration.</li>
+									<li>Sauvegarde et restauration des configurations (tftp / copies run / NVRAM).</li>
+									<li>Propositions pour la tolérance aux pannes et la sauvegarde des données.</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="row mt-3">
+							<div class="col-md-6">
+								<h5 class="fw-bold">Services et déploiement</h5>
+								<ul class="text-muted">
+									<li>DHCP (étendues, gateway, tests clients).</li>
+									<li>DNS et serveur web pour l’hébergement interne/externe.</li>
+									<li>Solution de déploiement poste (WDS/MDT/SCCM, PXE) pour les 30 nouveaux postes.</li>
+								</ul>
+							</div>
+							<div class="col-md-6">
+								<h5 class="fw-bold">Stockage</h5>
+								<ul class="text-muted">
+									<li>Dimensionnement NAS (croissance ~15%/an) et recommandation matériel (ex : Synology DS1823xs+).</li>
+									<li>Stratégies RAID, chiffrement, sauvegarde hors-site / réplication.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
+
+						<div
+							class="row g-4">
+
+							<!-- Compétence 2 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
+									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
+						<a href="{{ asset('documents/projets/infra_reseau/Documentation_Projet_Infra_Réseau.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger la fiche projet
+						</a>
+						<a href="{{ asset('documents/projets/infra_reseau/Diaporama_Projet_infra_réseau.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger le diaporama
+						</a>
+					</div>
+				</div>
+
+				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
+					⟵ Retour aux projets
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

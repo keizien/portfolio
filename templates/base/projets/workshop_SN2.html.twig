@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Workshop SN2
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Workshop SN2
+		</h1>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
+						<p class="text-muted">
+							Time2Spy est un gadget d’espionnage conçu sous la forme d’une montre permettant à un agent de communiquer discrètement avec son QG.
+														Le dispositif intègre un micro miniature, un bouton d’alerte et un système de LEDs permettant d’obtenir une réponse silencieuse.
+														Le tout repose sur un Raspberry Pi 4, un système de chiffrement AES, une communication réseau TCP et une interface graphique côté QG.
+														L’objectif est d’assurer une communication sécurisée, invisible et fiable, même en situation critique.
+						</p>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
+
+						<p class="fw-semibold text-dark">Objectifs fonctionnels</p>
+						<ul class="text-muted">
+							<li>Créer un gadget espion numérique fonctionnel et réaliste.</li>
+							<li>Permettre à un agent d’envoyer un message vocal codé au QG.</li>
+							<li>Assurer un déchiffrement sécurisé côté QG avec validation par mot de passe.</li>
+							<li>Afficher une interface graphique de surveillance style Cluedo pour situer l’agent.</li>
+							<li>Envoyer une réponse silencieuse (LED verte/rouge) à distance.</li>
+						</ul>
+
+						<p class="fw-semibold text-dark">Objectifs techniques</p>
+						<ul class="text-muted">
+							<li>Utiliser un Raspberry Pi équipé d’un micro USB pour la détection vocale.</li>
+							<li>Implémenter un chiffrement AES pour la sécurité des messages.</li>
+							<li>Créer un serveur TCP côté QG pour recevoir les messages.</li>
+							<li>Développer une interface Tkinter affichant messages, lieux et carte graphique.</li>
+							<li>Programmer le contrôle des LEDs via GPIO sur le Raspberry.</li>
+							<li>Mettre en place une logique “alerte / confirmation / extraction”.</li>
+							<li>Documenter et organiser le projet avec Trello et un planning complet.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
+
+						<p class="fw-semibold text-dark">Programmation & développement</p>
+						<ul class="text-muted">
+							<li>Python avancé : sockets TCP, threads, Tkinter, gestion d’évènements.</li>
+							<li>Implémentation du chiffrement AES pour sécuriser les messages.</li>
+							<li>Analyse et traitement du son pour détecter des mots-clés.</li>
+							<li>Communication bidirectionnelle QG ↔ Raspberry.</li>
+						</ul>
+
+						<p class="fw-semibold text-dark">Systèmes & réseau</p>
+						<ul class="text-muted">
+							<li>Configuration d’un Raspberry Pi (SSH, installation OS, scripts auto).</li>
+							<li>Gestion des GPIO pour LEDs et bouton physique.</li>
+							<li>Mise en place d’un serveur TCP et client réseau sécurisé.</li>
+							<li>Protocole d’envoi de messages chiffrés + réponse LED.</li>
+						</ul>
+
+						<p class="fw-semibold text-dark">Électronique & matériel</p>
+						<ul class="text-muted">
+							<li>Branchement de LEDs, bouton poussoir et micro sur Raspberry.</li>
+							<li>Utilisation du GrovePi (tests + diagnostic + contournement des erreurs).</li>
+							<li>Montage physique d’un prototype de montre espion (cache, câblage, maintien).</li>
+						</ul>
+
+						<p class="fw-semibold text-dark">Gestion de projet</p>
+						<ul class="text-muted">
+							<li>Organisation sur Trello (À faire / En cours / Terminé).</li>
+							<li>Planification complète sur 5 jours (brainstorm → rendu oral).</li>
+							<li>Documentation technique, présentation PowerPoint et livrables.</li>
+						</ul>
+
+						<p class="fw-semibold text-dark">Sécurité informatique</p>
+						<ul class="text-muted">
+							<li>Chiffrement AES + gestion de mot de passe.</li>
+							<li>Protection des messages reçus (leurres si mauvais code).</li>
+							<li>Journalisation (log.txt) de toutes les opérations.</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
+
+						
+
+							<!-- Compétence 2 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
+									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
+						<a href="{{ asset('documents/projets/workshop_SN2/Documentation_WORKSHOP_2025.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger la fiche projet
+						</a>
+
+						<a href="{{ asset('documents/projets/workshop_SN2/Diaporama_Workshop_2025.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger le diaporama
+						</a>
+					</div>
+				</div>
+
+				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
+					⟵ Retour aux projets
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

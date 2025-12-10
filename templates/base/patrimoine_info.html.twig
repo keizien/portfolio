@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer le patrimoine informatique
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+
+		<h1 class="text-center text-primary display-4 fw-bold mb-4">
+			<i class="bi bi-hdd-network-fill"></i>
+			Gérer le patrimoine informatique
+		</h1>
+
+		<p class="text-center text-secondary fs-5 mb-5">
+			Cette compétence consiste à maintenir, organiser et optimiser les ressources numériques d’une structure.
+		</p>
+
+		<div class="card shadow border-0 p-4 mb-5">
+			<h3 class="fw-bold mb-3 text-primary">Sous-compétences couvertes</h3>
+
+			<ul class="fs-5 text-muted">
+				<li>Recenser et identifier les ressources numériques</li>
+				<li>Exploiter les caractéristiques d’un équipement ou d’un service informatique</li>
+				<li>Installer, déployer et configurer un poste de travail</li>
+				<li>Vérifier les conditions de continuité d’un service informatique</li>
+				<li>Gérer les sauvegardes et la restauration des données</li>
+				<li>Vérifier le respect des règles d’utilisation des ressources numériques</li>
+			</ul>
+		</div>
+
+		<!-- SECTION DES PROJETS ASSOCIÉS -->
+		<h2 class="text-primary fw-bold mb-4 text-center">
+			<i class="bi bi-folder-check"></i>
+			Projets associés
+		</h2>
+
+		<div class="row g-4">
+
+			<div class="col-md-4">
+				<div class="card shadow-lg border-0 h-100">
+					<div class="card-body">
+						<h4 class="fw-bold text-primary mb-3">AP Projet 1</h4>
+						<p class="text-muted">
+							Mise en place d’un service d’organisation et de gestion de stockage des fichiers ZIP/PPTX.
+						</p>
+						<a href="{{ path('app_apProjet') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Stage SNCF Infrapole</h5>
+						<ul class="text-muted">
+							<li>Intégration de Power BI dans des présentations PowerPoint</li>
+							<li>Création de tableaux Power BI</li>
+							<li>Automatisation d'un flux avec Power Automate</li>
+						</ul>
+						<a href="{{ path('app_stage1') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
+			<i class="bi bi-arrow-left"></i>
+			Retour aux compétences
+		</a>
+
+	</div>
+{% endblock %}

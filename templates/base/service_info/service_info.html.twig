@@ -1,0 +1,107 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mettre à disposition un service informatique
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-4 fw-bold mb-4">
+			<i class="bi bi-gear-wide-connected"></i>
+			Mettre à disposition des utilisateurs un service informatique
+		</h1>
+
+		<p class="text-center text-secondary fs-4 mb-5">
+			Compétence dédiée au déploiement, au test, à la documentation 
+					et à l’accompagnement des utilisateurs dans l’utilisation d’un service informatique.
+		</p>
+
+		<div class="card shadow border-0 p-4 mb-5">
+			<h3 class="fw-bold text-primary mb-3">Sous-compétences développées</h3>
+
+			<ul class="fs-5 text-muted">
+				<li>Réaliser les tests d’intégration et d’acceptation d’un service</li>
+				<li>Déployer un service informatique</li>
+				<li>Accompagner les utilisateurs dans la mise en place du service</li>
+			</ul>
+		</div>
+
+		<h3 class="text-primary fw-bold mb-3">Projets associés</h3>
+
+		<div
+			class="row g-4">
+
+			<!-- Projet Web Livraison -->
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Projet Service Web Livrables</h5>
+						<p class="text-muted">Déploiement d’un service de gestion des livrables ZIP/PPTX, interface admin, structure responsive et tests fonctionnels.</p>
+						<a href="{{ path('app_solution_web') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Projet Hotel Neptune</h5>
+						<p class="text-muted">Conception et exploration de base de données</p>
+						<a href="{{ path('app_neptune') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Projet Infrastructure Réseaux</h5>
+						<p class="text-muted">Solution infrastructure système et réseaux</p>
+						<a href="{{ path('app_infra_reseau') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Stage SNCF Infrapole</h5>
+						<ul class="text-muted">
+							<li>Intégration de Power BI dans des présentations PowerPoint</li>
+							<li>Création de tableaux Power BI</li>
+							<li>Automatisation d'un flux avec Power Automate</li>
+						</ul>
+						<a href="{{ path('app_stage1') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- Projet Workshop SN2 -->
+			<div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Workshop SN2 – Time2Spy</h5>
+						<p class="text-muted">Mise en place d’un système communicant (Raspberry Pi + Python), tests LED/micro, communication réseau sécurisée.</p>
+						<a href="{{ path('app_workshop_SN2') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
+			<i class="bi bi-arrow-left"></i>
+			Retour aux compétences
+		</a>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }} - Ajout fichier
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-10 col-md-8 text-primary">
+
+            <h1 class="text-center text-primary mt-4 pt-4 fw-bold">
+                Ajouter un fichier
+            </h1>
+
+            {{ form_start(form) }}
+			{{ form_errors(form.fichier) }}
+            {{ form_row(form.fichier) }}
+            {{ form_row(form.envoyer) }}
+
+            {{ form_end(form) }}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,108 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	{{ parent() }}
+	Projet Solution Web
+{% endblock %}
+
+{% block body %}
+	<div class="container py-5">
+		<h1 class="text-center text-primary display-3 fw-bold mb-4">
+			<i class="bi bi-kanban-fill"></i>
+			Projet Solution Web
+		</h1>
+		<div class="row justify-content-center">
+			<div class="col-md-10">
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
+						<p class="text-muted">
+							Ce projet a consisté à développer une application web permettant la gestion et l’envoi de livrables au format ZIP et PowerPoint, destinée aux élèves et aux intervenants.
+							L’objectif principal était d’améliorer la fluidité du rendu des devoirs en créant un système simple, intuitif et responsive.
+							Le site comporte deux parties :
+							<ul><li>Une interface utilisateur, qui affiche l’arborescence des dossiers et permet l’envoi de fichiers dans la section choisie.</li>
+							<li>Une interface administrateur, offrant un système complet de gestion des dossiers (création, modification, suppression sécurisée, visualisation).</li></ul></p>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
+						<ul class="text-muted">
+							<li>Optimiser et fluidifier l’échange de fichiers entre étudiants et intervenants.</li>
+							<li>Offrir une interface ergonomique et responsive accessible depuis n’importe quel appareil.</li>
+							<li>Permettre une gestion efficace des dossiers grâce à une interface d’administration sécurisée.</li>
+							<li>Restreindre l’envoi aux formats autorisés (ZIP et PPTX) afin d’éviter les fichiers non conformes.</li>
+							<li>Proposer un service simple, fiable et basé sur des technologies standard (PHP, HTML, CSS, Bootstrap).</li>
+						</ul>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
+						<ul class="text-muted">
+							<li>Conception d’une architecture web (organisation des fichiers, gestion des répertoires).</li>
+							<li>Développement d’interfaces utilisateurs en HTML, CSS et Bootstrap.</li>
+							<li>Développement backend en PHP :gestion des formulaires, 
+							upload sécurisé de fichiers, 
+							affichage dynamique d’arborescences, 
+							validations et restrictions de formats.</li>
+							<li>Mise en place d’un CRUD complet pour la partie administrateur.</li>
+							<li>Création d’un design responsive adapté aux différents supports.</li>
+							<li>Tests fonctionnels et validation du fonctionnement global.</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
+
+						<div
+							class="row g-4">
+							<!-- Compétence 1 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Mettre à disposition des utilisateurs un service informatique</p>
+									<a href="{{ path('app_service_info') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+
+							<!-- Compétence 2 -->
+							<div class="col-md-6">
+								<div class="p-3 border rounded h-100">
+									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
+									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
+										Voir la compétence
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card shadow border-0 mb-4">
+					<div class="card-body">
+						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
+						<a href="{{ asset('documents/projets/solution_web/Documentation_projet_solution_web.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger la fiche projet
+						</a>
+
+						<a href="{{ asset('documents/projets/solution_web/Diaporama_projet_solution_web.pdf') }}" download class="btn btn-primary w-100">
+							<i class="bi bi-download"></i>
+							Télécharger le diaporama
+						</a>
+					</div>
+				</div>
+
+				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
+					⟵ Retour aux projets
+				</a>
+
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Développer la présence en ligne{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+
+    <h1 class="text-center text-primary display-4 fw-bold mb-4">
+        <i class="bi bi-globe2"></i>
+        Développer la présence en ligne de l'organisation
+    </h1>
+
+    <p class="text-center text-secondary fs-4 mb-5">
+        Compétence visant à contribuer à la visibilité numérique, 
+        à la gestion de contenus et à l’amélioration de la présence web d’une organisation.
+    </p>
+
+    <div class="card shadow border-0 p-4">
+        <h3 class="fw-bold mb-4 text-primary">Projets liés à cette compétence</h3>
+
+        <div class="row g-4">
+
+            <!-- Projet site web / évolution / visibilité -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card shadow-sm h-100 text-center p-4">
+                    <h4 class="fw-bold text-primary mb-2">Projet Arcachon</h4>
+                    <p class="text-muted">Développement d’un site complet avec gestion des réservations, espace client, authentification et interface administrateur.</p>
+                    <a href="{{ path('app_arcachon') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
+		<i class="bi bi-arrow-left"></i> Retour aux compétences
+	</a>
+</div>
+{% endblock %}

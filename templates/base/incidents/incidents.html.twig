@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Répondre aux incidents et demandes d’assistance{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+
+    <h1 class="text-center text-primary display-4 fw-bold mb-4">
+        <i class="bi bi-shield-fill-exclamation"></i>
+        Répondre aux incidents et aux demandes d’assistance
+    </h1>
+
+    <p class="text-center text-secondary fs-5 mb-5">
+        Cette compétence consiste à analyser, diagnostiquer et résoudre les incidents, 
+        tout en accompagnant les utilisateurs et en assurant le suivi des demandes.
+    </p>
+
+    <div class="card shadow border-0 p-4">
+
+        <h3 class="fw-bold mb-3 text-primary">Projets associés</h3>
+
+        <div class="row g-4">
+
+            <!-- Projet Infra Réseau -->
+            <div class="col-md-6">
+                <div class="card border-0 shadow-sm h-100 p-4 text-center">
+                    <h4 class="fw-bold text-primary">Projet Infra Réseau</h4>
+                    <p class="text-muted">
+                        Mise en place, configuration, sécurisation et dépannage d’une infrastructure réseau complète.
+                    </p>
+                    <a href="{{ path('app_infra_reseau') }}" class="btn btn-primary w-100">
+                        Voir le projet
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+				<div class="card shadow h-100 border-0">
+					<div class="card-body">
+						<h5 class="fw-bold text-primary">Stage SNCF Infrapole</h5>
+						<ul class="text-muted">
+							<li>Intégration de Power BI dans des présentations PowerPoint</li>
+							<li>Création de tableaux Power BI</li>
+							<li>Automatisation d'un flux avec Power Automate</li>
+						</ul>
+						<a href="{{ path('app_stage1') }}" class="btn btn-primary w-100">
+							Voir le projet
+						</a>
+					</div>
+				</div>
+			</div>
+
+        </div>
+
+    </div>
+    <a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
+		<i class="bi bi-arrow-left"></i> Retour aux compétences
+	</a>
+
+</div>
+{% endblock %}

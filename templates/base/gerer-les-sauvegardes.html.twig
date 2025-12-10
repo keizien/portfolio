@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer les sauvegardes{% endblock %}
+
+{% block body %}
+<div class="container py-5">
+    <h1 class="text-center text-primary display-4 fw-bold mb-4">
+        <i class="bi bi-cloud-arrow-down-fill"></i>
+        Gérer les sauvegardes
+    </h1>
+
+    <p class="text-center text-secondary fs-5 mb-5">
+        Sous-compétence : mettre en œuvre une politique de sauvegarde pour assurer la continuité et la sécurité des données.
+    </p>
+
+    <div class="card shadow border-0 p-4">
+        <h3 class="fw-bold mb-3 text-primary">Mon travail sur cette sous-compétence</h3>
+
+        <p class="fs-5 text-muted">
+            Dans le cadre d’un projet de cybersécurité ayant pour objectif de sensibiliser aux risques 
+            informatiques, j’ai mis en place une documentation sur les sauvegardes.  
+            J’y présente les bonnes pratiques à suivre, les différents types de sauvegardes 
+            (complètes, incrémentales, différentielles), ainsi que les stratégies permettant
+            d’assurer la disponibilité et l’intégrité des données.  
+        </p>
+
+        <p class="fs-5 text-muted">
+            Le travail inclut également l’analyse des risques liés à la perte de données, ainsi que la
+            mise en avant du rôle essentiel des sauvegardes dans la continuité d’activité.
+        </p>
+
+        <div class="mt-4">
+            <a href="{{ asset('documents/competences/patrimoine_info/Documentation_Cybersecurite.pdf') }}" 
+               class="btn btn-primary me-2" download>
+                <i class="bi bi-file-earmark-arrow-down"></i>
+                Télécharger la documentation
+            </a>
+
+            <a href="{{ asset('documents/competences/patrimoine_info/Diaporama_AP_Projet 1.pdf') }}"
+               class="btn btn-outline-primary" download>
+                <i class="bi bi-file-earmark-slides"></i>
+                Télécharger le diaporama
+            </a>
+        </div>
+
+        <a href="{{ path('app_patrimoine_info') }}" class="btn btn-outline-secondary mt-4">
+            <i class="bi bi-arrow-left"></i> Retour aux compétences
+        </a>
+    </div>
+</div>
+{% endblock %}
