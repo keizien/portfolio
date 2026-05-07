@@ -4,57 +4,471 @@
     {{ parent() }}Accueil
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* ── Reset spécifique à la page ── */
+        body {
+            font-family: 'Sora', sans-serif;
+        }
+
+        /* ── Navbar override ── */
+
+        .navbar-brand span {
+            color: #1D9E75;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 13px;
+            color: #6b7280 !important;
+            letter-spacing: 0.3px;
+            transition: color 0.2s;
+        }
+
+        /* ── Hero ── */
+        .pf-hero {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 430px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-hero-left {
+            padding: 4rem 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .pf-hero-right {
+            padding: 3rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 1.25rem;
+            background: #f9fafb;
+        }
+
+        /* Badge animé */
+        .pf-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.5rem;
+            width: fit-content;
+        }
+
+        .pf-badge-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #1D9E75;
+            animation: pf-pulse 2s infinite;
+        }
+
+        @keyframes pf-pulse {
+            0%, 100% { opacity: 1; }
+            50%       { opacity: 0.35; }
+        }
+
+        /* Titre hero */
+        .pf-hero-title {
+            font-size: clamp(36px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -2px;
+            margin: 0 0 1rem;
+            color: #111827;
+        }
+
+        .pf-hero-title em {
+            font-style: normal;
+            color: #1D9E75;
+        }
+
+        .pf-hero-sub {
+            font-size: 15px;
+            color: #6b7280;
+            line-height: 1.65;
+            margin: 0 0 2rem;
+            max-width: 400px;
+        }
+
+        /* Boutons */
+        .pf-btn-primary {
+            background: #1D9E75;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .pf-btn-primary:hover {
+            background: #0F6E56;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        .pf-btn-ghost {
+            background: transparent;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Sora', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .pf-btn-ghost:hover {
+            border-color: #1D9E75;
+            color: #1D9E75;
+        }
+
+        /* Stats */
+        .pf-stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .pf-stat {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.25rem;
+        }
+
+        .pf-stat-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1D9E75;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .pf-stat-label {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        /* Stack tags */
+        .pf-tech-label {
+            font-size: 11px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 8px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .pf-tech-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .pf-tech-tag {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+
+        /* Cartes du bas */
+        .pf-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .pf-card {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid #e5e7eb;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pf-card:last-child {
+            border-right: none;
+        }
+
+        .pf-card:hover {
+            background: #f9fafb;
+        }
+
+        .pf-card-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-card-icon.green { background: #E1F5EE; }
+        .pf-card-icon.blue  { background: #E6F1FB; }
+        .pf-card-icon.amber { background: #FAEEDA; }
+
+        .pf-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 8px;
+            color: #111827;
+        }
+
+        .pf-card-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.65;
+            margin: 0 0 1.5rem;
+            flex: 1;
+        }
+
+        .pf-card-link {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1D9E75;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .pf-card-link .arrow {
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .pf-card:hover .pf-card-link .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Footer bar */
+        .pf-footer-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+            border-top: 1px solid #e5e7eb;
+            font-size: 11px;
+            color: #9ca3af;
+            font-family: 'Space Mono', monospace;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .pf-hero {
+                grid-template-columns: 1fr;
+            }
+
+            .pf-hero-left {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+                padding: 2.5rem 1.5rem;
+            }
+
+            .pf-hero-right {
+                padding: 2rem 1.5rem;
+            }
+
+            .pf-hero-title {
+                letter-spacing: -1px;
+            }
+
+            .pf-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .pf-card {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .pf-card:last-child {
+                border-bottom: none;
+            }
+
+            .pf-footer-bar {
+                flex-direction: column;
+                gap: 4px;
+                text-align: center;
+            }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-<div class="container py-5">
-    <div class="text-center mb-5">
-        <h1 class="display-2 fw-bold text-primary mb-3">
-            <i class="bi bi-person-badge-fill"></i> Portfolio
+
+{# ── Hero ── #}
+<div class="pf-hero">
+
+    {# Colonne gauche : accroche #}
+    <div class="pf-hero-left">
+        <div class="pf-badge">
+            <div class="pf-badge-dot"></div>
+            BTS SIO — option SLAM
+        </div>
+
+        <h1 class="pf-hero-title">
+            Étudiant,<br>
+            <em>développeur</em>,<br>
+            créateur.
         </h1>
-        <p class="fs-4 text-secondary">
-            Bienvenue sur mon portfolio — découvrez mes projets, mes compétences et mon parcours.
+
+        <p class="pf-hero-sub">
+            Passionné par le développement web et la création d'applications.
+            Mon objectif : concevoir des solutions fiables, performantes
+            et adaptées aux besoins réels.
         </p>
-    </div>
-    <div class="card shadow-lg border-0 mb-5">
-        <div class="card-body p-5 text-center">
-            <h2 class="fw-bold text-primary mb-3">
-                <i class="bi bi-stars"></i> Qui suis-je ?
-            </h2>
-            <p class="text-muted fs-5">
-                Étudiant en BTS SIO option SLAM, passionné par le développement 
-                web, la création d’applications et les technologies modernes.  
-                Mon objectif : devenir un développeur capable de concevoir des solutions fiables,
-                performantes et adaptées aux besoins réels.
-            </p>
-            <a href="{{ path('app_contact') }}" class="btn btn-primary btn-lg mt-3">
-                <i class="bi bi-envelope-fill"></i> Me contacter
+
+        <div class="d-flex gap-3 flex-wrap">
+            <a href="{{ path('app_contact') }}" class="pf-btn-primary">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                </svg>
+                Me contacter
+            </a>
+            <a href="{{ path('app_competences') }}" class="pf-btn-ghost">
+                Voir mes compétences
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="5" y1="12" x2="19" y2="12"/>
+                    <polyline points="12 5 19 12 12 19"/>
+                </svg>
             </a>
         </div>
     </div>
-    <div class="row g-4">
-        <div class="col-md-4">
-            <div class="card h-100 shadow border-0 text-center p-4">
-                <i class="bi bi-code-slash text-primary display-3 mb-3"></i>
-                <h3 class="fw-bold text-primary mb-2">Mes Projets</h3>
-                <p class="text-muted">Découvrez toutes mes réalisations : applications, sites web, ateliers, travaux pratiques…</p>
-                <a href="{{ path('app_projets') }}" class="btn btn-primary mt-3">Voir les projets</a>
+
+    {# Colonne droite : stats + stack #}
+    <div class="pf-hero-right">
+        <div class="pf-stat-grid">
+            <div class="pf-stat">
+                <div class="pf-stat-num">12+</div>
+                <div class="pf-stat-label">Projets réalisés</div>
+            </div>
+            <div class="pf-stat">
+                <div class="pf-stat-num">2</div>
+                <div class="pf-stat-label">Stages effectués</div>
+            </div>
+            <div class="pf-stat">
+                <div class="pf-stat-num">8</div>
+                <div class="pf-stat-label">Certifications</div>
+            </div>
+            <div class="pf-stat">
+                <div class="pf-stat-num">BTS</div>
+                <div class="pf-stat-label">En cours — 2025</div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow border-0 text-center p-4">
-                <i class="bi bi-layers-fill text-primary display-3 mb-3"></i>
-                <h3 class="fw-bold text-primary mb-2">Compétences</h3>
-                <p class="text-muted">Accédez aux compétences du BTS SIO, illustrées par mes projets et expériences.</p>
-                <a href="{{ path('app_competences') }}" class="btn btn-primary mt-3">Voir les compétences</a>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card h-100 shadow border-0 text-center p-4">
-                <i class="bi bi-file-earmark-check-fill text-primary display-3 mb-3"></i>
-                <h3 class="fw-bold text-primary mb-2">Certifications</h3>
-                <p class="text-muted">Toutes mes attestations, formations suivies et certifications professionnelles.</p>
-                <a href="{{ path('app_certifications') }}" class="btn btn-primary mt-3">Voir les certifications</a>
+
+        <div>
+            <div class="pf-tech-label">Stack &amp; technologies</div>
+            <div class="pf-tech-row">
+                <span class="pf-tech-tag">PHP / Symfony</span>
+                <span class="pf-tech-tag">Twig</span>
+                <span class="pf-tech-tag">JavaScript</span>
+                <span class="pf-tech-tag">MySQL</span>
+                <span class="pf-tech-tag">HTML / CSS</span>
+                <span class="pf-tech-tag">Bootstrap</span>
+                <span class="pf-tech-tag">Git</span>
             </div>
         </div>
     </div>
+
 </div>
+
+{# ── Cartes ── #}
+<div class="pf-cards">
+
+    <a href="{{ path('app_projets') }}" class="pf-card">
+        <div class="pf-card-icon green">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2">
+                <polyline points="16 18 22 12 16 6"/>
+                <polyline points="8 6 2 12 8 18"/>
+            </svg>
+        </div>
+        <div class="pf-card-title">Mes Projets</div>
+        <p class="pf-card-desc">
+            Applications, sites web, ateliers et travaux pratiques
+            réalisés durant ma formation.
+        </p>
+        <span class="pf-card-link">
+            Voir les projets <span class="arrow">→</span>
+        </span>
+    </a>
+
+    <a href="{{ path('app_competences') }}" class="pf-card">
+        <div class="pf-card-icon blue">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+        </div>
+        <div class="pf-card-title">Compétences</div>
+        <p class="pf-card-desc">
+            Les compétences du BTS SIO illustrées par mes projets
+            et expériences concrètes.
+        </p>
+        <span class="pf-card-link">
+            Voir les compétences <span class="arrow">→</span>
+        </span>
+    </a>
+
+    <a href="{{ path('app_certifications') }}" class="pf-card">
+        <div class="pf-card-icon amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+                <circle cx="12" cy="8" r="6"/>
+                <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+            </svg>
+        </div>
+        <div class="pf-card-title">Certifications</div>
+        <p class="pf-card-desc">
+            Attestations, formations suivies et certifications
+            professionnelles obtenues.
+        </p>
+        <span class="pf-card-link">
+            Voir les certifications <span class="arrow">→</span>
+        </span>
+    </a>
+
+</div>
+
+{# ── Footer bar ── #}
+<div class="pf-footer-bar">
+    <span>© 2025 — Portfolio BTS SIO SLAM</span>
+    <span>Symfony · Twig · Bootstrap</span>
+</div>
+
 {% endblock %}

@@ -1,136 +1,637 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
+	{{ parent() }}Projet — Infra Réseau
+{% endblock %}
+
+{% block stylesheets %}
 	{{ parent() }}
-	Projet Infrastructure Réseau
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Sora', sans-serif;
+		}
+		.pf-page-header {
+			padding: 3.5rem 3rem 2.5rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-page-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: #4338CA;
+			background: #EEF2FF;
+			border: 1px solid #C7D2FE;
+			border-radius: 100px;
+			padding: 4px 14px;
+			margin-bottom: 1.25rem;
+		}
+		.pf-page-title {
+			font-size: clamp(28px, 4vw, 44px);
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			line-height: 1.1;
+			color: #111827;
+			margin: 0 0 0.75rem;
+		}
+		.pf-page-title em {
+			font-style: normal;
+			color: #6366F1;
+		}
+		.pf-page-sub {
+			font-size: 15px;
+			color: #6b7280;
+			margin: 0;
+		}
+		.pf-comp-block {
+			background: #ffffff;
+			border: 1px solid #e5e7eb;
+			padding: 15px;
+			border-radius: 12px;
+			margin-bottom: 12px;
+		}
+		.pf-comp-name {
+			font-size: 13px;
+			color: #111827;
+			margin: 0 0 10px;
+			font-weight: 700;
+		}
+		.pf-btn-comp-highlight {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #6366F1;
+			color: #ffffff !important;
+			text-decoration: none;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 11px;
+			font-weight: 700;
+			font-family: 'Space Mono', monospace;
+			transition: all 0.2s ease;
+			text-transform: uppercase;
+		}
+		.pf-btn-comp-highlight:hover {
+			background: #4338CA;
+			transform: translateY(-1px);
+		}
+		.pf-stage-layout {
+			display: grid;
+			grid-template-columns: 280px 1fr;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-sidebar {
+			padding: 3rem 2rem;
+			border-right: 1px solid #e5e7eb;
+			background: #f9fafb;
+			display: flex;
+			flex-direction: column;
+			gap: 9rem;
+		}
+		.pf-sidebar-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #9ca3af;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 10px;
+		}
+		.pf-info-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 12px;
+			padding: 6px 0;
+			border-bottom: 1px solid #f3f4f6;
+		}
+		.pf-info-row:last-child {
+			border-bottom: none;
+		}
+		.pf-info-label {
+			color: #9ca3af;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+		}
+		.pf-info-value {
+			color: #374151;
+			font-weight: 600;
+			font-size: 12px;
+			text-align: right;
+		}
+		.pf-skill-pill {
+			display: inline-block;
+			font-size: 11px;
+			font-family: 'Space Mono', monospace;
+			padding: 2px 10px;
+			background: #f3f4f6;
+			border-radius: 4px;
+			color: #4b5563;
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+		.pf-downloads {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+		.pf-btn-dl {
+			background: #111827;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 10px 16px;
+			font-size: 12px;
+			font-weight: 600;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			transition: all 0.2s;
+		}
+		.pf-btn-dl:hover {
+			background: #6366F1;
+			color: #fff;
+		}
+		.pf-main {
+			display: flex;
+			flex-direction: column;
+		}
+		.pf-section {
+			padding: 2.5rem 3rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-section:last-child {
+			border-bottom: none;
+		}
+		.pf-section-title {
+			font-size: 17px;
+			font-weight: 700;
+			color: #111827;
+			margin: 0 0 1rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+		.pf-section-title::before {
+			content: '';
+			width: 3px;
+			height: 17px;
+			background: #6366F1;
+			border-radius: 2px;
+		}
+		.pf-prose {
+			font-size: 14px;
+			color: #374151;
+			line-height: 1.85;
+			margin: 0;
+		}
+		.pf-grid-2 {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			margin-top: 1rem;
+		}
+		.pf-prose h4 {
+			font-size: 13px;
+			font-weight: 700;
+			color: #111827;
+			margin: 0 0 0.5rem;
+			text-transform: uppercase;
+		}
+		.pf-prose ul {
+			padding-left: 1.25rem;
+			margin: 0;
+		}
+		.pf-prose li {
+			margin-bottom: 0.4rem;
+		}
+		.pf-back-bar {
+			padding: 1.25rem 3rem;
+			border-top: 1px solid #e5e7eb;
+		}
+		.pf-btn-back {
+			font-size: 13px;
+			font-family: 'Space Mono', monospace;
+			color: #6b7280;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
+		.pf-btn-back:hover {
+			color: #6366F1;
+		}
+		.pf-preuve-card {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 12px;
+			padding: 20px;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			height: 100%;
+		}
+		.pf-preuve-card:hover {
+			transform: translateY(-5px);
+			border-color: #6366F1;
+			box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1);
+		}
+		.pf-preuve-badge {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #185FA5;
+			background: #E6F1FB;
+			border: 1px solid #B5D4F4;
+			padding: 4px 10px;
+			border-radius: 6px;
+			font-weight: 700;
+		}
+		@media(max-width: 850px) {
+			.pf-stage-layout {
+				grid-template-columns: 1fr;
+			}
+			.pf-sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e7eb;
+			}
+			.pf-grid-2 {
+				grid-template-columns: 1fr;
+			}
+			.pf-preuves-grid {
+				grid-template-columns: 1fr !important;
+			}
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-kanban-fill"></i>
-			Projet Infrastructure Réseau
+
+	<div class="pf-page-header">
+		<div class="pf-page-badge">
+			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+				<rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/>
+			</svg>
+			Infrastructure & Réseau
+		</div>
+		<h1 class="pf-page-title">Architecture
+			<em>Segmentée</em>
 		</h1>
-		<div class="row justify-content-center">
-			<div class="col-md-10">
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
-						<p class="text-muted">
-							Ce projet consiste à analyser, concevoir et déployer une architecture réseau segmentée pour une entreprise fictive.
-							Les travaux incluent le découpage en zones (accueil, bureaux, laboratoire, DMZ, serveurs internes), la sélection d’équipements,
-							la sécurisation, la configuration du routage inter-zones, le déploiement des services (DHCP, DNS, serveur web), la sauvegarde des
-							configurations et la proposition d’une solution NAS pour répondre aux besoins de stockage sur plusieurs années.
-						</p>
-					</div>
+		<p class="pf-page-sub">Analyse, conception et déploiement d'un réseau d'entreprise sécurisé</p>
+	</div>
+
+	<div class="pf-stage-layout">
+
+		<aside class="pf-sidebar">
+			<div>
+				<div class="pf-sidebar-label">Spécifications</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Équipements</span>
+					<span class="pf-info-value">Cisco / Switch L3</span>
 				</div>
-
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
-
-						<ul class="text-muted">
-							<li>
-								<strong>Organisation</strong>: découper le réseau en zones et isoler les ressources sensibles.</li>
-							<li>
-								<strong>Équipements</strong>: choisir et configurer switches et routeurs adaptés au besoin.</li>
-							<li>
-								<strong>Sécurité</strong>: mettre en place ACL, segmentation VLAN, accès administrateur sécurisé (SSH), port-security, sauvegarde des configs.</li>
-							<li>
-								<strong>Routage</strong>: configurer le routage inter-zones et les trunks VLAN pour permettre les communications contrôlées.</li>
-							<li>
-								<strong>Services</strong>: déployer DHCP, DNS et un serveur web pour héberger des services internes/externes.</li>
-							<li>
-								<strong>Tolérance</strong>: améliorer la résilience (haute disponibilité, plan de sauvegarde/restauration).</li>
-							<li>
-								<strong>Stockage</strong>: proposer une solution NAS dimensionnée et sécurisée pour la croissance des données.</li>
-							<li>
-								<strong>Automatisation / déploiement</strong>: proposer des méthodes pour déployer rapidement un parc de postes (WDS/MDT/SCCM, PXE).</li>
-						</ul>
-					</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Services</span>
+					<span class="pf-info-value">AD / DNS / DHCP</span>
 				</div>
-
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
-
-						<div class="row">
-							<div class="col-md-6">
-								<h5 class="fw-bold">Conception et administration réseau</h5>
-								<ul class="text-muted">
-									<li>Analyse et découpage en zones (VLANs, DMZ, serveurs internes).</li>
-									<li>Configuration des équipements (switches/routers).</li>
-									<li>Mise en place du routage inter-zones et des trunks VLAN.</li>
-								</ul>
-							</div>
-							<div class="col-md-6">
-								<h5 class="fw-bold">Sécurité et sauvegarde</h5>
-								<ul class="text-muted">
-									<li>ACLs, port-security, SSH, HTTPS pour l’administration.</li>
-									<li>Sauvegarde et restauration des configurations (tftp / copies run / NVRAM).</li>
-									<li>Propositions pour la tolérance aux pannes et la sauvegarde des données.</li>
-								</ul>
-							</div>
-						</div>
-
-						<div class="row mt-3">
-							<div class="col-md-6">
-								<h5 class="fw-bold">Services et déploiement</h5>
-								<ul class="text-muted">
-									<li>DHCP (étendues, gateway, tests clients).</li>
-									<li>DNS et serveur web pour l’hébergement interne/externe.</li>
-									<li>Solution de déploiement poste (WDS/MDT/SCCM, PXE) pour les 30 nouveaux postes.</li>
-								</ul>
-							</div>
-							<div class="col-md-6">
-								<h5 class="fw-bold">Stockage</h5>
-								<ul class="text-muted">
-									<li>Dimensionnement NAS (croissance ~15%/an) et recommandation matériel (ex : Synology DS1823xs+).</li>
-									<li>Stratégies RAID, chiffrement, sauvegarde hors-site / réplication.</li>
-								</ul>
-							</div>
-						</div>
-					</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Stockage</span>
+					<span class="pf-info-value">NAS / RAID</span>
 				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
-
-						<div
-							class="row g-4">
-
-							<!-- Compétence 2 -->
-							<div class="col-md-6">
-								<div class="p-3 border rounded h-100">
-									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
-									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
-										Voir la compétence
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
-						<a href="{{ asset('documents/projets/infra_reseau/Documentation_Projet_Infra_Réseau.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger la fiche projet
-						</a>
-						<a href="{{ asset('documents/projets/infra_reseau/Diaporama_Projet_infra_réseau.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger le diaporama
-						</a>
-					</div>
-				</div>
-
-				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
-					⟵ Retour aux projets
-				</a>
-
 			</div>
+
+			<div>
+				<div class="pf-sidebar-label">Ressources</div>
+				<div class="pf-downloads">
+					<a href="{{ asset('documents/projets/infra_reseau/Documentation_Projet_Infra_Réseau.pdf') }}" download class="pf-btn-dl">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Fiche Projet
+					</a>
+					<a href="{{ asset('documents/projets/infra_reseau/Diaporama_Projet_infra_réseau.pdf') }}" download class="pf-btn-dl" style="background:#374151">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Diaporama
+					</a>
+				</div>
+			</div>
+		</aside>
+
+		<main class="pf-main">
+			<section class="pf-section">
+				<h2 class="pf-section-title">Présentation du projet</h2>
+				<div class="pf-prose">
+					<p>Ce projet consistait à concevoir de bout en bout l'architecture réseau d'une entreprise fictive segmentée en plusieurs zones stratégiques :
+						<strong>Accueil, Bureaux, Laboratoire, DMZ et Serveurs internes</strong>.</p>
+					<p>L'objectif était de garantir un haut niveau de sécurité par l'isolement des ressources tout en assurant une fluidité des services critiques (Web, DNS, DHCP) et une gestion pérenne du stockage de données.</p>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Détails de mise en œuvre</h2>
+				<div class="pf-prose">
+					<div class="pf-grid-2">
+						<div>
+							<h4>Réseau & Routage</h4>
+							<ul>
+								<li>Segmentation via VLANs et Trunks.</li>
+								<li>Routage inter-zones contrôlé.</li>
+								<li>Configuration ACL (Access Control Lists).</li>
+								<li>Sécurisation des ports (Port-Security).</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Services & Déploiement</h4>
+							<ul>
+								<li>Déploiement DHCP et DNS.</li>
+								<li>Services Web Internes/Externes.</li>
+								<li>Solution WDS/PXE pour parc postes.</li>
+								<li>Administration sécurisée via SSH.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Stockage & Résilience</h2>
+				<div class="pf-prose">
+					<div class="pf-grid-2">
+						<div>
+							<h4>Solution NAS</h4>
+							<ul>
+								<li>Dimensionnement (croissance 15%/an).</li>
+								<li>Recommandation Synology DS1823xs+.</li>
+								<li>Stratégies RAID & Chiffrement.</li>
+							</ul>
+						</div>
+						<div>
+							<h4>Disponibilité</h4>
+							<ul>
+								<li>Plans de sauvegarde/restauration.</li>
+								<li>Copies de configuration (TFTP).</li>
+								<li>Réplication hors-site.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Technologies & Expertise</h2>
+				<div class="pf-prose">
+					<div style="margin-bottom: 1.5rem;">
+						<span class="pf-skill-pill">Cisco IOS</span>
+						<span class="pf-skill-pill">VLAN/Trunking</span>
+						<span class="pf-skill-pill">Routage L3</span>
+						<span class="pf-skill-pill">ACL/Security</span>
+						<span class="pf-skill-pill">RAID/NAS</span>
+						<span class="pf-skill-pill">PXE Deployment</span>
+					</div>
+					<p>L'expertise acquise porte sur la capacité à traduire des besoins métiers en une infrastructure technique robuste, capable d'évoluer avec la croissance de l'entreprise tout en maintenant une politique de sécurité rigoureuse.</p>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	{# ── Compétences mobilisées ── #}
+	<div class="pf-section" style="background: #ffffff; border-top: 1px solid #e5e7eb;">
+		<h2 class="pf-section-title">Compétences du référentiel mobilisées</h2>
+		<div class="pf-prose">
+			<p style="margin-bottom: 20px;">Conformément au tableau de synthèse des réalisations, ce projet a permis de valider les blocs de compétences suivants :</p>
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Gérer le patrimoine informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Schéma réseau, sauvegardes NVRAM/TFTP, recensement des équipements.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_patrimoine_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Travailler en mode projet</strong>
+					<span style="font-size: 12px; color: #6b7280;">Répartition des tâches, analyse des écarts, gestion d'équipe à 5.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_travailler_mode_projet') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Mettre à disposition un service informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Déployer, tester et accompagner la mise en service DHCP/réseau.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_service_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# ── Lightbox C1 ── #}
+	<div id="pf-lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(1)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(1)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(1)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C4 ── #}
+	<div id="pf-lightbox2" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(2)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb2-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(2)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb2-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(2)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb2-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C5 ── #}
+	<div id="pf-lightbox3" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(3)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb3-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(3)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb3-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(3)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb3-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Grille des preuves ── #}
+	<div
+		class="pf-preuves-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 2rem 3rem; border-top: 1px solid #e5e7eb;">
+
+		{# C1 - Gérer le patrimoine #}
+		<div class="pf-preuve-card" onclick="openLightbox(1)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+						<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Gérer le patrimoine informatique</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma réseau, sauvegardes NVRAM et TFTP, configuration des équipements.</p>
+			<span class="pf-preuve-badge">C1 — Patrimoine</span>
+		</div>
+
+		{# C4 - Travailler en mode projet #}
+		<div class="pf-preuve-card" onclick="openLightbox(2)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #EEEDFE; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
+						<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Travailler en mode projet</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Répartition des tâches, analyse des écarts et erreur d'overlap documentée.</p>
+			<span class="pf-preuve-badge" style="color:#534AB7; background:#EEEDFE; border-color:#CECBF6;">C4 — Mode projet</span>
+		</div>
+
+		{# C5 - Mettre à disposition #}
+		<div class="pf-preuve-card" onclick="openLightbox(3)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #FAEEDA; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+						<circle cx="9" cy="7" r="4"/>
+						<path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Mettre à disposition un service</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement DHCP, tests de connectivité et log de restauration.</p>
+			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C5 — Service info</span>
 		</div>
 
 	</div>
+
+	<div class="pf-back-bar">
+		<a href="{{ path('app_projets') }}" class="pf-btn-back">
+			<svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+			</svg>
+			Retour aux projets
+		</a>
+	</div>
+
+	<script>
+		const lbMap = {
+1: 'pf-lightbox',
+2: 'pf-lightbox2',
+3: 'pf-lightbox3'
+};
+const suffixMap = {
+1: '',
+2: '2',
+3: '3'
+};
+
+const pfGalleries = {
+1: [
+"{{ asset('documents/preuves/infra reseau/plan packet tracer.png') }}",
+"{{ asset('documents/preuves/infra reseau/sauvegarde NVRAM.webp') }}",
+"{{ asset('documents/preuves/infra reseau/copy run tftp.webp') }}",
+"{{ asset('documents/preuves/infra reseau/interface serveur tftp.webp') }}",
+"{{ asset('documents/preuves/infra reseau/config switch.webp') }}",
+"{{ asset('documents/preuves/infra reseau/config switch VLAN.webp') }}",
+],
+2: [
+"{{ asset('documents/preuves/infra reseau/travailler projet.png') }}",
+],
+3: [
+"{{ asset('documents/preuves/infra reseau/config VLAN.webp') }}",
+"{{ asset('documents/preuves/infra reseau/config VLAN 2.webp') }}",
+"{{ asset('documents/preuves/infra reseau/details de connexion.webp') }}",
+"{{ asset('documents/preuves/infra reseau/gestionnaire windows.webp') }}",
+"{{ asset('documents/preuves/infra reseau/interface de router.webp') }}",
+"{{ asset('documents/preuves/infra reseau/interface de router 2.webp') }}",
+"{{ asset('documents/preuves/infra reseau/IP config.webp') }}",
+"{{ asset('documents/preuves/infra reseau/port trunk.webp') }}",
+"{{ asset('documents/preuves/infra reseau/ping.webp') }}",
+]
+};
+
+const pfState = {
+1: 0,
+2: 0,
+3: 0
+};
+
+function openLightbox(id) {
+pfState[id] = 0;
+document.getElementById(lbMap[id]).style.display = 'flex';
+document.body.style.overflow = 'hidden';
+renderLightbox(id);
+}
+
+function closeLightbox(id) {
+document.getElementById(lbMap[id]).style.display = 'none';
+document.body.style.overflow = '';
+}
+
+function nextImage(id) {
+pfState[id] = (pfState[id] + 1) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function prevImage(id) {
+pfState[id] = (pfState[id] - 1 + pfGalleries[id].length) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function renderLightbox(id) {
+const imgs = pfGalleries[id];
+const cur = pfState[id];
+const suffix = suffixMap[id];
+document.getElementById('pf-lb' + suffix + '-img').src = imgs[cur];
+document.getElementById('pf-lb' + suffix + '-counter').textContent = (cur + 1) + ' / ' + imgs.length;
+const thumbs = document.getElementById('pf-lb' + suffix + '-thumbs');
+thumbs.innerHTML = '';
+imgs.forEach((src, i) => {
+const dot = document.createElement('div');
+dot.onclick = () => {
+pfState[id] = i;
+renderLightbox(id);
+};
+dot.style.cssText = `width:8px; height:8px; border-radius:50%; cursor:pointer; transition:background 0.2s; background:${
+i === cur ? '#fff' : 'rgba(255,255,255,0.3)'
+}`;
+thumbs.appendChild(dot);
+});
+}[1, 2, 3].forEach(id => {
+document.getElementById(lbMap[id]).addEventListener('click', function (e) {
+if (e.target === this) 
+closeLightbox(id);
+
+
+});
+});
+
+document.addEventListener('keydown', function (e) {
+const lb1 = document.getElementById('pf-lightbox').style.display !== 'none';
+const lb2 = document.getElementById('pf-lightbox2').style.display !== 'none';
+const lb3 = document.getElementById('pf-lightbox3').style.display !== 'none';
+const id = lb1 ? 1 : lb2 ? 2 : lb3 ? 3 : null;
+if (! id) 
+return;
+
+
+if (e.key === 'ArrowRight') 
+nextImage(id);
+
+
+if (e.key === 'ArrowLeft') 
+prevImage(id);
+
+
+if (e.key === 'Escape') 
+closeLightbox(id);
+
+
+});
+	</script>
+
 {% endblock %}

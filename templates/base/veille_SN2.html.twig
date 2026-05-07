@@ -1,0 +1,512 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ parent() }}Veille SN2
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+
+        .pf-page-header {
+            padding: 3.5rem 3rem 2.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-page-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: #111827;
+            margin: 0 0 0.75rem;
+        }
+
+        .pf-page-title em {
+            font-style: normal;
+            color: #1D9E75;
+        }
+
+        .pf-page-sub {
+            font-size: 15px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .pf-veille-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 500px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-sidebar {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid #e5e7eb;
+            background: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            gap: 5rem;
+        }
+
+        .pf-sidebar-section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .pf-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .pf-keyword {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #534AB7;
+            background: #EEEDFE;
+            border: 1px solid #CECBF6;
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+
+        .pf-tools {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .pf-tool {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .pf-tool-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #1D9E75;
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+
+        .pf-tool-name {
+            font-size: 13px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .pf-tool-desc {
+            font-size: 12px;
+            color: #9ca3af;
+            margin: 0;
+        }
+
+        .pf-main {
+            padding: 2.5rem 3rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+
+        .pf-section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pf-section-title::before {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 18px;
+            background: #1D9E75;
+            border-radius: 2px;
+        }
+
+        .pf-prose {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.75;
+            margin: 0;
+        }
+
+        .pf-divider {
+            height: 1px;
+            background: #e5e7eb;
+            margin: 0;
+        }
+
+        .pf-subject-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #854F0B;
+            background: #FAEEDA;
+            border: 1px solid #FAC775;
+            border-radius: 6px;
+            padding: 4px 12px;
+            margin-bottom: 1rem;
+        }
+
+        .pf-subject-text {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            font-style: italic;
+            line-height: 1.5;
+            margin: 0 0 1rem;
+        }
+
+        .pf-pdf-block {
+            display: flex;
+            align-items: center;
+            gap: 1.25rem;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+        }
+
+        .pf-pdf-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: #FCEBEB;
+            border: 1px solid #F7C1C1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .pf-pdf-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 3px;
+        }
+
+        .pf-pdf-desc {
+            font-size: 12px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .pf-btn-download {
+            margin-left: auto;
+            flex-shrink: 0;
+            background: #1D9E75;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 18px;
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            transition: background 0.2s;
+        }
+
+        .pf-btn-download:hover {
+            background: #0F6E56;
+            color: #fff;
+        }
+
+        /* Liens de veille */
+        .pf-links-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pf-link-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 12px 14px;
+            background: #f9fafb;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: border-color 0.2s, background 0.2s;
+        }
+
+        .pf-link-item:hover {
+            border-color: #9FE1CB;
+            background: #f0fdf9;
+        }
+
+        .pf-link-source {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 5px;
+            padding: 2px 8px;
+            white-space: nowrap;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .pf-link-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 3px;
+            line-height: 1.4;
+        }
+
+        .pf-link-desc {
+            font-size: 12px;
+            color: #9ca3af;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .pf-page-header { padding: 2rem 1.5rem; }
+            .pf-veille-layout { grid-template-columns: 1fr; }
+            .pf-sidebar {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+                padding: 2rem 1.5rem;
+            }
+            .pf-main { padding: 2rem 1.5rem; }
+            .pf-pdf-block { flex-wrap: wrap; }
+            .pf-btn-download { margin-left: 0; }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+{# ── En-tête ── #}
+<div class="pf-page-header">
+    <div class="pf-page-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2.5">
+            <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        </svg>
+        Veille technologique — 2ème année
+    </div>
+    <h1 class="pf-page-title">Veille <em>SN2</em></h1>
+    <p class="pf-page-sub">Technologies numériques au service de la santé mentale : IA, VR et objets connectés.</p>
+</div>
+
+{# ── Layout ── #}
+<div class="pf-veille-layout">
+
+    {# ── Sidebar ── #}
+    <div class="pf-sidebar">
+
+        <div>
+            <div class="pf-sidebar-section-label">Mots-clés</div>
+            <div class="pf-keywords">
+                <span class="pf-keyword">Santé mentale</span>
+                <span class="pf-keyword">IA & chatbots</span>
+                <span class="pf-keyword">VR thérapeutique</span>
+                <span class="pf-keyword">Objets connectés</span>
+                <span class="pf-keyword">PsyTech</span>
+                <span class="pf-keyword">Digital health</span>
+                <span class="pf-keyword">RGPD santé</span>
+            </div>
+        </div>
+
+        <div>
+            <div class="pf-sidebar-section-label">Outils de veille</div>
+            <div class="pf-tools">
+                <div class="pf-tool">
+                    <div class="pf-tool-dot"></div>
+                    <div>
+                        <p class="pf-tool-name">Google Alertes</p>
+                        <p class="pf-tool-desc">IA santé mentale, chatbot thérapeutique, PsyTech</p>
+                    </div>
+                </div>
+                <div class="pf-tool">
+                    <div class="pf-tool-dot"></div>
+                    <div>
+                        <p class="pf-tool-name">Sites spécialisés</p>
+                        <p class="pf-tool-desc">Futura Sciences, Forbes, Le Monde, France Info</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {# ── Contenu principal ── #}
+    <div class="pf-main">
+
+        {# À quoi sert la veille ? #}
+        <div>
+            <h2 class="pf-section-title">À quoi sert la veille ?</h2>
+            <p class="pf-prose">
+                La veille technologique permet de suivre les avancées scientifiques et numériques,
+                d'anticiper les changements majeurs et de comprendre l'impact des technologies sur la société.
+                Elle est essentielle pour maintenir ses compétences à jour, analyser les innovations émergentes
+                et identifier les enjeux économiques, éthiques et réglementaires associés.
+            </p>
+        </div>
+
+        <div class="pf-divider"></div>
+
+        {# Sujet surveillé #}
+        <div>
+            <h2 class="pf-section-title">Sujet surveillé</h2>
+            <div class="pf-subject-tag">
+                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2.5">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+                Thème de veille
+            </div>
+            <p class="pf-subject-text">
+                Les technologies utilisées pour améliorer la santé mentale :<br>
+                IA, réalité virtuelle, objets connectés et analyse des émotions
+            </p>
+            <p class="pf-prose">
+                Dans un contexte où les troubles psychiques touchent une part croissante de la population mondiale,
+                les technologies numériques s'imposent comme de nouveaux outils d'accompagnement et de soin.
+                Des chatbots thérapeutiques aux applications de méditation, en passant par la réalité virtuelle
+                utilisée pour traiter les phobies ou le stress post-traumatique, ce sujet explore comment
+                l'innovation technologique transforme la psychiatrie et la psychologie. Il soulève aussi
+                des questions fondamentales sur l'éthique, la protection des données personnelles de santé
+                et les limites de ces outils face à un professionnel humain.
+            </p>
+        </div>
+
+        <div class="pf-divider"></div>
+
+        {# Sources & liens #}
+        <div>
+            <h2 class="pf-section-title">Sources & articles</h2>
+            <div class="pf-links-grid">
+
+                <a href="https://www.forbes.com/councils/forbesbusinesscouncil/2025/05/07/the-future-of-mental-health-how-ai-vr-and-ar-are-changing-treatment/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Forbes</span>
+                    <div>
+                        <p class="pf-link-title">The Future Of Mental Health: How AI, VR And AR Are Changing Treatment</p>
+                        <p class="pf-link-desc">Tour d'horizon des technologies émergentes (IA, réalité virtuelle, réalité augmentée) appliquées aux soins psychiatriques.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.lemonde.fr/sciences/article/2026/01/14/sante-mentale-grace-a-l-ia-callyope-veut-aider-les-psychiatres-a-prevenir-les-rechutes-de-leurs-patients_6662194_1650684.html" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Le Monde</span>
+                    <div>
+                        <p class="pf-link-title">Santé mentale : grâce à l'IA, Callyope veut aider les psychiatres à prévenir les rechutes</p>
+                        <p class="pf-link-desc">Présentation de Callyope, un outil d'IA français conçu pour anticiper les rechutes chez les patients psychiatriques.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.lemonde.fr/pixels/article/2026/02/09/les-failles-de-chatgpt-pour-l-autodiagnostic-medical-revelees-par-une-etude_6666026_4408996.html" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Le Monde</span>
+                    <div>
+                        <p class="pf-link-title">Les failles de ChatGPT pour l'autodiagnostic médical révélées par une étude</p>
+                        <p class="pf-link-desc">Une étude pointe les limites des LLM grand public pour poser des diagnostics médicaux fiables.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.info.gouv.fr/actualite/lintelligence-artificielle-au-service-de-la-sante-mentale" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Gouvernement FR</span>
+                    <div>
+                        <p class="pf-link-title">L'intelligence artificielle au service de la santé mentale</p>
+                        <p class="pf-link-desc">Position officielle du gouvernement français sur l'usage de l'IA (chatbots, agents conversationnels) en psychiatrie.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.ouest-france.fr/high-tech/intelligence-artificielle/chatgpt-accuse-davoir-pousse-un-americain-de-40-ans-au-suicide-apres-de-longs-echanges-3a1a63b0-f159-11f0-831e-0f8a49f41477" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Ouest France</span>
+                    <div>
+                        <p class="pf-link-title">ChatGPT accusé d'avoir poussé un Américain au suicide après de longs échanges</p>
+                        <p class="pf-link-desc">Un cas emblématique illustrant les risques éthiques et humains des IA conversationnelles en contexte de fragilité psychologique.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.franceinfo.fr/replay-radio/les-voies-de-l-ia/podcast-les-algorithmes-de-recommandation-et-les-consequences-sur-la-sante-mentale_7798652.html" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">France Info</span>
+                    <div>
+                        <p class="pf-link-title">Les algorithmes de recommandation et les conséquences sur la santé mentale</p>
+                        <p class="pf-link-desc">Podcast analysant l'impact des algorithmes des réseaux sociaux sur le bien-être psychologique des utilisateurs.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.forbes.fr/politique/espace-europeen-des-donnees-de-sante-ce-que-cela-signifie-pour-les-citoyens-francais/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Forbes FR</span>
+                    <div>
+                        <p class="pf-link-title">Espace européen des données de santé : ce que cela signifie pour les citoyens français</p>
+                        <p class="pf-link-desc">Enjeux réglementaires autour du partage et de la protection des données de santé à l'échelle européenne.</p>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+
+        <div class="pf-divider"></div>
+
+        {# Synthèse PDF #}
+        <div>
+            <h2 class="pf-section-title">Synthèse de veille</h2>
+            <div class="pf-pdf-block">
+                <div class="pf-pdf-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#A32D2D" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="pf-pdf-name">Synthèse — Technologies & santé mentale</p>
+                    <p class="pf-pdf-desc">En cours de rédaction — IA, VR, objets connectés, enjeux éthiques et réglementaires.</p>
+                </div>
+                <a href="#" download class="pf-btn-download">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Télécharger
+                </a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

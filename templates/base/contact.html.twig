@@ -1,96 +1,355 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Présentation
+{% block title %}
+    {{ parent() }}Présentation
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+
+        .pf-page-header {
+            padding: 3.5rem 3rem 2.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-page-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: #111827;
+            margin: 0 0 0.75rem;
+        }
+
+        .pf-page-title em {
+            font-style: normal;
+            color: #1D9E75;
+        }
+
+        .pf-page-sub {
+            font-size: 15px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Layout principal */
+        .pf-contact-layout {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        /* Sidebar identité */
+        .pf-identity {
+            padding: 2.5rem 2rem;
+            border-right: 1px solid #e5e7eb;
+            background: #f9fafb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1.5rem;
+        }
+
+        .pf-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #E1F5EE;
+            outline: 1px solid #9FE1CB;
+        }
+
+        .pf-identity-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .pf-identity-role {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 6px;
+            padding: 3px 10px;
+            display: inline-block;
+        }
+
+        .pf-identity-meta {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 1.25rem;
+        }
+
+        .pf-meta-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 13px;
+        }
+
+        .pf-meta-label {
+            color: #9ca3af;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+        }
+
+        .pf-meta-value {
+            color: #111827;
+            font-weight: 600;
+        }
+
+        .pf-btn-cv {
+            width: 100%;
+            background: #1D9E75;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 11px 20px;
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .pf-btn-cv:hover {
+            background: #0F6E56;
+            color: #fff;
+        }
+
+        /* Contenu principal */
+        .pf-main {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pf-section {
+            padding: 2.5rem 3rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-section:last-child {
+            border-bottom: none;
+        }
+
+        .pf-section-title {
+            font-size: 17px;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin: 0 0 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pf-section-title::before {
+            content: '';
+            display: block;
+            width: 3px;
+            height: 17px;
+            background: #1D9E75;
+            border-radius: 2px;
+        }
+
+        .pf-prose {
+            font-size: 14px;
+            color: #374151;
+            line-height: 1.75;
+            margin: 0 0 1.25rem;
+        }
+
+        .pf-prose:last-child { margin-bottom: 0; }
+
+        /* Compétences techniques */
+        .pf-skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin-top: 0.5rem;
+        }
+
+        .pf-skill-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+            color: #374151;
+        }
+
+        .pf-skill-item::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #1D9E75;
+            flex-shrink: 0;
+        }
+
+        /* Bouton retour */
+        .pf-back-bar {
+            padding: 1.25rem 3rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .pf-btn-back {
+            font-size: 13px;
+            font-family: 'Space Mono', monospace;
+            color: #6b7280;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: color 0.2s;
+        }
+
+        .pf-btn-back:hover { color: #1D9E75; }
+
+        @media (max-width: 768px) {
+            .pf-page-header { padding: 2rem 1.5rem; }
+            .pf-contact-layout { grid-template-columns: 1fr; }
+            .pf-identity {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+            }
+            .pf-section { padding: 2rem 1.5rem; }
+            .pf-skills-grid { grid-template-columns: 1fr; }
+            .pf-back-bar { padding: 1.25rem 1.5rem; }
+        }
+    </style>
 {% endblock %}
 
 {% block body %}
 
-	<div class="container py-5">
+{# ── En-tête ── #}
+<div class="pf-page-header">
+    <div class="pf-page-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2.5">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+        </svg>
+        Qui suis-je
+    </div>
+    <h1 class="pf-page-title"><em>Présentation</em></h1>
+    <p class="pf-page-sub">Mon parcours, ma formation et mes compétences techniques.</p>
+</div>
 
-		<h1 class="text-center text-primary fw-bold mb-5">
-			Présentation
-		</h1>
+{# ── Layout ── #}
+<div class="pf-contact-layout">
 
-		<div class="row justify-content-center">
-			<div class="col-lg-8">
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
+    {# ── Sidebar identité ── #}
+    <div class="pf-identity">
+        <img src="documents/images/photo.jpg" alt="Photo professionnelle" class="pf-avatar">
 
-						<h3 class="text-primary fw-bold mb-3">Présentation générale</h3>
+        <div>
+            <p class="pf-identity-name">Léo Bergeaud</p>
+        </div>
 
-						<div class="d-flex align-items-center mb-4">
-							<img src="/images/photo.jpg" alt="Photo professionnelle" class="rounded-circle shadow" style="width: 120px; height:120px; object-fit: cover;">
-							<div class="ms-4">
-								<p class="mb-1">
-									<strong>Nom :</strong>
-									BERGEAUD</p>
-								<p class="mb-1">
-									<strong>Prénom :</strong>
-									Léo</p>
-								<p class="mb-1">
-									<strong>Classe :</strong>
-									BTS SIO — 2ème année</p>
-								<p class="mb-1">
-									<strong>Option :</strong>
-									SLAM</p>
-								<a href="#" class="btn btn-outline-primary btn-sm mt-2">
-									Télécharger mon CV
-								</a>
-							</div>
-						</div>
+        <span class="pf-identity-role">BTS SIO · SLAM · 2ème année</span>
 
-						<p class="text-muted">
-							Description : ...
-						</p>
+        <div class="pf-identity-meta">
+            <div class="pf-meta-row">
+                <span class="pf-meta-label">Nom</span>
+                <span class="pf-meta-value">BERGEAUD</span>
+            </div>
+            <div class="pf-meta-row">
+                <span class="pf-meta-label">Prénom</span>
+                <span class="pf-meta-value">Léo</span>
+            </div>
+            <div class="pf-meta-row">
+                <span class="pf-meta-label">Classe</span>
+                <span class="pf-meta-value">2ème année</span>
+            </div>
+            <div class="pf-meta-row">
+                <span class="pf-meta-label">Option</span>
+                <span class="pf-meta-value">SLAM</span>
+            </div>
+        </div>
 
-					</div>
-				</div>
+        <a href="{{ asset('documents/images/CV - Léo BERGEAUD.pdf') }}" class="pf-btn-cv">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                <polyline points="7 10 12 15 17 10"/>
+                <line x1="12" y1="15" x2="12" y2="3"/>
+            </svg>
+            Télécharger mon CV
+        </a>
+    </div>
 
-				<div class="container mt-5">
-					<div class="card shadow border-0">
-						<div class="card-body p-4">
+    {# ── Contenu ── #}
+    <div class="pf-main">
 
-							<h2 class="text-primary fw-bold mb-3">
-								<i class="bi bi-mortarboard-fill"></i>
-								BTS SIO – Option SLAM
-							</h2>
+        <div class="pf-section">
+            <h2 class="pf-section-title">À propos</h2>
+            <p class="pf-prose">
+                Description : Intégrant un Bachelor DEVOPS en septembre 2026, motivé par le développement web et les bases de données. À la recherche d’une alternance afin de mettre en pratique mes compétences techniques et continuer à progresser en environnement professionnel.
+            </p>
+        </div>
 
-							<p class="text-muted fs-5">
-								Le BTS Services Informatiques aux Organisations (SIO) forme des professionnels capables de développer, maintenir et sécuriser des solutions informatiques pour les entreprises.
-							</p>
+        <div class="pf-section">
+            <h2 class="pf-section-title">BTS SIO — Option SLAM</h2>
+            <p class="pf-prose">
+                Le BTS Services Informatiques aux Organisations (SIO) forme des professionnels capables de développer, maintenir et sécuriser des solutions informatiques pour les entreprises.
+            </p>
+            <p class="pf-prose">
+                L'option SLAM (Solutions Logicielles et Applications Métiers) est dédiée au développement d'applications web, mobiles et logiciels internes, ainsi qu'à la gestion des bases de données.
+            </p>
+        </div>
 
-							<h4 class="text-secondary fw-bold mt-4">Objectifs du BTS SIO</h4>
-							<p class="text-muted">
-								Acquérir les compétences nécessaires pour répondre aux besoins numériques des organisations : support, développement, gestion de projets, sécurité et documentation technique.
-							</p>
+        <div class="pf-section">
+            <h2 class="pf-section-title">Compétences techniques visées</h2>
+            <div class="pf-skills-grid">
+                <div class="pf-skill-item">Développement d'applications (PHP, JS, Python…)</div>
+                <div class="pf-skill-item">Conception et gestion de bases de données</div>
+                <div class="pf-skill-item">Analyse des besoins et gestion de projets</div>
+                <div class="pf-skill-item">Sécurisation des applications et des données</div>
+            </div>
+        </div>
 
-							<h4 class="text-secondary fw-bold mt-4">Option SLAM</h4>
-							<p class="text-muted">
-								L’option SLAM (Solutions Logicielles et Applications Métiers) est dédiée au développement d’applications web, mobiles et logiciels internes, ainsi qu’à la gestion des bases de données.
-							</p>
+    </div>
 
-							<h4 class="text-secondary fw-bold mt-4">Compétences techniques visées</h4>
-							<ul class="text-muted">
-								<li>Développement d’applications (PHP, JS, SQL, Python…)</li>
-								<li>Conception et gestion de bases de données</li>
-								<li>Analyse des besoins et gestion de projets</li>
-								<li>Sécurisation des applications et des données</li>
-							</ul>
+</div>
 
-						</div>
-					</div>
-				</div>
-
-
-				<div class="text-center mt-4">
-					<a href="{{ path('app_accueil') }}" class="btn btn-outline-primary">
-						← Retour à l'accueil
-					</a>
-				</div>
-
-			</div>
-		</div>
-
-	</div>
+{# ── Retour ── #}
+<div class="pf-back-bar">
+    <a href="{{ path('app_accueil') }}" class="pf-btn-back">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Retour à l'accueil
+    </a>
+</div>
 
 {% endblock %}

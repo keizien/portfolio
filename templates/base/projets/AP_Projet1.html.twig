@@ -1,72 +1,491 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mise en place d’un système de sauvegarde automatisée et
-		sécurisée d’une base de données
+{% block title %}
+	{{ parent() }}Projet — AP1 Sauvegarde
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Sora', sans-serif;
+		}
+
+		.pf-page-header {
+			padding: 3.5rem 3rem 2.5rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.pf-page-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: #185FA5; /* Bleu pour correspondre à AP1 dans ta liste */
+			background: #E6F1FB;
+			border: 1px solid #B6D4F1;
+			border-radius: 100px;
+			padding: 4px 14px;
+			margin-bottom: 1.25rem;
+		}
+
+		.pf-page-title {
+			font-size: clamp(28px, 4vw, 44px);
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			line-height: 1.1;
+			color: #111827;
+			margin: 0 0 0.75rem;
+		}
+
+		.pf-page-title em {
+			font-style: normal;
+			color: #185FA5;
+		}
+
+		.pf-page-sub {
+			font-size: 15px;
+			color: #6b7280;
+			margin: 0;
+		}
+
+		/* Layout sidebar + contenu */
+		.pf-stage-layout {
+			display: grid;
+			grid-template-columns: 280px 1fr;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		/* Sidebar */
+		.pf-sidebar {
+			padding: 3rem 2rem;
+			border-right: 1px solid #e5e7eb;
+			background: #f9fafb;
+			display: flex;
+			flex-direction: column;
+			gap: 8.5rem;
+		}
+
+		/* --- MISE EN AVANT DES COMPÉTENCES SIDEBAR --- */
+		.pf-comp-block {
+			background: #ffffff;
+			border: 1px solid #e5e7eb;
+			padding: 15px;
+			border-radius: 12px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+			margin-bottom: 12px;
+		}
+
+		.pf-comp-name {
+			font-size: 13px;
+			color: #111827;
+			margin: 0 0 10px;
+			font-weight: 700;
+			letter-spacing: -0.3px;
+		}
+
+		.pf-btn-comp-highlight {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #185FA5; /* Bleu AP1 */
+			color: #ffffff !important;
+			text-decoration: none;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 11px;
+			font-weight: 700;
+			font-family: 'Space Mono', monospace;
+			transition: all 0.2s ease;
+			text-transform: uppercase;
+		}
+
+		.pf-btn-comp-highlight:hover {
+			background: #124a82; /* Bleu plus sombre */
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(24, 95, 165, 0.3);
+		}
+
+		.pf-sidebar-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #9ca3af;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 10px;
+		}
+
+		/* Infos projet */
+		.pf-info-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 12px;
+			padding: 6px 0;
+			border-bottom: 1px solid #f3f4f6;
+		}
+
+		.pf-info-row:last-child {
+			border-bottom: none;
+		}
+
+		.pf-info-label {
+			color: #9ca3af;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+		}
+
+		.pf-info-value {
+			color: #374151;
+			font-weight: 600;
+			font-size: 12px;
+			text-align: right;
+		}
+
+		/* Skills badges */
+		.pf-skill-pill {
+			display: inline-block;
+			font-size: 11px;
+			font-family: 'Space Mono', monospace;
+			padding: 2px 10px;
+			background: #f3f4f6;
+			border-radius: 4px;
+			color: #4b5563;
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+
+		/* Boutons */
+		.pf-downloads {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.pf-btn-dl {
+			background: #111827;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 10px 16px;
+			font-size: 12px;
+			font-weight: 600;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			transition: all 0.2s;
+		}
+
+		.pf-btn-dl:hover {
+			background: #185FA5;
+			color: #fff;
+		}
+
+		.pf-btn-comp {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			color: #374151;
+			padding: 12px;
+			border-radius: 8px;
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: 600;
+			display: block;
+			margin-top: 10px;
+			transition: border-color 0.2s, color 0.2s;
+		}
+
+		.pf-btn-comp:hover {
+			border-color: #185FA5;
+			color: #185FA5;
+		}
+
+		/* Contenu principal */
+		.pf-main {
+			display: flex;
+			flex-direction: column;
+		}
+		.pf-section {
+			padding: 2.5rem 3rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-section:last-child {
+			border-bottom: none;
+		}
+
+		.pf-section-title {
+			font-size: 17px;
+			font-weight: 700;
+			color: #111827;
+			margin: 0 0 1rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.pf-section-title::before {
+			content: '';
+			width: 3px;
+			height: 17px;
+			background: #185FA5;
+			border-radius: 2px;
+		}
+
+		.pf-prose {
+			font-size: 14px;
+			color: #374151;
+			line-height: 1.85;
+			margin: 0;
+		}
+		.pf-prose ul {
+			padding-left: 1.25rem;
+			margin-top: 1rem;
+		}
+		.pf-prose li {
+			margin-bottom: 0.5rem;
+		}
+
+		.pf-back-bar {
+			padding: 1.25rem 3rem;
+			border-top: 1px solid #e5e7eb;
+		}
+		.pf-btn-back {
+			font-size: 13px;
+			font-family: 'Space Mono', monospace;
+			color: #6b7280;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
+		.pf-btn-back:hover {
+			color: #185FA5;
+		}
+
+		.pf-preuve-card {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 12px;
+			padding: 20px;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			height: 100%;
+		}
+
+		.pf-preuve-card:hover {
+			transform: translateY(-5px);
+			border-color: #185FA5;
+			box-shadow: 0 10px 20px rgba(24, 95, 165, 0.1);
+		}
+
+		.pf-preuve-badge {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #185FA5;
+			background: #E6F1FB;
+			padding: 4px 10px;
+			border-radius: 6px;
+			font-weight: 700;
+		}
+
+		@media(max-width: 850px) {
+			.pf-stage-layout {
+				grid-template-columns: 1fr;
+			}
+			.pf-sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e7eb;
+			}
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-4 fw-bold mb-4">
-			<i class="bi bi-cloud-arrow-down-fill"></i>
-			Mise en place d’un système de sauvegarde automatisée et
-						sécurisée d’une base de données
+
+	<div class="pf-page-header">
+		<div class="pf-page-badge">
+			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2.5">
+				<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+			</svg>
+			Projet AP1
+		</div>
+		<h1 class="pf-page-title">Système de
+			<em>Sauvegarde</em>
 		</h1>
+		<p class="pf-page-sub">Mise en place d’une stratégie de sauvegarde automatisée et sécurisée</p>
+	</div>
 
-		<div class="card shadow border-0 p-4">
-			<h3 class="fw-bold mb-3 text-primary">Mon travail</h3>
+	<div class="pf-stage-layout">
 
-			<p class="fs-5 text-muted">
-				Dans le cadre d’un projet de cybersécurité ayant pour objectif de sensibiliser aux risques 
-								            informatiques, j’ai mis en place une documentation sur les sauvegardes.  
-								            J’y présente les bonnes pratiques à suivre, les différents types de sauvegardes 
-								            (complètes, incrémentales, différentielles), ainsi que les stratégies permettant
-								            d’assurer la disponibilité et l’intégrité des données.
-			</p>
+		<aside class="pf-sidebar">
+			<div>
+				<div class="pf-sidebar-label">Détails techniques</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Sujet</span>
+					<span class="pf-info-value">Cybersécurité</span>
+				</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Année</span>
+					<span class="pf-info-value">BTS SIO AN. 2</span>
+				</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Type</span>
+					<span class="pf-info-value">Infrastructure</span>
+				</div>
+			</div>
 
-			<p class="fs-5 text-muted">
-				Le travail inclut également l’analyse des risques liés à la perte de données, ainsi que la
-								            mise en avant du rôle essentiel des sauvegardes dans la continuité d’activité.
-			</p>
-
-			<div class="card shadow border-0 mb-4">
-				<div class="card-body">
-					<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
-
-					<div
-						class="row g-4">
-						<!-- Compétence 1 -->
-						<div class="col-md-6">
-							<div class="p-3 border rounded h-100">
-								<p class="text-muted fw-bold mb-2">Gérer le patrimoine informatique</p>
-								<a href="{{ path('app_patrimoine_info') }}" class="btn btn-primary w-100">
-									Voir la compétence
-								</a>
-							</div>
-						</div>
+			<div>
+				<div class="pf-sidebar-label">Compétences liées</div>
+				<div style="display: flex; flex-direction: column; gap: 5px;">
+					<div class="pf-comp-block">
+						<p class="pf-comp-name">Patrimoine Informatique</p>
+						<a href="{{ path('app_patrimoine_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
 					</div>
 				</div>
 			</div>
 
-			<div class="card shadow border-0 mb-4">
-				<div class="card-body">
-					<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
-					<a href="{{ asset('documents/competences/patrimoine_info/Documentation_Cybersecurite.pdf') }}" class="btn btn-primary me-2" download>
-						<i class="bi bi-file-earmark-arrow-down"></i>
-						Télécharger la documentation
+			<div>
+				<div class="pf-sidebar-label">Ressources</div>
+				<div class="pf-downloads">
+					<a href="{{ asset('documents/competences/patrimoine_info/Documentation_Cybersecurite.pdf') }}" download class="pf-btn-dl">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Documentation
 					</a>
-
-					<a href="{{ asset('documents/competences/patrimoine_info/Diaporama_AP_Projet 1.pdf') }}" class="btn btn-primary" download>
-						<i class="bi bi-file-earmark-slides"></i>
-						Télécharger le diaporama
+					<a href="{{ asset('documents/competences/patrimoine_info/Diaporama_AP_Projet 1.pdf') }}" download class="pf-btn-dl" style="background:#374151">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Diaporama
 					</a>
-
 				</div>
 			</div>
+		</aside>
 
+		<main class="pf-main">
+			<section class="pf-section">
+				<h2 class="pf-section-title">Présentation du travail</h2>
+				<div class="pf-prose">
+					<p>
+						Dans le cadre d’un projet de cybersécurité ayant pour objectif de sensibiliser aux risques informatiques, j’ai mis en place une étude complète sur les stratégies de sauvegarde de bases de données.
+					</p>
+					<p>
+						J’y présente les bonnes pratiques indispensables, les différents types de sauvegardes ainsi que les stratégies permettant d’assurer la disponibilité et l’intégrité des données au sein d'un SI.
+					</p>
+				</div>
+			</section>
 
-			<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
-				⟵ Retour aux projets
-			</a>
-		</div>
+			<section class="pf-section">
+				<h2 class="pf-section-title">Concepts abordés</h2>
+				<div class="pf-prose">
+					<ul>
+						<li>
+							<strong>Types de sauvegarde :</strong>
+							Complètes, incrémentales et différentielles.</li>
+						<li>
+							<strong>Analyse des risques :</strong>
+							Évaluation de l'impact lié à la perte de données.</li>
+						<li>
+							<strong>Continuité d'activité :</strong>
+							Rôle essentiel des sauvegardes dans le cadre d'un PRA (Plan de Reprise d'Activité).</li>
+						<li>
+							<strong>Règle du 3-2-1 :</strong>
+							Stratégie de diversification des supports et des lieux de stockage.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Expertises mobilisées</h2>
+				<div class="pf-prose">
+					<div style="margin-bottom: 1.5rem;">
+						<span class="pf-skill-pill">Cybersécurité</span>
+						<span class="pf-skill-pill">Gestion de données</span>
+						<span class="pf-skill-pill">RGPD</span>
+						<span class="pf-skill-pill">PRA / PCA</span>
+					</div>
+					<p>
+						Ce travail inclut une analyse technique des méthodes de restauration pour garantir que toute sauvegarde effectuée est réellement exploitable en cas d'incident majeur.
+					</p>
+				</div>
+			</section>
+		</main>
 	</div>
+
+	<section class="pf-section" style="background: #f8fafc;">
+		<h2 class="pf-section-title">Preuves de réalisation</h2>
+		<div class="pf-prose">
+			<p style="margin-bottom: 2rem;">Cliquez sur une carte pour visualiser la preuve (capture d'écran, schéma ou compte-rendu).</p>
+
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+
+				<a href="{{ asset('images/preuves/ap1_script.png') }}" target="_blank" style="text-decoration: none; color: inherit;">
+					<div class="pf-preuve-card">
+						<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+							<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+									<polyline points="16 18 22 12 16 6"></polyline>
+									<polyline points="8 6 2 12 8 18"></polyline>
+								</svg>
+							</div>
+							<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Scripts de Sauvegarde</h3>
+						</div>
+						<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Capture d'écran du script Bash automatisant les dumps MySQL.</p>
+						<span class="pf-preuve-badge">L01.1 - Code Source</span>
+					</div>
+				</a>
+
+				<a href="{{ asset('images/preuves/ap1_schema.png') }}" target="_blank" style="text-decoration: none; color: inherit;">
+					<div class="pf-preuve-card">
+						<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+							<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+									<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+									<line x1="3" y1="9" x2="21" y2="9"></line>
+									<line x1="9" y1="21" x2="9" y2="9"></line>
+								</svg>
+							</div>
+							<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Infrastructure 3-2-1</h3>
+						</div>
+						<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma visuel de la stratégie de sauvegarde déportée.</p>
+						<span class="pf-preuve-badge">L04.1 - Architecture</span>
+					</div>
+				</a>
+
+				<a href="{{ asset('documents/atelier_CNIL/Attestation module 3.pdf') }}" target="_blank" style="text-decoration: none; color: inherit;">
+					<div class="pf-preuve-card">
+						<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+							<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+									<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+									<polyline points="22 4 12 14.01 9 11.01"></polyline>
+								</svg>
+							</div>
+							<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Restauration Réussie</h3>
+						</div>
+						<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Log de console prouvant l'intégrité de la restauration.</p>
+						<span class="pf-preuve-badge">L03.2 - Tests</span>
+					</div>
+				</a>
+
+			</div>
+		</div>
+	</section>
+
+	<div class="pf-back-bar">
+		<a href="{{ path('app_projets') }}" class="pf-btn-back">
+			<svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+			</svg>
+			Retour aux projets
+		</a>
+	</div>
+
+
 {% endblock %}

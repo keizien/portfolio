@@ -1,131 +1,301 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}
-	{{ parent() }}Projets
+    {{ parent() }}Projets
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+
+        .pf-page-header {
+            padding: 3.5rem 3rem 2.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-page-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: #111827;
+            margin: 0 0 0.75rem;
+        }
+
+        .pf-page-title em {
+            font-style: normal;
+            color: #1D9E75;
+        }
+
+        .pf-page-sub {
+            font-size: 15px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Sections année */
+        .pf-section {
+            padding: 2.5rem 3rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 1.75rem;
+        }
+
+        .pf-section-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 6px;
+            padding: 3px 10px;
+        }
+
+        .pf-section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Space Mono', monospace;
+            margin: 0;
+        }
+
+        /* Grille de projets */
+        .pf-projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #e5e7eb;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .pf-project-card {
+            background: #fff;
+            padding: 1.75rem;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s;
+        }
+
+        .pf-project-card:hover {
+            background: #f9fafb;
+        }
+
+        .pf-project-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 9px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+
+        .pf-project-icon.green { background: #E1F5EE; }
+        .pf-project-icon.blue  { background: #E6F1FB; }
+        .pf-project-icon.amber { background: #FAEEDA; }
+        .pf-project-icon.coral { background: #FAECE7; }
+        .pf-project-icon.purple { background: #EEEDFE; }
+
+        .pf-project-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 6px;
+        }
+
+        .pf-project-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin: 0 0 1.25rem;
+            flex: 1;
+        }
+
+        .pf-project-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1D9E75;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            font-family: 'Space Mono', monospace;
+        }
+
+        .pf-project-link .arrow {
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .pf-project-card:hover .pf-project-link .arrow {
+            transform: translateX(4px);
+        }
+
+        @media (max-width: 768px) {
+            .pf-page-header,
+            .pf-section { padding: 2rem 1.5rem; }
+
+            .pf-projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .pf-projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-kanban-fill"></i>
-			Mes Projets
-		</h1>
-		<p class="text-center text-secondary fs-4 mb-5">
-			Voici une sélection de projets que j’ai réalisés au cours de ma formation et en autonomie.
-		</p>
-		<div class="row g-4">
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-code-slash"></i>
-							Projet Solution Web
-						</h4>
-						<p class="text-muted">
-							Explication projet Solution Web
-						</p>
-						<a href="{{ path('app_solution_web') }}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du projet Solution Web
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-phone-fill"></i>
-							Projet Hotel Neptune
-						</h4>
-						<p class="text-muted">
-							Explication projet Hotel Neptune
-						</p>
-						<a href="{{path('app_neptune')}}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du projet Hotel Neptune
-						</a>
 
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-cloud-arrow-up-fill"></i>
-							Projet Arcachon
-						</h4>
-						<p class="text-muted">
-							Explication projet Arcachon
-						</p>
-						<a href="{{path('app_arcachon')}}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du projet Arcachon
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-cloud-arrow-up-fill"></i>
-							Projet Infrastructure Réseau
-						</h4>
-						<p class="text-muted">
-							Explication projet infrastructure réseau
-						</p>
-						<a href="{{path('app_infra_reseau')}}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du projet infrastructure Réseau
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-cloud-arrow-up-fill"></i>
-							Workshop SN1
-						</h4>
-						<p class="text-muted">
-							Explication workshop SN1
-						</p>
-						<a href="{{path('app_workshop_SN1')}}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du workshop SN1
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-cloud-arrow-up-fill"></i>
-							Workshop SN2
-						</h4>
-						<p class="text-muted">
-							Explication workshop SN2
-						</p>
-						<a href="{{path('app_workshop_SN2')}}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du workshop SN2
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-phone-fill"></i>
-							Projet AP 1
-						</h4>
-						<p class="text-muted">
-							Explication projet AP 1
-						</p>
-						<a href="{{path('app_apProjet')}}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du projet AP 1
-						</a>
+{# ── En-tête de page ── #}
+<div class="pf-page-header">
+    <div class="pf-page-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2.5">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+        </svg>
+        Réalisations
+    </div>
+    <h1 class="pf-page-title">Mes <em>Projets</em></h1>
+    <p class="pf-page-sub">Ensemble des projets réalisés durant mes deux années de BTS SIO.</p>
+</div>
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+{# ── Première année ── #}
+<div class="pf-section">
+    <div class="pf-section-label">
+        <span class="pf-section-num">AN. 1</span>
+        <p class="pf-section-title">Première année</p>
+    </div>
+
+    <div class="pf-projects-grid">
+
+        <a href="{{ path('app_solution_web') }}" class="pf-project-card">
+            <div class="pf-project-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2">
+                    <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Projet Solution Web</div>
+            <p class="pf-project-desc">Développement d'un service web de gestion de livrables (ZIP/PPTX).</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+        <a href="{{ path('app_neptune') }}" class="pf-project-card">
+            <div class="pf-project-icon blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+                    <rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Projet Hôtel Neptune</div>
+            <p class="pf-project-desc">Site de réservation d'hôtel en architecture MVC.</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+        <a href="{{ path('app_arcachon') }}" class="pf-project-card">
+            <div class="pf-project-icon amber">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Projet Arcachon</div>
+            <p class="pf-project-desc">Application web complète pour un hôtel (SLAM).</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+        <a href="{{ path('app_infra_reseau') }}" class="pf-project-card">
+            <div class="pf-project-icon coral">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#993C1D" stroke-width="2">
+                    <circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/>
+                    <line x1="12" y1="8" x2="5" y2="16"/><line x1="12" y1="8" x2="19" y2="16"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Infrastructure Réseau</div>
+            <p class="pf-project-desc">Mise en place d'une infrastructure réseau complète (SISR).</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+        <a href="{{ path('app_workshop_SN1') }}" class="pf-project-card">
+            <div class="pf-project-icon purple">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Workshop SN1</div>
+            <p class="pf-project-desc">Projet collaboratif sur la cybersécurité et les réseaux.</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+    </div>
+</div>
+
+{# ── Deuxième année ── #}
+<div class="pf-section">
+    <div class="pf-section-label">
+        <span class="pf-section-num">AN. 2</span>
+        <p class="pf-section-title">Deuxième année</p>
+    </div>
+
+    <div class="pf-projects-grid">
+
+        <a href="{{ path('app_workshop_SN2') }}" class="pf-project-card">
+            <div class="pf-project-icon green">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2">
+                    <rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/>
+                    <line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/>
+                    <line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/>
+                    <line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/>
+                    <line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Workshop SN2 – Time2Spy</div>
+            <p class="pf-project-desc">Projet IoT : Raspberry Pi, Python, réseaux et communications sécurisées.</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+        <a href="{{ path('app_apProjet') }}" class="pf-project-card">
+            <div class="pf-project-icon blue">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/><line x1="10" y1="13" x2="14" y2="13"/>
+                </svg>
+            </div>
+            <div class="pf-project-name">Projet AP1</div>
+            <p class="pf-project-desc">Application professionnelle en conditions réelles (SLAM).</p>
+            <span class="pf-project-link">Voir les détails <span class="arrow">→</span></span>
+        </a>
+
+    </div>
+</div>
+
 {% endblock %}

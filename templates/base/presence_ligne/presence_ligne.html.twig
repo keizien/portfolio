@@ -1,40 +1,265 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Développer la présence en ligne{% endblock %}
+{% block title %}
+	{{ parent() }}Compétence — Présence en Ligne
+{% endblock %}
+
+{% block stylesheets %}
+	{{ parent() }}
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Sora', sans-serif;
+			background-color: #fff;
+		}
+
+		/* Header Style avec la couleur Vert C3 */
+		.pf-page-header {
+			padding: 4rem 3rem 3rem;
+			border-bottom: 1px solid #e5e7eb;
+			background: linear-gradient(to bottom right, #f6fdfa, #ecfdf5);
+		}
+
+		.pf-page-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: #10b981; /* Vert C3 */
+			background: #ecfdf5;
+			border: 1px solid #d1fae5;
+			border-radius: 100px;
+			padding: 4px 14px;
+			margin-bottom: 1.25rem;
+		}
+
+		.pf-page-title {
+			font-size: clamp(28px, 4vw, 40px);
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			color: #111827;
+			margin: 0 0 1rem;
+		}
+
+		.pf-page-title em {
+			font-style: normal;
+			color: #10b981;
+		}
+
+		/* Layout */
+		.pf-container {
+			max-width: 1100px;
+			margin: 0 auto;
+			padding: 3rem;
+		}
+
+		/* Section Sous-compétences */
+		.pf-grid-skills {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+			gap: 1.5rem;
+			margin-bottom: 4rem;
+		}
+
+		.pf-skill-card {
+			padding: 1.5rem;
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 12px;
+			display: flex;
+			gap: 15px;
+			transition: all 0.2s;
+		}
+
+		.pf-skill-card:hover {
+			border-color: #10b981;
+			transform: translateY(-2px);
+		}
+
+		.pf-skill-icon {
+			color: #10b981;
+			flex-shrink: 0;
+			margin-top: 3px;
+		}
+
+		.pf-skill-text {
+			font-size: 14px;
+			color: #4b5563;
+			line-height: 1.5;
+			font-weight: 500;
+		}
+
+		/* Section Projets Associés */
+		.pf-section-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 12px;
+			color: #9ca3af;
+			text-transform: uppercase;
+			letter-spacing: 2px;
+			margin-bottom: 2rem;
+			text-align: center;
+			display: flex;
+			align-items: center;
+			gap: 15px;
+		}
+		.pf-section-label::before,
+		.pf-section-label::after {
+			content: "";
+			height: 1px;
+			background: #e5e7eb;
+			flex: 1;
+		}
+
+		.pf-project-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+			gap: 1.5rem;
+		}
+
+		.pf-project-card {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 14px;
+			padding: 1.75rem;
+			text-decoration: none;
+			transition: all 0.3s ease;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+		}
+
+		.pf-project-card:hover {
+			border-color: #10b981;
+			box-shadow: 0 10px 20px -5px rgba(16, 185, 129, 0.1);
+		}
+
+		.pf-project-name {
+			font-size: 16px;
+			font-weight: 700;
+			color: #111827;
+			margin-bottom: 8px;
+		}
+
+		.pf-project-desc {
+			font-size: 13px;
+			color: #6b7280;
+			line-height: 1.6;
+			margin-bottom: 1.25rem;
+			flex-grow: 1;
+		}
+
+		.pf-project-link {
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			font-weight: 700;
+			color: #10b981;
+			display: flex;
+			align-items: center;
+			gap: 6px;
+		}
+
+		/* Back Bar */
+		.pf-back-bar {
+			padding: 2rem 3rem;
+			border-top: 1px solid #e5e7eb;
+			margin-top: 2rem;
+		}
+		.pf-btn-back {
+			font-size: 13px;
+			font-family: 'Space Mono', monospace;
+			color: #6b7280;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 8px;
+		}
+		.pf-btn-back:hover {
+			color: #10b981;
+		}
+
+		@media(max-width: 768px) {
+			.pf-project-grid {
+				grid-template-columns: 1fr;
+			}
+			.pf-container {
+				padding: 1.5rem;
+			}
+		}
+	</style>
+{% endblock %}
 
 {% block body %}
-<div class="container py-5">
 
-    <h1 class="text-center text-primary display-4 fw-bold mb-4">
-        <i class="bi bi-globe2"></i>
-        Développer la présence en ligne de l'organisation
-    </h1>
+	<div class="pf-page-header">
+		<div class="pf-page-badge">
+			<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+				<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+			</svg>
+			Compétence 3
+		</div>
+		<h1 class="pf-page-title">Développer la
+			<em>présence en ligne</em>
+		</h1>
+		<p class="pf-page-sub">Contribuer à la visibilité numérique et à la gestion de contenus web de l'organisation.</p>
+	</div>
 
-    <p class="text-center text-secondary fs-4 mb-5">
-        Compétence visant à contribuer à la visibilité numérique, 
-        à la gestion de contenus et à l’amélioration de la présence web d’une organisation.
-    </p>
+	<div class="pf-container">
 
-    <div class="card shadow border-0 p-4">
-        <h3 class="fw-bold mb-4 text-primary">Projets liés à cette compétence</h3>
+		<div class="pf-grid-skills">
+			{% set skills = [
+            "Participer à la valorisation de l'image de l'organisation",
+            "Actualiser les informations sur les supports numériques",
+            "Participer à la présence de l'organisation sur les réseaux sociaux",
+            "Déployer un service en ligne"
+        ] %}
 
-        <div class="row g-4">
+			{% for skill in skills %}
+				<div class="pf-skill-card">
+					<div class="pf-skill-icon">
+						<svg width="18" height="18" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+							<polyline points="20 6 9 17 4 12"></polyline>
+						</svg>
+					</div>
+					<div class="pf-skill-text">{{ skill }}</div>
+				</div>
+			{% endfor %}
+		</div>
 
-            <!-- Projet site web / évolution / visibilité -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow-sm h-100 text-center p-4">
-                    <h4 class="fw-bold text-primary mb-2">Projet Arcachon</h4>
-                    <p class="text-muted">Développement d’un site complet avec gestion des réservations, espace client, authentification et interface administrateur.</p>
-                    <a href="{{ path('app_arcachon') }}" class="btn btn-primary w-100">
-                        Voir le projet
-                    </a>
-                </div>
-            </div>
+		<div class="pf-section-label">Réalisations associées</div>
 
-        </div>
-    </div>
-    <a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
-		<i class="bi bi-arrow-left"></i> Retour aux compétences
-	</a>
+
+	</div>
+
+	<div class="pf-project-grid">
+		<a href="{{ path('app_arcachon') }}" class="pf-project-card">
+			<div class="pf-project-name">Projet Arcachon</div>
+			<p class="pf-project-desc">Développement web complet respectant un cahier des charges client strict et une planification par jalons.</p>
+			<div class="pf-project-link">Voir le projet →</div>
+		</a>
+
+		<a href="{{ path('app_neptune') }}" class="pf-project-card">
+			<div class="pf-project-name">Projet Neptune</div>
+			<p class="pf-project-desc">Modélisation et exploitation de données structurées dans le cadre d'un développement applicatif.</p>
+			<div class="pf-project-link">Voir le projet →</div>
+		</a>
+
+		<a href="{{ path('app_stage2') }}" class="pf-project-card">
+			<div class="pf-project-name">Stage SN2</div>
+			<p class="pf-project-desc">Développement d'un outil de gestion de livrables chiffré, impliquant une gestion rigoureuse du code source.</p>
+			<div class="pf-project-link">Voir le projet →</div>
+		</a>
+	</div>
+
 </div>
-{% endblock %}
+
+<div class="pf-back-bar">
+	<a href="{{ path('app_competences') }}" class="pf-btn-back">
+		<svg width="14" height="14" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+			<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+		</svg>
+		Retour aux compétences
+	</a>
+</div>{% endblock %}

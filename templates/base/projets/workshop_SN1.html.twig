@@ -1,58 +1,330 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
+	{{ parent() }}Projet — Workshop SN1
+{% endblock %}
+
+{% block stylesheets %}
 	{{ parent() }}
-	Workshop SN1
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Sora', sans-serif;
+		}
+
+		.pf-page-header {
+			padding: 3.5rem 3rem 2.5rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.pf-page-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: #059669; /* Vert Emeraude */
+			background: #ecfdf5;
+			border: 1px solid #d1fae5;
+			border-radius: 100px;
+			padding: 4px 14px;
+			margin-bottom: 1.25rem;
+		}
+
+		.pf-page-title {
+			font-size: clamp(28px, 4vw, 44px);
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			line-height: 1.1;
+			color: #111827;
+			margin: 0 0 0.75rem;
+		}
+
+		.pf-page-title em {
+			font-style: normal;
+			color: #10b981;
+		}
+
+		.pf-page-sub {
+			font-size: 15px;
+			color: #6b7280;
+			margin: 0;
+		}
+
+		.pf-stage-layout {
+			display: grid;
+			grid-template-columns: 280px 1fr;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.pf-sidebar {
+			padding: 3rem 2rem;
+			border-right: 1px solid #e5e7eb;
+			background: #f9fafb;
+			display: flex;
+			flex-direction: column;
+			gap: 8rem;
+		}
+
+		.pf-sidebar-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #9ca3af;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 10px;
+		}
+
+		.pf-info-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 12px;
+			padding: 6px 0;
+			border-bottom: 1px solid #f3f4f6;
+		}
+
+		.pf-info-row:last-child {
+			border-bottom: none;
+		}
+
+		.pf-info-label {
+			color: #9ca3af;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+		}
+
+		.pf-info-value {
+			color: #374151;
+			font-weight: 600;
+			font-size: 12px;
+			text-align: right;
+		}
+
+		.pf-skill-pill {
+			display: inline-block;
+			font-size: 11px;
+			font-family: 'Space Mono', monospace;
+			padding: 2px 10px;
+			background: #f3f4f6;
+			border-radius: 4px;
+			color: #4b5563;
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+
+		.pf-downloads {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.pf-btn-dl {
+			background: #111827;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 10px 16px;
+			font-size: 12px;
+			font-weight: 600;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			transition: all 0.2s;
+		}
+
+		.pf-btn-dl:hover {
+			background: #10b981;
+			color: #fff;
+		}
+
+		.pf-main {
+			display: flex;
+			flex-direction: column;
+		}
+		.pf-section {
+			padding: 2.5rem 3rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-section:last-child {
+			border-bottom: none;
+		}
+
+		.pf-section-title {
+			font-size: 17px;
+			font-weight: 700;
+			color: #111827;
+			margin: 0 0 1rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.pf-section-title::before {
+			content: '';
+			width: 3px;
+			height: 17px;
+			background: #10b981;
+			border-radius: 2px;
+		}
+
+		.pf-prose {
+			font-size: 14px;
+			color: #374151;
+			line-height: 1.85;
+			margin: 0;
+		}
+		.pf-prose ul {
+			padding-left: 1.25rem;
+			margin-bottom: 1rem;
+		}
+		.pf-prose li {
+			margin-bottom: 0.4rem;
+		}
+
+		.pf-back-bar {
+			padding: 1.25rem 3rem;
+			border-top: 1px solid #e5e7eb;
+		}
+		.pf-btn-back {
+			font-size: 13px;
+			font-family: 'Space Mono', monospace;
+			color: #6b7280;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
+		.pf-btn-back:hover {
+			color: #10b981;
+		}
+
+		@media(max-width: 850px) {
+			.pf-stage-layout {
+				grid-template-columns: 1fr;
+			}
+			.pf-sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e7eb;
+			}
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-kanban-fill"></i>
-			Workshop SN1
-		</h1>
-		<div class="row justify-content-center">
-			<div class="col-md-10">
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
-						<p class="text-muted"></p>
-					</div>
-				</div>
 
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
-						<ul class="text-muted"></ul>
-					</div>
-				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
-						<ul class="text-muted"></ul>
-					</div>
-				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
-						<a href="{{ asset('documents/projets/workshop_SN2/Documentation_WORKSHOP_2025.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger la fiche projet
-						</a>
-
-						<a href="{{ asset('documents/projets/workshop_SN2/Diaporama_Workshop_2025.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger le diaporama
-						</a>
-					</div>
-				</div>
-
-				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
-					⟵ Retour aux projets
-				</a>
-
-			</div>
+	<div class="pf-page-header">
+		<div class="pf-page-badge">
+			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+				<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+			</svg>
+			Workshop Collaboratif
 		</div>
-
+		<h1 class="pf-page-title">Workshop
+			<em>SN1</em>
+		</h1>
+		<p class="pf-page-sub">Immersion technologique et fondamentaux des systèmes numériques</p>
 	</div>
+
+	<div class="pf-stage-layout">
+
+		<aside class="pf-sidebar">
+			<div>
+				<div class="pf-sidebar-label">Détails</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Niveau</span>
+					<span class="pf-info-value">Bachelor 1</span>
+				</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Format</span>
+					<span class="pf-info-value">Workshop 1 sem.</span>
+				</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Rôle</span>
+					<span class="pf-info-value">Co-équipier</span>
+				</div>
+			</div>
+
+			<div>
+				<div class="pf-sidebar-label">Ressources</div>
+				<div class="pf-downloads">
+					<a href="{{ asset('documents/projets/workshop_SN1/Documentation_WORKSHOP_2025.pdf') }}" download class="pf-btn-dl">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Documentation
+					</a>
+					<a href="{{ asset('documents/projets/workshop_SN1/Diaporama_Workshop_2025.pdf') }}" download class="pf-btn-dl" style="background:#374151">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Diaporama
+					</a>
+				</div>
+			</div>
+		</aside>
+
+		<main class="pf-main">
+			<section class="pf-section">
+				<h2 class="pf-section-title">Présentation</h2>
+				<div class="pf-prose">
+					<p>
+						Le Workshop SN1 est une semaine d'immersion intensive dédiée à la découverte des métiers du numérique. L'objectif est de travailler en équipe pour répondre à une problématique technique concrète, mêlant matériel, logiciel et réseau.
+					</p>
+					<p>
+						Ce projet marque la transition vers une pédagogie active où l'autonomie et la recherche de solutions sont au cœur de l'apprentissage.
+					</p>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Objectifs du workshop</h2>
+				<div class="pf-prose">
+					<ul>
+						<li>Comprendre l'architecture matérielle d'un ordinateur (montage/démontage).</li>
+						<li>Initier les fondamentaux du réseau (adressage IP, câblage).</li>
+						<li>Apprendre à documenter une solution technique de manière professionnelle.</li>
+						<li>Maîtriser la prise de parole en public lors de la soutenance finale.</li>
+					</ul>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Compétences mises en œuvre</h2>
+				<div class="pf-prose">
+					<div style="margin-bottom: 1.5rem;">
+						<span class="pf-skill-pill">Hardware</span>
+						<span class="pf-skill-pill">TCP/IP Basics</span>
+						<span class="pf-skill-pill">Soft Skills</span>
+						<span class="pf-skill-pill">Rédaction Technique</span>
+						<span class="pf-skill-pill">Esprit d'équipe</span>
+					</div>
+					<ul>
+						<li>
+							<strong>Travail collaboratif :</strong>
+							Utilisation d'outils de partage et répartition des tâches.</li>
+						<li>
+							<strong>Analyse technique :</strong>
+							Diagnostic de pannes matérielles et logicielles simples.</li>
+						<li>
+							<strong>Communication :</strong>
+							Synthèse des résultats et présentation visuelle claire.</li>
+					</ul>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	<div class="pf-back-bar">
+		<a href="{{ path('app_projets') }}" class="pf-btn-back">
+			<svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+			</svg>
+			Retour aux projets
+		</a>
+	</div>
+
 {% endblock %}

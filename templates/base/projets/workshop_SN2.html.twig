@@ -1,135 +1,689 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
+	{{ parent() }}Projet — Workshop SN2 (Time2Spy)
+{% endblock %}
+
+{% block stylesheets %}
 	{{ parent() }}
-	Workshop SN2
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Sora', sans-serif;
+		}
+
+		.pf-page-header {
+			padding: 3.5rem 3rem 2.5rem;
+			border-bottom: 1px solid #e5e7eb;
+			background: linear-gradient(to right, #fdfbff, #f3f0ff);
+		}
+
+		.pf-page-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: #7c3aed; /* Violet */
+			background: #f5f3ff;
+			border: 1px solid #ddd6fe;
+			border-radius: 100px;
+			padding: 4px 14px;
+			margin-bottom: 1.25rem;
+		}
+
+		.pf-page-title {
+			font-size: clamp(28px, 4vw, 44px);
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			line-height: 1.1;
+			color: #1e1b4b;
+			margin: 0 0 0.75rem;
+		}
+
+		.pf-page-title em {
+			font-style: normal;
+			color: #8b5cf6;
+		}
+
+		.pf-page-sub {
+			font-size: 15px;
+			color: #4b5563;
+			margin: 0;
+		}
+
+		.pf-stage-layout {
+			display: grid;
+			grid-template-columns: 280px 1fr;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.pf-sidebar {
+			padding: 3rem 2rem;
+			border-right: 1px solid #e5e7eb;
+			background: #fafafa;
+			display: flex;
+			flex-direction: column;
+			gap: 8rem;
+		}
+
+		/* --- MISE EN AVANT DES COMPÉTENCES SIDEBAR --- */
+		.pf-comp-block {
+			background: #ffffff;
+			border: 1px solid #e5e7eb;
+			padding: 15px;
+			border-radius: 12px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+			margin-bottom: 12px;
+		}
+
+		.pf-comp-name {
+			font-size: 13px;
+			color: #1e1b4b;
+			margin: 0 0 10px;
+			font-weight: 700;
+			letter-spacing: -0.3px;
+		}
+
+		.pf-btn-comp-highlight {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #8b5cf6; /* Violet Time2Spy */
+			color: #ffffff !important;
+			text-decoration: none;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 11px;
+			font-weight: 700;
+			font-family: 'Space Mono', monospace;
+			transition: all 0.2s ease;
+			text-transform: uppercase;
+		}
+
+		.pf-btn-comp-highlight:hover {
+			background: #7c3aed; /* Violet plus foncé */
+			transform: translateY(-1px);
+			box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+		}
+		.pf-sidebar-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #9ca3af;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 10px;
+		}
+
+		.pf-info-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 12px;
+			padding: 6px 0;
+			border-bottom: 1px solid #f3f4f6;
+		}
+
+		.pf-info-label {
+			color: #9ca3af;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+		}
+		.pf-info-value {
+			color: #1e1b4b;
+			font-weight: 600;
+			text-align: right;
+		}
+
+		/* Style harmonisé pour le bouton de compétence */
+		.pf-btn-comp {
+			display: block;
+			width: 100%;
+			padding: 10px;
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 8px;
+			color: #111827;
+			font-size: 12px;
+			font-weight: 600;
+			text-align: center;
+			text-decoration: none;
+			transition: all 0.2s;
+		}
+
+		.pf-btn-comp:hover {
+			border-color: #8b5cf6;
+			color: #8b5cf6;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+		}
+
+		.pf-skill-pill {
+			display: inline-block;
+			font-size: 11px;
+			font-family: 'Space Mono', monospace;
+			padding: 2px 10px;
+			background: #ede9fe;
+			border-radius: 4px;
+			color: #5b21b6;
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+
+		.pf-downloads {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+		.pf-btn-dl {
+			background: #1e1b4b;
+			color: #fff;
+			border-radius: 8px;
+			padding: 10px 16px;
+			font-size: 12px;
+			font-weight: 600;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			transition: 0.2s;
+		}
+		.pf-btn-dl:hover {
+			background: #7c3aed;
+			color: #fff;
+		}
+
+		.pf-main {
+			display: flex;
+			flex-direction: column;
+		}
+		.pf-section {
+			padding: 2.5rem 3rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-section:last-child {
+			border-bottom: none;
+		}
+
+		.pf-section-title {
+			font-size: 17px;
+			font-weight: 700;
+			color: #1e1b4b;
+			margin: 0 0 1.25rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.pf-section-title::before {
+			content: '';
+			width: 3px;
+			height: 17px;
+			background: #8b5cf6;
+			border-radius: 2px;
+		}
+
+		.pf-prose {
+			font-size: 14px;
+			color: #374151;
+			line-height: 1.8;
+		}
+		.pf-grid-2 {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 1.5rem;
+			margin-top: 1rem;
+		}
+
+		.pf-card-spy {
+			background: #ffffff;
+			border: 1px solid #e5e7eb;
+			border-left: 4px solid #8b5cf6;
+			padding: 1.25rem;
+			border-radius: 8px;
+		}
+
+		.pf-card-spy h4 {
+			font-size: 14px;
+			font-weight: 700;
+			color: #1e1b4b;
+			margin-bottom: 8px;
+		}
+
+		.pf-back-bar {
+			padding: 1.25rem 3rem;
+			border-top: 1px solid #e5e7eb;
+		}
+		.pf-btn-back {
+			font-size: 13px;
+			font-family: 'Space Mono', monospace;
+			color: #6b7280;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
+		.pf-btn-back:hover {
+			color: #8b5cf6;
+		}
+
+		.pf-preuve-card {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 12px;
+			padding: 20px;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			height: 100%;
+		}
+
+		.pf-preuve-card:hover {
+			transform: translateY(-5px);
+			border-color: #185FA5;
+			box-shadow: 0 10px 20px rgba(24, 95, 165, 0.1);
+		}
+
+		.pf-preuve-badge {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #185FA5;
+			background: #E6F1FB;
+			padding: 4px 10px;
+			border-radius: 6px;
+			font-weight: 700;
+		}
+
+		@media(max-width: 850px) {
+			.pf-stage-layout {
+				grid-template-columns: 1fr;
+			}
+			.pf-sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e7eb;
+			}
+			.pf-grid-2 {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-kanban-fill"></i>
-			Workshop SN2
+
+	<div class="pf-page-header">
+		<div class="pf-page-badge">
+			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+				<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+			</svg>
+			IoT & Cybersécurité
+		</div>
+		<h1 class="pf-page-title">Projet
+			<em>Time2Spy</em>
 		</h1>
-		<div class="row justify-content-center">
-			<div class="col-md-10">
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
-						<p class="text-muted">
-							Time2Spy est un gadget d’espionnage conçu sous la forme d’une montre permettant à un agent de communiquer discrètement avec son QG.
-														Le dispositif intègre un micro miniature, un bouton d’alerte et un système de LEDs permettant d’obtenir une réponse silencieuse.
-														Le tout repose sur un Raspberry Pi 4, un système de chiffrement AES, une communication réseau TCP et une interface graphique côté QG.
-														L’objectif est d’assurer une communication sécurisée, invisible et fiable, même en situation critique.
-						</p>
-					</div>
+		<p class="pf-page-sub">Conception d'un dispositif d'espionnage connecté et chiffré</p>
+	</div>
+
+	<div class="pf-stage-layout">
+
+		<aside class="pf-sidebar">
+			<div>
+				<div class="pf-sidebar-label">Stack Projet</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Hardware</span>
+					<span class="pf-info-value">Raspberry Pi 4</span>
 				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
-
-						<p class="fw-semibold text-dark">Objectifs fonctionnels</p>
-						<ul class="text-muted">
-							<li>Créer un gadget espion numérique fonctionnel et réaliste.</li>
-							<li>Permettre à un agent d’envoyer un message vocal codé au QG.</li>
-							<li>Assurer un déchiffrement sécurisé côté QG avec validation par mot de passe.</li>
-							<li>Afficher une interface graphique de surveillance style Cluedo pour situer l’agent.</li>
-							<li>Envoyer une réponse silencieuse (LED verte/rouge) à distance.</li>
-						</ul>
-
-						<p class="fw-semibold text-dark">Objectifs techniques</p>
-						<ul class="text-muted">
-							<li>Utiliser un Raspberry Pi équipé d’un micro USB pour la détection vocale.</li>
-							<li>Implémenter un chiffrement AES pour la sécurité des messages.</li>
-							<li>Créer un serveur TCP côté QG pour recevoir les messages.</li>
-							<li>Développer une interface Tkinter affichant messages, lieux et carte graphique.</li>
-							<li>Programmer le contrôle des LEDs via GPIO sur le Raspberry.</li>
-							<li>Mettre en place une logique “alerte / confirmation / extraction”.</li>
-							<li>Documenter et organiser le projet avec Trello et un planning complet.</li>
-						</ul>
-					</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Langage</span>
+					<span class="pf-info-value">Python 3</span>
 				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
-
-						<p class="fw-semibold text-dark">Programmation & développement</p>
-						<ul class="text-muted">
-							<li>Python avancé : sockets TCP, threads, Tkinter, gestion d’évènements.</li>
-							<li>Implémentation du chiffrement AES pour sécuriser les messages.</li>
-							<li>Analyse et traitement du son pour détecter des mots-clés.</li>
-							<li>Communication bidirectionnelle QG ↔ Raspberry.</li>
-						</ul>
-
-						<p class="fw-semibold text-dark">Systèmes & réseau</p>
-						<ul class="text-muted">
-							<li>Configuration d’un Raspberry Pi (SSH, installation OS, scripts auto).</li>
-							<li>Gestion des GPIO pour LEDs et bouton physique.</li>
-							<li>Mise en place d’un serveur TCP et client réseau sécurisé.</li>
-							<li>Protocole d’envoi de messages chiffrés + réponse LED.</li>
-						</ul>
-
-						<p class="fw-semibold text-dark">Électronique & matériel</p>
-						<ul class="text-muted">
-							<li>Branchement de LEDs, bouton poussoir et micro sur Raspberry.</li>
-							<li>Utilisation du GrovePi (tests + diagnostic + contournement des erreurs).</li>
-							<li>Montage physique d’un prototype de montre espion (cache, câblage, maintien).</li>
-						</ul>
-
-						<p class="fw-semibold text-dark">Gestion de projet</p>
-						<ul class="text-muted">
-							<li>Organisation sur Trello (À faire / En cours / Terminé).</li>
-							<li>Planification complète sur 5 jours (brainstorm → rendu oral).</li>
-							<li>Documentation technique, présentation PowerPoint et livrables.</li>
-						</ul>
-
-						<p class="fw-semibold text-dark">Sécurité informatique</p>
-						<ul class="text-muted">
-							<li>Chiffrement AES + gestion de mot de passe.</li>
-							<li>Protection des messages reçus (leurres si mauvais code).</li>
-							<li>Journalisation (log.txt) de toutes les opérations.</li>
-						</ul>
-					</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Sécurité</span>
+					<span class="pf-info-value">AES-256</span>
 				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
-
-						
-
-							<!-- Compétence 2 -->
-							<div class="col-md-6">
-								<div class="p-3 border rounded h-100">
-									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
-									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
-										Voir la compétence
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
-						<a href="{{ asset('documents/projets/workshop_SN2/Documentation_WORKSHOP_2025.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger la fiche projet
-						</a>
-
-						<a href="{{ asset('documents/projets/workshop_SN2/Diaporama_Workshop_2025.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger le diaporama
-						</a>
-					</div>
-				</div>
-
-				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
-					⟵ Retour aux projets
-				</a>
-
 			</div>
+
+			<div>
+				<div class="pf-sidebar-label">Ressources</div>
+				<div class="pf-downloads">
+					<a href="{{ asset('documents/projets/workshop_SN2/Documentation_WORKSHOP_2025.pdf') }}" download class="pf-btn-dl">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Dossier Technique
+					</a>
+					<a href="{{ asset('documents/projets/workshop_SN2/Diaporama_Workshop_2025.pdf') }}" download class="pf-btn-dl" style="background:#4b5563">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Soutenance Finale
+					</a>
+				</div>
+			</div>
+		</aside>
+
+		<main class="pf-main">
+			<section class="pf-section">
+				<h2 class="pf-section-title">Concept du projet</h2>
+				<div class="pf-prose">
+					<p>
+						<strong>Time2Spy</strong>
+						est un prototype de montre intelligente dédiée aux agents de terrain. Le dispositif permet une communication bidirectionnelle sécurisée avec un centre de commandement (QG).
+					</p>
+					<p>
+						Le défi consistait à intégrer des composants électroniques (micro, LEDs, boutons) à un système de communication réseau robuste capable de résister à l'interception grâce au chiffrement.
+					</p>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Fonctionnalités Clés</h2>
+				<div class="pf-grid-2">
+					<div class="pf-card-spy">
+						<h4>Communication chiffrée</h4>
+						<p class="mb-0 text-muted" style="font-size: 13px;">Transmission de messages vocaux codés via socket TCP, protégée par un algorithme AES avec validation par mot de passe.</p>
+					</div>
+					<div class="pf-card-spy">
+						<h4>Interface QG</h4>
+						<p class="mb-0 text-muted" style="font-size: 13px;">Tableau de bord développé sous Tkinter permettant de localiser l'agent et de lui envoyer des ordres visuels (LEDs).</p>
+					</div>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Compétences Techniques</h2>
+				<div class="pf-prose">
+					<div style="margin-bottom: 1.5rem;">
+						<span class="pf-skill-pill">Socket Python</span>
+						<span class="pf-skill-pill">Cryptography</span>
+						<span class="pf-skill-pill">GPIO Programming</span>
+						<span class="pf-skill-pill">Tkinter GUI</span>
+						<span class="pf-skill-pill">Linux/SSH</span>
+					</div>
+					<ul class="text-muted">
+						<li>
+							<strong>Systèmes embarqués :</strong>
+							Configuration complète d'un environnement Raspberry Pi et gestion des entrées/sorties physiques.</li>
+						<li>
+							<strong>Réseau :</strong>
+							Mise en place d'une architecture Serveur (QG) / Client (Montre).</li>
+						<li>
+							<strong>Sécurité :</strong>
+							Implémentation d'une couche de chiffrement de bout en bout et gestion de leurres en cas d'intrusion.</li>
+					</ul>
+				</div>
+			</section>
+		</main>
+	</div>
+
+	{# ── Compétences mobilisées ── #}
+	<div class="pf-section" style="background: #ffffff; border-top: 1px solid #e5e7eb;">
+		<h2 class="pf-section-title">Compétences du référentiel mobilisées</h2>
+		<div class="pf-prose">
+			<p style="margin-bottom: 20px;">Conformément au tableau de synthèse des réalisations, ce projet a permis de valider les blocs de compétences suivants :</p>
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Gérer le patrimoine informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Schéma réseau, sauvegardes NVRAM/TFTP, recensement des équipements.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_patrimoine_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Travailler en mode projet</strong>
+					<span style="font-size: 12px; color: #6b7280;">Répartition des tâches, analyse des écarts, gestion d'équipe à 5.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_travailler_mode_projet') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Mettre à disposition un service informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Déployer, tester et accompagner la mise en service DHCP/réseau.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_service_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Organiser son développement professionnel</strong>
+					<span style="font-size: 12px; color: #6b7280;">Veille technologique, auto-formation et mise en valeur des compétences acquises tout au long du BTS SIO.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_dev_pro') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	{# ── Lightbox C1 ── #}
+	<div id="pf-lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(1)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(1)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(1)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C4 ── #}
+	<div id="pf-lightbox2" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(2)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb2-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(2)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb2-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(2)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb2-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C5 ── #}
+	<div id="pf-lightbox3" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(3)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb3-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(3)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb3-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(3)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb3-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C6 ── #}
+	<div id="pf-lightbox4" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(4)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb4-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(3)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb4-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(3)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb4-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Grille des preuves ── #}
+	<div
+		class="pf-preuves-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 2rem 3rem; border-top: 1px solid #e5e7eb;">
+
+		{# C1 - Gérer le patrimoine #}
+		<div class="pf-preuve-card" onclick="openLightbox(1)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+						<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Gérer le patrimoine informatique</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma réseau, sauvegardes NVRAM et TFTP, configuration des équipements.</p>
+			<span class="pf-preuve-badge">C3 — La présence en ligne</span>
+		</div>
+
+		{# C4 - Travailler en mode projet #}
+		<div class="pf-preuve-card" onclick="openLightbox(2)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #EEEDFE; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
+						<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Travailler en mode projet</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Répartition des tâches, analyse des écarts et erreur d'overlap documentée.</p>
+			<span class="pf-preuve-badge" style="color:#534AB7; background:#EEEDFE; border-color:#CECBF6;">C4 — Mode projet</span>
+		</div>
+
+		{# C5 - Mettre à disposition #}
+		<div class="pf-preuve-card" onclick="openLightbox(3)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #FAEEDA; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+						<circle cx="9" cy="7" r="4"/>
+						<path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Mettre à disposition un service</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement DHCP, tests de connectivité et log de restauration.</p>
+			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C5 — Service info</span>
+		</div>
+
+		{# C5 - Mettre à disposition #}
+		<div class="pf-preuve-card" onclick="openLightbox(4)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #FAEEDA; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+						<circle cx="9" cy="7" r="4"/>
+						<path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Organiser son développement professionnel</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement DHCP, tests de connectivité et log de restauration.</p>
+			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C6 — Développement professionnel</span>
 		</div>
 
 	</div>
+
+	<div class="pf-back-bar">
+		<a href="{{ path('app_projets') }}" class="pf-btn-back">
+			<svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+			</svg>
+			Retour aux projets
+		</a>
+	</div>
+
+	<script>
+		const lbMap = {
+1: 'pf-lightbox',
+2: 'pf-lightbox2',
+3: 'pf-lightbox3',
+4: 'pf-lightbox4'
+};
+const suffixMap = {
+1: '',
+2: '2',
+3: '3',
+4: '4'
+};
+
+const pfGalleries = {
+1: [
+"{{ asset('documents/preuves/workshopSN2/admin chambres.png') }}",
+"{{ asset('documents/preuves/workshopSN2/suppr chambre.png') }}",
+"{{ asset('documents/preuves/workshopSN2/modif chambre.png') }}",
+"{{ asset('documents/preuves/workshopSN2/chambres.png') }}",
+
+],
+2: [
+"{{ asset('documents/preuves/workshopSN2/trello workshop2.png') }}",
+"{{ asset('documents/preuves/workshopSN2/planning.png') }}",
+"{{ asset('documents/preuves/workshopSN2/discord workshop.png') }}",
+],
+3: [
+"{{ asset('documents/preuves/workshopSN2/dico.png') }}",
+"{{ asset('documents/preuves/workshopSN2/dico 2.png') }}",
+"{{ asset('documents/preuves/workshopSN2/mcd.png') }}",
+],
+4: ["{{ asset('documents/preuves/workshopSN2/dico.png') }}"]
+}
+
+const pfState = {
+1: 0,
+2: 0,
+3: 0,
+4: 0
+};
+
+function openLightbox(id) {
+pfState[id] = 0;
+document.getElementById(lbMap[id]).style.display = 'flex';
+document.body.style.overflow = 'hidden';
+renderLightbox(id);
+}
+
+function closeLightbox(id) {
+document.getElementById(lbMap[id]).style.display = 'none';
+document.body.style.overflow = '';
+}
+
+function nextImage(id) {
+pfState[id] = (pfState[id] + 1) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function prevImage(id) {
+pfState[id] = (pfState[id] - 1 + pfGalleries[id].length) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function renderLightbox(id) {
+const imgs = pfGalleries[id];
+const cur = pfState[id];
+const suffix = suffixMap[id];
+document.getElementById('pf-lb' + suffix + '-img').src = imgs[cur];
+document.getElementById('pf-lb' + suffix + '-counter').textContent = (cur + 1) + ' / ' + imgs.length;
+const thumbs = document.getElementById('pf-lb' + suffix + '-thumbs');
+thumbs.innerHTML = '';
+imgs.forEach((src, i) => {
+const dot = document.createElement('div');
+dot.onclick = () => {
+pfState[id] = i;
+renderLightbox(id);
+};
+dot.style.cssText = `width:8px; height:8px; border-radius:50%; cursor:pointer; transition:background 0.2s; background:${
+i === cur ? '#fff' : 'rgba(255,255,255,0.3)'
+}`;
+thumbs.appendChild(dot);
+});
+}[1, 2, 3, 4].forEach(id => {
+document.getElementById(lbMap[id]).addEventListener('click', function (e) {
+if (e.target === this) 
+closeLightbox(id);
+
+
+});
+});
+
+document.addEventListener('keydown', function (e) {
+const lb1 = document.getElementById('pf-lightbox').style.display !== 'none';
+const lb2 = document.getElementById('pf-lightbox2').style.display !== 'none';
+const lb3 = document.getElementById('pf-lightbox3').style.display !== 'none';
+const lb4 = document.getElementById('pf-lightbox4').style.display !== 'none';
+const id = lb1 ? 1 : lb2 ? 2 : lb3 ? 3 : null;
+if (! id) 
+return;
+
+
+if (e.key === 'ArrowRight') 
+nextImage(id);
+
+
+if (e.key === 'ArrowLeft') 
+prevImage(id);
+
+
+if (e.key === 'Escape') 
+closeLightbox(id);
+
+
+});
+	</script>
+
 {% endblock %}

@@ -1,159 +1,732 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
+	{{ parent() }}Projet — Hôtel Neptune
+{% endblock %}
+
+{% block stylesheets %}
 	{{ parent() }}
-	Projet Hotel Neptune
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Sora', sans-serif;
+		}
+
+		.pf-page-header {
+			padding: 3.5rem 3rem 2.5rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.pf-page-badge {
+			display: inline-flex;
+			align-items: center;
+			gap: 7px;
+			font-family: 'Space Mono', monospace;
+			font-size: 11px;
+			color: #0891b2; /* Cyan foncé */
+			background: #ecfeff;
+			border: 1px solid #cffafe;
+			border-radius: 100px;
+			padding: 4px 14px;
+			margin-bottom: 1.25rem;
+		}
+
+		.pf-page-title {
+			font-size: clamp(28px, 4vw, 44px);
+			font-weight: 700;
+			letter-spacing: -1.5px;
+			line-height: 1.1;
+			color: #111827;
+			margin: 0 0 0.75rem;
+		}
+
+		/* --- MISE EN AVANT DES COMPÉTENCES SIDEBAR --- */
+		.pf-comp-block {
+			background: #ffffff;
+			border: 1px solid #e5e7eb;
+			padding: 15px;
+			border-radius: 12px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+			margin-bottom: 12px;
+		}
+
+		.pf-comp-name {
+			font-size: 13px;
+			color: #111827;
+			margin: 0 0 10px;
+			font-weight: 700;
+			letter-spacing: -0.3px;
+		}
+
+		.pf-btn-comp-highlight {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background: #06b6d4; /* Cyan Neptune */
+			color: #ffffff !important;
+			text-decoration: none;
+			padding: 8px 12px;
+			border-radius: 6px;
+			font-size: 11px;
+			font-weight: 700;
+			font-family: 'Space Mono', monospace;
+			transition: all 0.2s ease;
+			text-transform: uppercase;
+		}
+
+		.pf-btn-comp-highlight:hover {
+			background: #0891b2; /* Cyan plus foncé au survol */
+			transform: translateY(-1px);
+			box-shadow: 0 4px 8px rgba(6, 182, 212, 0.3);
+		}
+
+		.pf-page-title em {
+			font-style: normal;
+			color: #06b6d4;
+		}
+
+		.pf-page-sub {
+			font-size: 15px;
+			color: #6b7280;
+			margin: 0;
+		}
+
+		.pf-stage-layout {
+			display: grid;
+			grid-template-columns: 280px 1fr;
+			border-bottom: 1px solid #e5e7eb;
+		}
+
+		.pf-sidebar {
+			padding: 3rem 2rem;
+			border-right: 1px solid #e5e7eb;
+			background: #f9fafb;
+			display: flex;
+			flex-direction: column;
+			gap: 4rem;
+		}
+
+		.pf-sidebar-label {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #9ca3af;
+			text-transform: uppercase;
+			letter-spacing: 1px;
+			margin-bottom: 10px;
+		}
+
+		.pf-info-row {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			font-size: 12px;
+			padding: 6px 0;
+			border-bottom: 1px solid #f3f4f6;
+		}
+
+		.pf-info-row:last-child {
+			border-bottom: none;
+		}
+
+		.pf-info-label {
+			color: #9ca3af;
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+		}
+
+		.pf-info-value {
+			color: #374151;
+			font-weight: 600;
+			font-size: 12px;
+			text-align: right;
+		}
+
+		.pf-skill-pill {
+			display: inline-block;
+			font-size: 11px;
+			font-family: 'Space Mono', monospace;
+			padding: 2px 10px;
+			background: #f3f4f6;
+			border-radius: 4px;
+			color: #4b5563;
+			margin-right: 5px;
+			margin-bottom: 5px;
+		}
+
+		.pf-downloads {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+		}
+
+		.pf-btn-dl {
+			background: #111827;
+			color: #fff;
+			border: none;
+			border-radius: 8px;
+			padding: 10px 16px;
+			font-size: 12px;
+			font-weight: 600;
+			text-decoration: none;
+			display: flex;
+			align-items: center;
+			gap: 8px;
+			transition: all 0.2s;
+		}
+
+		.pf-btn-dl:hover {
+			background: #06b6d4;
+			color: #fff;
+		}
+
+		.pf-btn-comp {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			color: #374151;
+			padding: 10px;
+			border-radius: 8px;
+			text-decoration: none;
+			font-size: 11px;
+			font-weight: 600;
+			display: block;
+			margin-top: 8px;
+			transition: all 0.2s;
+		}
+
+		.pf-btn-comp:hover {
+			border-color: #06b6d4;
+			color: #06b6d4;
+		}
+
+		.pf-main {
+			display: flex;
+			flex-direction: column;
+		}
+		.pf-section {
+			padding: 2.5rem 3rem;
+			border-bottom: 1px solid #e5e7eb;
+		}
+		.pf-section:last-child {
+			border-bottom: none;
+		}
+
+		.pf-section-title {
+			font-size: 17px;
+			font-weight: 700;
+			color: #111827;
+			margin: 0 0 1rem;
+			display: flex;
+			align-items: center;
+			gap: 10px;
+		}
+
+		.pf-section-title::before {
+			content: '';
+			width: 3px;
+			height: 17px;
+			background: #06b6d4;
+			border-radius: 2px;
+		}
+
+		.pf-prose {
+			font-size: 14px;
+			color: #374151;
+			line-height: 1.85;
+			margin: 0;
+		}
+		.pf-grid-2 {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			margin-top: 1rem;
+		}
+		.pf-card-light {
+			background: #f9fafb;
+			padding: 1.5rem;
+			border-radius: 12px;
+			border: 1px solid #f3f4f6;
+		}
+		.pf-prose h4 {
+			font-size: 13px;
+			font-weight: 700;
+			color: #111827;
+			margin: 0 0 0.75rem;
+			text-transform: uppercase;
+		}
+		.pf-prose ul {
+			padding-left: 1.25rem;
+			margin: 0;
+		}
+		.pf-prose li {
+			margin-bottom: 0.4rem;
+		}
+
+		.pf-back-bar {
+			padding: 1.25rem 3rem;
+			border-top: 1px solid #e5e7eb;
+		}
+		.pf-btn-back {
+			font-size: 13px;
+			font-family: 'Space Mono', monospace;
+			color: #6b7280;
+			text-decoration: none;
+			display: inline-flex;
+			align-items: center;
+			gap: 6px;
+		}
+		.pf-btn-back:hover {
+			color: #06b6d4;
+		}
+
+		.pf-preuve-card {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			border-radius: 12px;
+			padding: 20px;
+			transition: all 0.3s ease;
+			cursor: pointer;
+			height: 100%;
+		}
+		.pf-preuve-card:hover {
+			transform: translateY(-5px);
+			border-color: #6366F1;
+			box-shadow: 0 10px 20px rgba(99, 102, 241, 0.1);
+		}
+		.pf-preuve-badge {
+			font-family: 'Space Mono', monospace;
+			font-size: 10px;
+			color: #185FA5;
+			background: #E6F1FB;
+			border: 1px solid #B5D4F4;
+			padding: 4px 10px;
+			border-radius: 6px;
+			font-weight: 700;
+		}
+
+		@media(max-width: 850px) {
+			.pf-stage-layout {
+				grid-template-columns: 1fr;
+			}
+			.pf-sidebar {
+				border-right: none;
+				border-bottom: 1px solid #e5e7eb;
+			}
+			.pf-grid-2 {
+				grid-template-columns: 1fr;
+			}
+		}
+	</style>
 {% endblock %}
 
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-kanban-fill"></i>
-			Projet Hotel Neptune
+
+	<div class="pf-page-header">
+		<div class="pf-page-badge">
+			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+				<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+			</svg>
+			Fullstack Development
+		</div>
+		<h1 class="pf-page-title">Hôtel
+			<em>Neptune</em>
 		</h1>
-		<div class="row justify-content-center">
-			<div class="col-md-10">
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Présentation</h3>
-						<p class="text-muted">
-							Le projet Hôtel Neptune consiste à développer une plateforme web complète permettant à un hôtel de gérer ses chambres, ses clients et ses réservations, tout en proposant une interface intuitive pour les utilisateurs.
-																												Le site est développé en PHP avec une base de données MySQL, et structuré selon une architecture MVC avec l’utilisation de Twig pour les vues.
-																												Deux interfaces distinctes composent l’application :
-							<ul class="text-muted">
-								<li>Interface administrateur, dédiée à la gestion complète de l’hôtel (chambres, clients, réservations, photos).</li>
-								<li>Interface client, permettant la consultation des chambres, la réservation, la gestion du compte et la simulation de paiement.</li>
-							</ul>
-							Ce projet s’inscrit dans le module TPRW207 – Conception et exploitation d’une base de données dans un environnement web.
-						</p>
-					</div>
-				</div>
+		<p class="pf-page-sub">Plateforme de gestion hôtelière en architecture MVC & Twig</p>
+	</div>
 
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Objectifs</h3>
-						<p class="text-muted fw-bold mb-2">Objectifs fonctionnels</p>
-						<ul class="text-muted ms-3">
-							<li>Concevoir un site web permettant :</li>
+	<div class="pf-stage-layout">
+
+		<aside class="pf-sidebar">
+			<div>
+				<div class="pf-sidebar-label">Stack Technique</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Langage</span>
+					<span class="pf-info-value">PHP 8 / SQL</span>
+				</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Moteur Vue</span>
+					<span class="pf-info-value">Twig</span>
+				</div>
+				<div class="pf-info-row">
+					<span class="pf-info-label">Design</span>
+					<span class="pf-info-value">Bootstrap 5</span>
+				</div>
+			</div>
+
+			<div>
+				<div class="pf-sidebar-label">Ressources</div>
+				<div class="pf-downloads">
+					<a href="{{ asset('documents/projets/neptune/Documentation_Projet_Hotel_Neptune.pdf') }}" download class="pf-btn-dl">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Dossier Technique
+					</a>
+					<a href="{{ asset('documents/projets/neptune/Diaporama_Projet_Hotel_Neptune.pdf') }}" download class="pf-btn-dl" style="background:#374151">
+						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
+						</svg>
+						Support Oral
+					</a>
+				</div>
+			</div>
+		</aside>
+
+		<main class="pf-main">
+			<section class="pf-section">
+				<h2 class="pf-section-title">Présentation</h2>
+				<div class="pf-prose">
+					<p>
+						L’Hôtel Neptune est une application web métier permettant de centraliser la gestion des chambres, des réservations et des clients. Développé dans le cadre du module
+						<strong>TPRW207</strong>, ce projet met l’accent sur la robustesse d’une base de données relationnelle MySQL couplée à une interface utilisateur fluide.
+					</p>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Double Interface</h2>
+				<div class="pf-prose">
+					<div class="pf-grid-2">
+						<div class="pf-card-light">
+							<h4>Espace Client</h4>
 							<ul>
-								<li>La gestion complète des chambres : ajout, modification, suppression, tri, recherche et gestion des photos.</li>
-								<li>La gestion des clients : création de compte, modification, suppression, authentification sécurisée.</li>
-								<li>La gestion des réservations : consultation, filtrage par date, annulation et historique complet.</li>
+								<li>Catalogue dynamique des chambres.</li>
+								<li>Tunnel de réservation intuitif.</li>
+								<li>Gestion de compte & historique.</li>
+								<li>Simulation de paiement sécurisée.</li>
 							</ul>
-							<li>Proposer un espace client permettant :</li>
+						</div>
+						<div class="pf-card-light">
+							<h4>Back-Office Admin</h4>
 							<ul>
-								<li>La consultation des chambres et de leurs disponibilités.</li>
-								<li>La réservation de chambres avec choix des dates.</li>
-								<li>La simulation de paiement.</li>
-								<li>L’annulation d’une réservation.</li>
+								<li>CRUD complet (Chambres/Clients).</li>
+								<li>Pilotage des réservations.</li>
+								<li>Modération des médias & photos.</li>
+								<li>Gestion des privilèges (RBAC).</li>
 							</ul>
-						</ul>
-						<p class="text-muted fw-bold mt-4 mb-2">Objectifs techniques</p>
-						<ul class="text-muted ms-3">
-							<li>Concevoir une base de données relationnelle complète (MCD/MLD, dictionnaire de données).</li>
-							<li>Implémenter une architecture MVC propre, maintenable et sécurisée.</li>
-							<li>Utiliser un système de routing inspiré des frameworks modernes.</li>
-							<li>Sécuriser le site : rôles utilisateurs, filtrage des entrées, protections contre les attaques classiques.</li>
-							<li>Produire un site responsive, ergonomique et évolutif.</li>
-						</ul>
-
-					</div>
-				</div>
-
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Compétences mises en œuvre</h3>
-
-						<h4 class="fw-bold text-secondary">Développement web & programmation</h4>
-						<ul class="text-muted mb-4">
-							<li>Utilisation de PHP pour la gestion du routing, des contrôleurs, modèles et interactions avec la base de données.</li>
-							<li>Utilisation de Twig pour générer des pages dynamiques et modulaires.</li>
-							<li>Mise en place d'une architecture MVC (Model / View / Controller) propre et structurée.</li>
-							<li>Gestion des rôles utilisateurs (administrateur / client) ainsi que des sessions et de l’authentification.</li>
-						</ul>
-
-						<h4 class="fw-bold text-secondary">Base de données</h4>
-						<ul class="text-muted mb-4">
-							<li>Conception du MCD, MLD et du dictionnaire de données complet.</li>
-							<li>Création et structuration d’une base MySQL relationnelle.</li>
-							<li>Implémentation des contraintes d'intégrité, clés primaires, clés étrangères et relations entre les tables.</li>
-							<li>Gestion des tables : Users, Rooms, Reservations, Options, Images, Invoices…</li>
-						</ul>
-
-						<h4 class="fw-bold text-secondary">Gestion de projet</h4>
-						<ul class="text-muted mb-4">
-							<li>Analyse des besoins et brainstorming avant développement.</li>
-							<li>Rédaction d'un dossier projet détaillé incluant explications techniques et documentation.</li>
-							<li>Travail collaboratif et versionnement via GitHub.</li>
-							<li>Production des maquettes, wireframes et schémas techniques.</li>
-						</ul>
-
-						<h4 class="fw-bold text-secondary">Sécurité & bonnes pratiques</h4>
-						<ul class="text-muted mb-4">
-							<li>Filtrage et validation des entrées utilisateurs (filter_input, sanitation…).</li>
-							<li>Sécurisation des pages et routes selon le rôle de l'utilisateur.</li>
-							<li>Hachage sécurisé des mots de passe.</li>
-							<li>Prévention des attaques courantes (SQL Injection, XSS…).</li>
-						</ul>
-
-						<h4 class="fw-bold text-secondary">Expérience utilisateur</h4>
-						<ul class="text-muted mb-4">
-							<li>Design responsive grâce à CSS et Bootstrap.</li>
-							<li>Navigation fluide entre l’interface client et l’interface administrateur.</li>
-							<li>Affichage clair des chambres, photos, détails, disponibilité et réservations.</li>
-						</ul>
-					</div>
-				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-4">Compétences validées par le projet</h3>
-
-						<div
-							class="row g-4">
-							<!-- Compétence 1 -->
-							<div class="col-md-6">
-								<div class="p-3 border rounded h-100">
-									<p class="text-muted fw-bold mb-2">Mettre à disposition des utilisateurs un service informatique</p>
-									<a href="{{ path('app_service_info') }}" class="btn btn-primary w-100">
-										Voir la compétence
-									</a>
-								</div>
-							</div>
-
-							<!-- Compétence 2 -->
-							<div class="col-md-6">
-								<div class="p-3 border rounded h-100">
-									<p class="text-muted fw-bold mb-2">Travailler en mode projet</p>
-									<a href="{{ path('app_travailler_mode_projet') }}" class="btn btn-primary w-100">
-										Voir la compétence
-									</a>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
-				<div class="card shadow border-0 mb-4">
-					<div class="card-body">
-						<h3 class="text-primary fw-bold mb-3">Fichiers associés</h3>
-						<a href="{{ asset('documents/projets/neptune/Documentation_Projet_Hotel_Neptune.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger la fiche projet
-						</a>
+			</section>
 
-						<a href="{{ asset('documents/projets/neptune/Diaporama_Projet_Hotel_Neptune.pdf') }}" download class="btn btn-primary w-100">
-							<i class="bi bi-download"></i>
-							Télécharger le diaporama
-						</a>
+			<section class="pf-section">
+				<h2 class="pf-section-title">Expertise Technique</h2>
+				<div class="pf-prose">
+					<p>
+						L'architecture repose sur un
+						<strong>système de routing custom</strong>
+						inspiré des frameworks modernes, isolant strictement la logique métier (Modèles) du rendu visuel (Twig).
+					</p>
+					<div class="pf-grid-2" style="margin-top: 1.5rem;">
+						<div>
+							<h4 style="color: #0891b2;">Sécurité</h4>
+							<ul>
+								<li>Hachage BCRYPT des mots de passe.</li>
+								<li>Protection contre les injections SQL (PDO).</li>
+								<li>Validation & Sanitization des entrées.</li>
+							</ul>
+						</div>
+						<div>
+							<h4 style="color: #0891b2;">Données</h4>
+							<ul>
+								<li>Conception MCD / MLD rigoureuse.</li>
+								<li>Contraintes d'intégrité référentielle.</li>
+								<li>Requêtes complexes (Joins/Filters).</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
 
+			<section class="pf-section">
+				<h2 class="pf-section-title">Outils & Méthodes</h2>
+				<div class="pf-prose">
+					<div style="margin-bottom: 1rem;">
+						<span class="pf-skill-pill">Architecture MVC</span>
+						<span class="pf-skill-pill">MySQL</span>
+						<span class="pf-skill-pill">GitHub</span>
+						<span class="pf-skill-pill">Wireframing</span>
+						<span class="pf-skill-pill">Responsive Design</span>
 					</div>
 				</div>
 
-				<a href="{{ path('app_projets') }}" class="btn btn-outline-secondary mt-3">
-					⟵ Retour aux projets
-				</a>
+			</section>
 
+		</main>
+		
+	</div>
+	
+
+	{# ── Compétences mobilisées ── #}
+	<div class="pf-section" style="background: #ffffff; border-top: 1px solid #e5e7eb;">
+		<h2 class="pf-section-title">Compétences du référentiel mobilisées</h2>
+		<div class="pf-prose">
+			<p style="margin-bottom: 20px;">Conformément au tableau de synthèse des réalisations, ce projet a permis de valider les blocs de compétences suivants :</p>
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Développer la présence en ligne</strong>
+					<span style="font-size: 12px; color: #6b7280;">Schéma réseau, sauvegardes NVRAM/TFTP, recensement des équipements.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_presence_ligne') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Répondre aux incidents</strong>
+					<span style="font-size: 12px; color: #6b7280;">Tickets GLPI.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_incidents') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Travailler en mode projet</strong>
+					<span style="font-size: 12px; color: #6b7280;">Répartition des tâches, analyse des écarts, gestion d'équipe à 5.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_travailler_mode_projet') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Mettre à disposition un service informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Déployer, tester et accompagner la mise en service DHCP/réseau.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_service_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+				</div>
 			</div>
+		</div>
+	</div>
+
+	{# ── Lightbox C1 ── #}
+	<div id="pf-lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(1)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(1)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(1)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C2 ── #}
+	<div id="pf-lightbox4" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(4)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb4-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(4)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb4-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(4)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb4-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C4 ── #}
+	<div id="pf-lightbox2" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(2)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb2-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(2)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb2-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(2)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb2-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C5 ── #}
+	<div id="pf-lightbox3" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(3)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb3-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(3)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb3-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(3)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb3-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Grille des preuves ── #}
+	<div
+		class="pf-preuves-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 2rem 3rem; border-top: 1px solid #e5e7eb;">
+
+		{# C1 - Gérer le patrimoine #}
+		<div class="pf-preuve-card" onclick="openLightbox(1)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+						<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Développer la présence en ligne</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma réseau, sauvegardes NVRAM et TFTP, configuration des équipements.</p>
+			<span class="pf-preuve-badge">C3 — La présence en ligne</span>
+		</div>
+
+		{# C2 - Répondre aux incidents #}
+		<div class="pf-preuve-card" onclick="openLightbox(4)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #E6F1FB; pacldding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+						<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Répondre aux incidents</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Tickets GLPI.</p>
+			<span class="pf-preuve-badge">C2 — Répondre aux incidents</span>
+		</div>
+
+		{# C4 - Travailler en mode projet #}
+		<div class="pf-preuve-card" onclick="openLightbox(2)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #EEEDFE; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
+						<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Travailler en mode projet</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Répartition des tâches, analyse des écarts et erreur d'overlap documentée.</p>
+			<span class="pf-preuve-badge" style="color:#534AB7; background:#EEEDFE; border-color:#CECBF6;">C4 — Mode projet</span>
+		</div>
+
+		{# C5 - Mettre à disposition #}
+		<div class="pf-preuve-card" onclick="openLightbox(3)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #FAEEDA; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+						<circle cx="9" cy="7" r="4"/>
+						<path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Mettre à disposition un service</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement DHCP, tests de connectivité et log de restauration.</p>
+			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C5 — Service info</span>
 		</div>
 
 	</div>
+
+
+	<div class="pf-back-bar">
+		<a href="{{ path('app_projets') }}" class="pf-btn-back">
+			<svg width="13" height="13" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+				<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+			</svg>
+			Retour aux projets
+		</a>
+	</div>
+
+	<script>
+		const lbMap = {
+1: 'pf-lightbox',
+2: 'pf-lightbox2',
+3: 'pf-lightbox3',
+4: 'pf-lightbox4'
+};
+const suffixMap = {
+1: '',
+2: '2',
+3: '3',
+4: '4'
+};
+
+const pfGalleries = {
+1: [
+"{{ asset('documents/preuves/hotel neptune/admin chambres.png') }}",
+"{{ asset('documents/preuves/hotel neptune/suppr chambre.png') }}",
+"{{ asset('documents/preuves/hotel neptune/modif chambre.png') }}",
+"{{ asset('documents/preuves/hotel neptune/chambres.png') }}",
+
+],
+2: [
+"{{ asset('documents/preuves/hotel neptune/discord neptune.png') }}",
+],
+3: [
+"{{ asset('documents/preuves/hotel neptune/dico.png') }}",
+"{{ asset('documents/preuves/hotel neptune/dico 2.png') }}",
+"{{ asset('documents/preuves/hotel neptune/mcd.png') }}",
+],
+4: [
+"{{ asset('documents/preuves/hotel neptune/ticket glpi.png') }}",
+"{{ asset('documents/preuves/hotel neptune/ticket glpi2.png') }}",
+"{{ asset('documents/preuves/hotel neptune/ticket glpi3.png') }}",
+]
+};
+
+const pfState = {
+1: 0,
+2: 0,
+3: 0,
+4: 0
+};
+
+function openLightbox(id) {
+pfState[id] = 0;
+document.getElementById(lbMap[id]).style.display = 'flex';
+document.body.style.overflow = 'hidden';
+renderLightbox(id);
+}
+
+function closeLightbox(id) {
+document.getElementById(lbMap[id]).style.display = 'none';
+document.body.style.overflow = '';
+}
+
+function nextImage(id) {
+pfState[id] = (pfState[id] + 1) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function prevImage(id) {
+pfState[id] = (pfState[id] - 1 + pfGalleries[id].length) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function renderLightbox(id) {
+const imgs = pfGalleries[id];
+const cur = pfState[id];
+const suffix = suffixMap[id];
+document.getElementById('pf-lb' + suffix + '-img').src = imgs[cur];
+document.getElementById('pf-lb' + suffix + '-counter').textContent = (cur + 1) + ' / ' + imgs.length;
+const thumbs = document.getElementById('pf-lb' + suffix + '-thumbs');
+thumbs.innerHTML = '';
+imgs.forEach((src, i) => {
+const dot = document.createElement('div');
+dot.onclick = () => {
+pfState[id] = i;
+renderLightbox(id);
+};
+dot.style.cssText = `width:8px; height:8px; border-radius:50%; cursor:pointer; transition:background 0.2s; background:${
+i === cur ? '#fff' : 'rgba(255,255,255,0.3)'
+}`;
+thumbs.appendChild(dot);
+});
+}[1, 2, 3, 4].forEach(id => {
+document.getElementById(lbMap[id]).addEventListener('click', function (e) {
+if (e.target === this) 
+closeLightbox(id);
+
+
+});
+});
+
+document.addEventListener('keydown', function (e) {
+const lb1 = document.getElementById('pf-lightbox').style.display !== 'none';
+const lb2 = document.getElementById('pf-lightbox2').style.display !== 'none';
+const lb3 = document.getElementById('pf-lightbox3').style.display !== 'none';
+const lb4 = document.getElementById('pf-lightbox4').style.display !== 'none';
+const id = lb1 ? 1 : lb2 ? 2 : lb3 ? 3 : lb4 ? 4 : null;
+if (! id) 
+return;
+
+
+if (e.key === 'ArrowRight') 
+nextImage(id);
+
+
+if (e.key === 'ArrowLeft') 
+prevImage(id);
+
+
+if (e.key === 'Escape') 
+closeLightbox(id);
+
+
+});
+	</script>
+
 {% endblock %}

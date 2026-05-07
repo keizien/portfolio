@@ -257,6 +257,20 @@ final class BaseController extends AbstractController
         ]);
     }
 
+    #[Route('/veille_SN1', name: 'app_veille_SN1')]
+    public function veille_SN1(): Response
+    {
+        return $this->render('base/veille_SN1.html.twig', [
+        ]);
+    }
+
+    #[Route('/veille_SN2', name: 'app_veille_SN2')]
+    public function veille_SN2(): Response
+    {
+        return $this->render('base/veille_SN2.html.twig', [
+        ]);
+    }
+
     #[Route('/identite_professionnelle', name: 'app_identite_professionnelle')]
     public function identite_professionnelle(): Response
     {
@@ -373,6 +387,13 @@ final class BaseController extends AbstractController
     public function evaluer_indicateurs_suivi(): Response
     {
         return $this->render('base/travailler_en_mode_projet/evaluer_indicateurs_suivi.html.twig', [
+        ]);
+    }
+
+    #[Route('/pcep', name: 'app_pcep')]
+    public function pcep(): Response
+    {
+        return $this->render('base/certifications/PCEP.html.twig', [
         ]);
     }
 }

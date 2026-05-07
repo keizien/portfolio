@@ -1,80 +1,214 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Travailler en mode projet{% endblock %}
+{% block title %}
+    {{ parent() }}Compétence — Mode Projet
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; background-color: #fff; }
+
+        /* Header Style avec la couleur Violet C4 */
+        .pf-page-header {
+            padding: 4rem 3rem 3rem;
+            border-bottom: 1px solid #e5e7eb;
+            background: linear-gradient(to bottom right, #fdfbff, #f5f3ff);
+        }
+
+        .pf-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #7c3aed; /* Violet C4 */
+            background: #f5f3ff;
+            border: 1px solid #ddd6fe;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-page-title {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #1e1b4b;
+            margin: 0 0 1rem;
+        }
+
+        .pf-page-title em { font-style: normal; color: #8b5cf6; }
+
+        /* Layout */
+        .pf-container { max-width: 1200px; margin: 0 auto; padding: 3rem; }
+
+        /* Section Sous-compétences */
+        .pf-grid-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .pf-skill-card {
+            padding: 1.25rem;
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            display: flex;
+            gap: 12px;
+            transition: all 0.2s;
+        }
+
+        .pf-skill-card:hover { border-color: #8b5cf6; transform: translateY(-2px); }
+        .pf-skill-icon { color: #8b5cf6; flex-shrink: 0; margin-top: 2px; }
+        .pf-skill-text { font-size: 13px; color: #4b5563; line-height: 1.5; font-weight: 500; }
+
+        /* Section Projets Associés */
+        .pf-section-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 12px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .pf-section-label::before, .pf-section-label::after { content: ""; height: 1px; background: #e5e7eb; flex: 1; }
+
+        .pf-project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pf-project-card {
+            background: #fff;
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 1.75rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .pf-project-card:hover {
+            border-color: #8b5cf6;
+            box-shadow: 0 10px 20px -5px rgba(139, 92, 246, 0.1);
+        }
+
+        .pf-project-name { font-size: 16px; font-weight: 700; color: #1e1b4b; margin-bottom: 8px; }
+        .pf-project-desc { font-size: 13px; color: #6b7280; line-height: 1.6; margin-bottom: 1.5rem; flex-grow: 1; }
+
+        .pf-project-link {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #7c3aed;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* Back Bar */
+        .pf-back-bar { padding: 2rem 3rem; border-top: 1px solid #e5e7eb; margin-top: 2rem; }
+        .pf-btn-back { font-size: 13px; font-family: 'Space Mono', monospace; color: #6b7280; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; }
+        .pf-btn-back:hover { color: #8b5cf6; }
+
+        @media (max-width: 768px) {
+            .pf-container { padding: 1.5rem; }
+            .pf-project-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+{% endblock %}
 
 {% block body %}
-<div class="container py-5">
-    <h1 class="text-center text-primary display-4 fw-bold mb-4">
-        <i class="bi bi-kanban-fill"></i>
-        Travailler en mode projet
-    </h1>
 
-    <p class="text-center text-secondary fs-4 mb-5">
-        Compétence démontrée lors de la gestion, du suivi et de l’organisation de plusieurs projets, 
-        notamment grâce à l’utilisation d’outils comme Trello et Notion.
-    </p>
-
-    <div class="card shadow border-0 p-4">
-        <h3 class="fw-bold mb-3 text-primary">Projets associés</h3>
-
-        <div class="row g-4">
-            <!-- Projet 1 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow h-100 border-0 p-3">
-                    <h5 class="fw-bold text-primary">Projet Arcachon</h5>
-                    <p class="text-muted">Développement complet d’un site web en MVC.</p>
-                    <a href="{{ path('app_arcachon') }}" class="btn btn-primary w-100">
-                        Voir le projet
-                    </a>
-                </div>
-            </div>
-
-            <!-- Projet 2 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow h-100 border-0 p-3">
-                    <h5 class="fw-bold text-primary">Projet Infra-Réseau</h5>
-                    <p class="text-muted">Conception complète d’une infrastructure réseau sécurisée.</p>
-                    <a href="{{ path('app_infra_reseau') }}" class="btn btn-primary w-100">
-                        Voir le projet
-                    </a>
-                </div>
-            </div>
-
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow h-100 border-0 p-3">
-                    <h5 class="fw-bold text-primary">Projet Neptune</h5>
-                    <p class="text-muted">Conception et exploitation d'une base de données.</p>
-                    <a href="{{ path('app_neptune') }}" class="btn btn-primary w-100">
-                        Voir le projet
-                    </a>
-                </div>
-            </div>
-
-            <!-- Projet 3 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow h-100 border-0 p-3">
-                    <h5 class="fw-bold text-primary">Workshop MI6 – Time2Spy</h5>
-                    <p class="text-muted">Projet collaboratif mêlant électronique, Python et cryptographie.</p>
-                    <a href="{{ path('app_workshop_SN2') }}" class="btn btn-primary w-100">
-                        Voir le projet
-                    </a>
-                </div>
-            </div>
-
-            <!-- Projet 4 -->
-            <div class="col-md-6 col-lg-4">
-                <div class="card shadow h-100 border-0 p-3">
-                    <h5 class="fw-bold text-primary">Projet Solution Web</h5>
-                    <p class="text-muted">Développement d'un gestionnaire de livrables en PHP.</p>
-                    <a href="{{ path('app_solution_web') }}" class="btn btn-primary w-100">
-                        Voir le projet
-                    </a>
-                </div>
-            </div>
-        </div>
+<div class="pf-page-header">
+    <div class="pf-page-badge">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+        </svg>
+        Compétence 4
     </div>
-	<a href="{{ path('app_competences') }}" class="btn btn-secondary mt-5">
-		<i class="bi bi-arrow-left"></i> Retour aux compétences
-	</a>
+    <h1 class="pf-page-title">Travailler en <em>mode projet</em></h1>
+    <p class="pf-page-sub">Planifier, suivre et organiser des réalisations professionnelles avec agilité.</p>
 </div>
+
+<div class="pf-container">
+    
+    <div class="pf-grid-skills">
+        {% set skills = [
+            "Analyser les objectifs et les modalités d'organisation d'un projet",
+            "Planifier les étapes d'un projet et les ressources associées",
+            "Mettre en œuvre des outils collaboratifs (Notion, Trello, Git)",
+            "Évaluer les indicateurs de suivi et rendre compte de l'avancement"
+        ] %}
+
+        {% for skill in skills %}
+        <div class="pf-skill-card">
+            <div class="pf-skill-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                    <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+            </div>
+            <div class="pf-skill-text">{{ skill }}</div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <div class="pf-section-label">Réalisations mobilisant cette compétence</div>
+
+    <div class="pf-project-grid">
+        <a href="{{ path('app_workshop_SN2') }}" class="pf-project-card">
+            <div class="pf-project-name">Workshop MI6 — Time2Spy</div>
+            <p class="pf-project-desc">Gestion de projet collaboratif en équipe. Répartition des tâches techniques (Python/IoT) et suivi via méthodologie agile.</p>
+            <div class="pf-project-link">Voir le projet →</div>
+        </a>
+
+        <a href="{{ path('app_arcachon') }}" class="pf-project-card">
+            <div class="pf-project-name">Projet Arcachon</div>
+            <p class="pf-project-desc">Développement web complet respectant un cahier des charges client strict et une planification par jalons.</p>
+            <div class="pf-project-link">Voir le projet →</div>
+        </a>
+
+        <a href="{{ path('app_infra_reseau') }}" class="pf-project-card">
+            <div class="pf-project-name">Projet Infra-Réseau</div>
+            <p class="pf-project-desc">Conception d'une architecture sécurisée avec documentation technique et planification des déploiements.</p>
+            <div class="pf-project-link">Voir le projet →</div>
+        </a>
+
+        <a href="{{ path('app_neptune') }}" class="pf-project-card">
+            <div class="pf-project-name">Projet Neptune</div>
+            <p class="pf-project-desc">Modélisation et exploitation de données structurées dans le cadre d'un développement applicatif.</p>
+            <div class="pf-project-link">Voir le projet →</div>
+        </a>
+
+        <a href="{{ path('app_solution_web') }}" class="pf-project-card">
+            <div class="pf-project-name">Projet Solution Web</div>
+            <p class="pf-project-desc">Développement d'un outil de gestion de livrables chiffré, impliquant une gestion rigoureuse du code source.</p>
+            <div class="pf-project-link">Voir le projet →</div>
+        </a>
+    </div>
+
+</div>
+
+<div class="pf-back-bar">
+    <a href="{{ path('app_competences') }}" class="pf-btn-back">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>
+        </svg>
+        Retour aux compétences
+    </a>
+</div>
+
 {% endblock %}

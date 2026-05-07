@@ -1,52 +1,213 @@
 {% extends 'base.html.twig' %}
-{% block title %}
-	{{ parent() }}Certfications
-{% endblock %}
-{% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-kanban-fill"></i>
-			Mes Certfications
-		</h1>
-		<p class="text-center text-secondary fs-4 mb-5">
-            Voici les différentes certifications que j'ai pu passer pendant ma formation
-		</p>
-		<div class="row g-4">
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-code-slash"></i>
-							Atelier CNIL
-						</h4>
-						<p class="text-muted">
-							Explication atelier CNIL
-						</p>
-						<a href="{{ path('app_atelier_CNIL') }}" class="btn btn-outline-primary w-100 mt-3">
-							<i class="bi bi-eye"></i>
-							Voir les détails de l'atelier CNIL
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6 col-lg-4">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-phone-fill"></i>
-							Certification 2
-						</h4>
-						<p class="text-muted">
-							Explication certification 2
-						</p>
-						<a href="#" class="btn btn-outline-primary w-100 mt-3">
-							<i class="bi bi-eye"></i>
-							Voir le justificatif de certification 2
-						</a>
 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+{% block title %}
+    {{ parent() }}Certifications
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+
+        .pf-page-header {
+            padding: 3.5rem 3rem 2.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-page-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: #111827;
+            margin: 0 0 0.75rem;
+        }
+
+        .pf-page-title em {
+            font-style: normal;
+            color: #1D9E75;
+        }
+
+        .pf-page-sub {
+            font-size: 15px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Grille */
+        .pf-certs-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-cert-card {
+            background: #fff;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            transition: background 0.2s;
+        }
+
+        .pf-cert-card:hover {
+            background: #f9fafb;
+        }
+
+        .pf-cert-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-cert-icon.amber  { background: #FAEEDA; }
+        .pf-cert-icon.purple { background: #EEEDFE; }
+        .pf-cert-icon.blue   { background: #E6F1FB; }
+        .pf-cert-icon.green  { background: #E1F5EE; }
+
+        .pf-cert-name {
+            font-size: 15px;
+            font-weight: 600;
+            color: #111827;
+            margin: 0 0 6px;
+        }
+
+        .pf-cert-desc {
+            font-size: 13px;
+            color: #6b7280;
+            line-height: 1.6;
+            margin: 0 0 1.5rem;
+            flex: 1;
+        }
+
+        .pf-cert-link {
+            font-size: 12px;
+            font-weight: 600;
+            color: #1D9E75;
+            font-family: 'Space Mono', monospace;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .pf-cert-link .arrow {
+            transition: transform 0.2s;
+            display: inline-block;
+        }
+
+        .pf-cert-card:hover .pf-cert-link .arrow {
+            transform: translateX(4px);
+        }
+
+        /* Carte "à venir" */
+        .pf-cert-card.soon {
+            background: #f9fafb;
+            cursor: default;
+        }
+
+        .pf-cert-card.soon:hover {
+            background: #f9fafb;
+        }
+
+        .pf-cert-soon-badge {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: #9ca3af;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            padding: 3px 8px;
+            width: fit-content;
+            margin-top: auto;
+        }
+
+        @media (max-width: 768px) {
+            .pf-page-header { padding: 2rem 1.5rem; }
+            .pf-certs-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .pf-certs-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+
+{# ── En-tête ── #}
+<div class="pf-page-header">
+    <div class="pf-page-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2.5">
+            <circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/>
+        </svg>
+        Formations &amp; attestations
+    </div>
+    <h1 class="pf-page-title">Mes <em>Certifications</em></h1>
+    <p class="pf-page-sub">Les certifications obtenues durant ma formation BTS SIO.</p>
+</div>
+
+{# ── Grille ── #}
+<div class="pf-certs-grid">
+
+    <a href="{{ path('app_atelier_CNIL') }}" class="pf-cert-card">
+        <div class="pf-cert-icon amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+        </div>
+        <div class="pf-cert-name">Atelier CNIL</div>
+        <p class="pf-cert-desc">Sensibilisation à la protection des données personnelles et au RGPD.</p>
+        <span class="pf-cert-link">Voir les détails <span class="arrow">→</span></span>
+    </a>
+
+    <a href="{{ path('app_pcep') }}" class="pf-cert-card">
+        <div class="pf-cert-icon amber">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+        </div>
+        <div class="pf-cert-name">Atelier CNIL</div>
+        <p class="pf-cert-desc">Sensibilisation à la protection des données personnelles et au RGPD.</p>
+        <span class="pf-cert-link">Voir les détails <span class="arrow">→</span></span>
+    </a>
+
+    <a href="#" class="pf-cert-card">
+        <div class="pf-cert-icon purple">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
+                <rect x="2" y="3" width="20" height="14" rx="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+        </div>
+        <div class="pf-cert-name">Certification 2</div>
+        <p class="pf-cert-desc">Explication certification 2.</p>
+        <span class="pf-cert-link">Voir le justificatif <span class="arrow">→</span></span>
+    </a>
+
+</div>
+
 {% endblock %}

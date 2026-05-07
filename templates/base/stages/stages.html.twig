@@ -1,58 +1,257 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ parent() }}Stages
+    {{ parent() }}Stages
 {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Sora', sans-serif; }
+
+        .pf-page-header {
+            padding: 3.5rem 3rem 2.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-page-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 100px;
+            padding: 4px 14px;
+            margin-bottom: 1.25rem;
+        }
+
+        .pf-page-title {
+            font-size: clamp(32px, 4vw, 48px);
+            font-weight: 700;
+            letter-spacing: -2px;
+            line-height: 1.05;
+            color: #111827;
+            margin: 0 0 0.75rem;
+        }
+
+        .pf-page-title em {
+            font-style: normal;
+            color: #1D9E75;
+        }
+
+        .pf-page-sub {
+            font-size: 15px;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        /* Grille des stages */
+        .pf-stages-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .pf-stage {
+            padding: 3rem;
+            border-right: 1px solid #e5e7eb;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pf-stage:last-child {
+            border-right: none;
+        }
+
+        /* Numéro + entreprise */
+        .pf-stage-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .pf-stage-num {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            font-weight: 700;
+            color: #0F6E56;
+            background: #E1F5EE;
+            border: 1px solid #9FE1CB;
+            border-radius: 6px;
+            padding: 4px 10px;
+            white-space: nowrap;
+            margin-top: 3px;
+        }
+
+        .pf-stage-company {
+            font-size: 18px;
+            font-weight: 700;
+            color: #111827;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+
+        .pf-stage-company span {
+            display: block;
+            font-size: 13px;
+            font-weight: 400;
+            color: #9ca3af;
+            font-family: 'Space Mono', monospace;
+            margin-top: 2px;
+        }
+
+        /* Missions */
+        .pf-missions-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 11px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            margin-bottom: 1rem;
+        }
+
+        .pf-missions {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 2rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pf-missions li {
+            display: flex;
+            gap: 10px;
+            font-size: 13px;
+            color: #374151;
+            line-height: 1.6;
+        }
+
+        .pf-missions li::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: #1D9E75;
+            margin-top: 8px;
+            flex-shrink: 0;
+        }
+
+        /* Bouton */
+        .pf-btn-primary {
+            background: #1D9E75;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-family: 'Sora', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: background 0.2s, transform 0.15s;
+        }
+
+        .pf-btn-primary:hover {
+            background: #0F6E56;
+            color: #fff;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 768px) {
+            .pf-page-header { padding: 2rem 1.5rem; }
+            .pf-stages-grid { grid-template-columns: 1fr; }
+            .pf-stage {
+                border-right: none;
+                border-bottom: 1px solid #e5e7eb;
+                padding: 2rem 1.5rem;
+            }
+            .pf-stage:last-child { border-bottom: none; }
+        }
+    </style>
+{% endblock %}
+
 {% block body %}
-	<div class="container py-5">
-		<h1 class="text-center text-primary display-3 fw-bold mb-4">
-			<i class="bi bi-briefcase-fill"></i>
-			Mes Stages
-		</h1>
-		<p class="text-center text-secondary fs-4 mb-5">
-			Voici les expériences professionnelles que j’ai réalisées durant ma formation.
-		</p>
-		<div class="row g-4">
-			<div class="col-md-6">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-building-fill"></i>
-							Stage n°1 – Réseau Infrapole SNCF
-						</h4>
-						<h5 class="fw-bold mt-3 mb-2">Missions :</h5>
-						<ul class="text-muted">
-							<li>Intégration de tableaux de bord Power BI dans des présentations PowerPoint pour automatiser la mise à jour mensuelle des données.</li>
-							<li>Création d’un Power BI spécifique regroupant les informations d’affiliation des employés.</li>
-							<li>Conception d’un Power Automate pour automatiser certaines tâches internes.</li>
-							<li>Participation à la découverte du fonctionnement des UTM et des outils métier utilisés par l’Infrapole.</li>
-						</ul>
-						<a href="{{ path('app_stage1') }}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du stage 1
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="card shadow border-0 h-100">
-					<div class="card-body">
-						<h4 class="text-primary fw-bold mb-2">
-							<i class="bi bi-building-fill"></i>
-							Stage n°2 – ...
-						</h4>
-						<p class="text-muted">
-							...
-						</p>
-						<h5 class="fw-bold mt-3 mb-2">Missions :</h5>
-						<ul class="text-muted">
-							<li>...</li>
-						</ul>
-						<a href="{{ path('app_stage2') }}" class="btn btn-primary w-100 mt-3">
-							Voir les détails du stage 2
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+{# ── En-tête ── #}
+<div class="pf-page-header">
+    <div class="pf-page-badge">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0F6E56" stroke-width="2.5">
+            <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+        </svg>
+        Expériences professionnelles
+    </div>
+    <h1 class="pf-page-title">Mes <em>Stages</em></h1>
+    <p class="pf-page-sub">Les expériences professionnelles réalisées durant ma formation BTS SIO.</p>
+</div>
+
+{# ── Stages ── #}
+<div class="pf-stages-grid">
+
+    {# Stage 1 #}
+    <div class="pf-stage">
+        <div class="pf-stage-header">
+            <span class="pf-stage-num">STAGE 1</span>
+            <h2 class="pf-stage-company">
+                Réseau Infrapole SNCF
+                <span>Infrastructure · Data · Automatisation</span>
+            </h2>
+        </div>
+
+        <div class="pf-missions-label">Missions</div>
+        <ul class="pf-missions">
+            <li>Intégration de tableaux de bord Power BI dans des présentations PowerPoint pour automatiser la mise à jour mensuelle des données.</li>
+            <li>Création d'un Power BI spécifique regroupant les informations d'affiliation des employés.</li>
+            <li>Conception d'un Power Automate pour automatiser certaines tâches internes.</li>
+            <li>Participation à la découverte des UTM et des outils métier utilisés par l'Infrapole.</li>
+        </ul>
+
+        <a href="{{ path('app_stage1') }}" class="pf-btn-primary">
+            Voir les détails
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+        </a>
+    </div>
+
+    {# Stage 2 #}
+    <div class="pf-stage">
+        <div class="pf-stage-header">
+            <span class="pf-stage-num">STAGE 2</span>
+            <h2 class="pf-stage-company">
+                OpteSite
+                <span>WordPress · Python · Web scraping</span>
+            </h2>
+        </div>
+
+        <div class="pf-missions-label">Missions</div>
+        <ul class="pf-missions">
+            <li>Création et personnalisation de sites WordPress avec Elementor pour des clients variés (15 à 20 sites livrés).</li>
+            <li>Migration de boutiques en ligne vers WooCommerce via des scripts Python de web scraping.</li>
+            <li>Extraction automatisée d'articles de blog (API REST WordPress, BeautifulSoup, Selenium).</li>
+            <li>Constitution d'une base de données d'établissements pour la prospection via DNSlytics et GraphQL.</li>
+        </ul>
+
+        <a href="{{ path('app_stage2') }}" class="pf-btn-primary">
+            Voir les détails
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+            </svg>
+        </a>
+    </div>
+
+</div>
+
 {% endblock %}
