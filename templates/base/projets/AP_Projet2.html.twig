@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	{{ parent() }}Projet — Workshop SN2 (Time2Spy)
+	{{ parent() }}Projet — AP2 Share
 {% endblock %}
 
 {% block stylesheets %}
@@ -17,7 +17,6 @@
 		.pf-page-header {
 			padding: 3.5rem 3rem 2.5rem;
 			border-bottom: 1px solid #e5e7eb;
-			background: linear-gradient(to right, #fdfbff, #f3f0ff);
 		}
 
 		.pf-page-badge {
@@ -26,9 +25,9 @@
 			gap: 7px;
 			font-family: 'Space Mono', monospace;
 			font-size: 11px;
-			color: #7c3aed; /* Violet */
-			background: #f5f3ff;
-			border: 1px solid #ddd6fe;
+			color: #0d7377;
+			background: #e6f7f7;
+			border: 1px solid #b2e0e0;
 			border-radius: 100px;
 			padding: 4px 14px;
 			margin-bottom: 1.25rem;
@@ -39,18 +38,18 @@
 			font-weight: 700;
 			letter-spacing: -1.5px;
 			line-height: 1.1;
-			color: #1e1b4b;
+			color: #111827;
 			margin: 0 0 0.75rem;
 		}
 
 		.pf-page-title em {
 			font-style: normal;
-			color: #8b5cf6;
+			color: #0d7377;
 		}
 
 		.pf-page-sub {
 			font-size: 15px;
-			color: #4b5563;
+			color: #6b7280;
 			margin: 0;
 		}
 
@@ -63,13 +62,12 @@
 		.pf-sidebar {
 			padding: 3rem 2rem;
 			border-right: 1px solid #e5e7eb;
-			background: #fafafa;
+			background: #f9fafb;
 			display: flex;
 			flex-direction: column;
-			gap: 8rem;
+			gap: 8.5rem;
 		}
 
-		/* --- MISE EN AVANT DES COMPÉTENCES SIDEBAR --- */
 		.pf-comp-block {
 			background: #ffffff;
 			border: 1px solid #e5e7eb;
@@ -81,7 +79,7 @@
 
 		.pf-comp-name {
 			font-size: 13px;
-			color: #1e1b4b;
+			color: #111827;
 			margin: 0 0 10px;
 			font-weight: 700;
 			letter-spacing: -0.3px;
@@ -91,7 +89,7 @@
 			display: flex;
 			align-items: center;
 			justify-content: center;
-			background: #8b5cf6; /* Violet Time2Spy */
+			background: #0d7377;
 			color: #ffffff !important;
 			text-decoration: none;
 			padding: 8px 12px;
@@ -104,10 +102,11 @@
 		}
 
 		.pf-btn-comp-highlight:hover {
-			background: #7c3aed; /* Violet plus foncé */
+			background: #095a5d;
 			transform: translateY(-1px);
-			box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+			box-shadow: 0 4px 12px rgba(13, 115, 119, 0.3);
 		}
+
 		.pf-sidebar-label {
 			font-family: 'Space Mono', monospace;
 			font-size: 10px;
@@ -126,37 +125,21 @@
 			border-bottom: 1px solid #f3f4f6;
 		}
 
+		.pf-info-row:last-child {
+			border-bottom: none;
+		}
+
 		.pf-info-label {
 			color: #9ca3af;
 			font-family: 'Space Mono', monospace;
 			font-size: 10px;
 		}
+
 		.pf-info-value {
-			color: #1e1b4b;
+			color: #374151;
 			font-weight: 600;
-			text-align: right;
-		}
-
-		/* Style harmonisé pour le bouton de compétence */
-		.pf-btn-comp {
-			display: block;
-			width: 100%;
-			padding: 10px;
-			background: #fff;
-			border: 1px solid #e5e7eb;
-			border-radius: 8px;
-			color: #111827;
 			font-size: 12px;
-			font-weight: 600;
-			text-align: center;
-			text-decoration: none;
-			transition: all 0.2s;
-		}
-
-		.pf-btn-comp:hover {
-			border-color: #8b5cf6;
-			color: #8b5cf6;
-			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			text-align: right;
 		}
 
 		.pf-skill-pill {
@@ -164,9 +147,9 @@
 			font-size: 11px;
 			font-family: 'Space Mono', monospace;
 			padding: 2px 10px;
-			background: #ede9fe;
+			background: #f3f4f6;
 			border-radius: 4px;
-			color: #5b21b6;
+			color: #4b5563;
 			margin-right: 5px;
 			margin-bottom: 5px;
 		}
@@ -176,9 +159,11 @@
 			flex-direction: column;
 			gap: 8px;
 		}
+
 		.pf-btn-dl {
-			background: #1e1b4b;
+			background: #111827;
 			color: #fff;
+			border: none;
 			border-radius: 8px;
 			padding: 10px 16px;
 			font-size: 12px;
@@ -187,11 +172,31 @@
 			display: flex;
 			align-items: center;
 			gap: 8px;
-			transition: 0.2s;
+			transition: all 0.2s;
 		}
+
 		.pf-btn-dl:hover {
-			background: #7c3aed;
+			background: #0d7377;
 			color: #fff;
+		}
+
+		.pf-btn-comp {
+			background: #fff;
+			border: 1px solid #e5e7eb;
+			color: #374151;
+			padding: 12px;
+			border-radius: 8px;
+			text-decoration: none;
+			font-size: 12px;
+			font-weight: 600;
+			display: block;
+			margin-top: 10px;
+			transition: border-color 0.2s, color 0.2s;
+		}
+
+		.pf-btn-comp:hover {
+			border-color: #0d7377;
+			color: #0d7377;
 		}
 
 		.pf-main {
@@ -209,8 +214,8 @@
 		.pf-section-title {
 			font-size: 17px;
 			font-weight: 700;
-			color: #1e1b4b;
-			margin: 0 0 1.25rem;
+			color: #111827;
+			margin: 0 0 1rem;
 			display: flex;
 			align-items: center;
 			gap: 10px;
@@ -220,35 +225,22 @@
 			content: '';
 			width: 3px;
 			height: 17px;
-			background: #8b5cf6;
+			background: #0d7377;
 			border-radius: 2px;
 		}
 
 		.pf-prose {
 			font-size: 14px;
 			color: #374151;
-			line-height: 1.8;
+			line-height: 1.85;
+			margin: 0;
 		}
-		.pf-grid-2 {
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			gap: 1.5rem;
+		.pf-prose ul {
+			padding-left: 1.25rem;
 			margin-top: 1rem;
 		}
-
-		.pf-card-spy {
-			background: #ffffff;
-			border: 1px solid #e5e7eb;
-			border-left: 4px solid #8b5cf6;
-			padding: 1.25rem;
-			border-radius: 8px;
-		}
-
-		.pf-card-spy h4 {
-			font-size: 14px;
-			font-weight: 700;
-			color: #1e1b4b;
-			margin-bottom: 8px;
+		.pf-prose li {
+			margin-bottom: 0.5rem;
 		}
 
 		.pf-back-bar {
@@ -265,7 +257,7 @@
 			gap: 6px;
 		}
 		.pf-btn-back:hover {
-			color: #8b5cf6;
+			color: #0d7377;
 		}
 
 		.pf-preuve-card {
@@ -280,15 +272,15 @@
 
 		.pf-preuve-card:hover {
 			transform: translateY(-5px);
-			border-color: #185FA5;
-			box-shadow: 0 10px 20px rgba(24, 95, 165, 0.1);
+			border-color: #0d7377;
+			box-shadow: 0 10px 20px rgba(13, 115, 119, 0.1);
 		}
 
 		.pf-preuve-badge {
 			font-family: 'Space Mono', monospace;
 			font-size: 10px;
-			color: #185FA5;
-			background: #E6F1FB;
+			color: #0d7377;
+			background: #e6f7f7;
 			padding: 4px 10px;
 			border-radius: 6px;
 			font-weight: 700;
@@ -302,9 +294,6 @@
 				border-right: none;
 				border-bottom: 1px solid #e5e7eb;
 			}
-			.pf-grid-2 {
-				grid-template-columns: 1fr;
-			}
 		}
 	</style>
 {% endblock %}
@@ -313,50 +302,58 @@
 
 	<div class="pf-page-header">
 		<div class="pf-page-badge">
-			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
-				<rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+			<svg width="10" height="10" viewbox="0 0 24 24" fill="none" stroke="#0d7377" stroke-width="2.5">
+				<path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/>
 			</svg>
-			IoT & Cybersécurité
+			Projet AP2
 		</div>
-		<h1 class="pf-page-title">Projet
-			<em>Time2Spy</em>
+		<h1 class="pf-page-title">Application de
+			<em>Partage</em>
 		</h1>
-		<p class="pf-page-sub">Conception d'un dispositif d'espionnage connecté et chiffré</p>
+		<p class="pf-page-sub">Développement d'une plateforme web de gestion et partage de fichiers</p>
 	</div>
 
 	<div class="pf-stage-layout">
 
 		<aside class="pf-sidebar">
 			<div>
-				<div class="pf-sidebar-label">Stack Projet</div>
+				<div class="pf-sidebar-label">Détails techniques</div>
 				<div class="pf-info-row">
-					<span class="pf-info-label">Hardware</span>
-					<span class="pf-info-value">Raspberry Pi 4</span>
+					<span class="pf-info-label">Stack</span>
+					<span class="pf-info-value">Symfony / PHP</span>
 				</div>
 				<div class="pf-info-row">
-					<span class="pf-info-label">Langage</span>
-					<span class="pf-info-value">Python 3</span>
+					<span class="pf-info-label">Année</span>
+					<span class="pf-info-value">BTS SIO AN. 2</span>
 				</div>
 				<div class="pf-info-row">
-					<span class="pf-info-label">Sécurité</span>
-					<span class="pf-info-value">AES-256</span>
+					<span class="pf-info-label">Type</span>
+					<span class="pf-info-value">Développement web</span>
+				</div>
+			</div>
+
+			<div>
+				<div class="pf-sidebar-label">Compétences liées</div>
+				<div style="display: flex; flex-direction: column; gap: 5px;">
+					<div class="pf-comp-block">
+						<p class="pf-comp-name">Patrimoine Informatique</p>
+						<a href="{{ path('app_patrimoine_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
+					<div class="pf-comp-block">
+						<p class="pf-comp-name">Mettre à disposition un service</p>
+						<a href="{{ path('app_service_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
+					</div>
 				</div>
 			</div>
 
 			<div>
 				<div class="pf-sidebar-label">Ressources</div>
 				<div class="pf-downloads">
-					<a href="{{ asset('documents/projets/workshop_SN2/Documentation_WORKSHOP_2025.pdf') }}" download class="pf-btn-dl">
+					<a href="{{ asset('documents/projets/ap2/Documentation_AP2.pdf') }}" download class="pf-btn-dl">
 						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
 							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
 						</svg>
-						Dossier Technique
-					</a>
-					<a href="{{ asset('documents/projets/workshop_SN2/Diaporama_Workshop_2025.pdf') }}" download class="pf-btn-dl" style="background:#4b5563">
-						<svg width="12" height="12" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-							<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/>
-						</svg>
-						Soutenance Finale
+						Documentation
 					</a>
 				</div>
 			</div>
@@ -364,53 +361,51 @@
 
 		<main class="pf-main">
 			<section class="pf-section">
-				<h2 class="pf-section-title">Concept du projet</h2>
+				<h2 class="pf-section-title">Présentation du projet</h2>
 				<div class="pf-prose">
 					<p>
-						<strong>Time2Spy</strong>
-						est un prototype de montre intelligente dédiée aux agents de terrain. Le dispositif permet une communication bidirectionnelle sécurisée avec un centre de commandement (QG).
+						Dans le cadre du projet AP2, j'ai participé au développement d'une application web de gestion et de partage de fichiers, réalisée en groupe avec Symfony.
 					</p>
 					<p>
-						Le défi consistait à intégrer des composants électroniques (micro, LEDs, boutons) à un système de communication réseau robuste capable de résister à l'interception grâce au chiffrement.
+						L'application permet à des utilisateurs de déposer, consulter et télécharger des fichiers, avec une gestion des droits différenciée entre utilisateurs standard et administrateurs.
 					</p>
 				</div>
 			</section>
 
 			<section class="pf-section">
-				<h2 class="pf-section-title">Fonctionnalités Clés</h2>
-				<div class="pf-grid-2">
-					<div class="pf-card-spy">
-						<h4>Communication chiffrée</h4>
-						<p class="mb-0 text-muted" style="font-size: 13px;">Transmission de messages vocaux codés via socket TCP, protégée par un algorithme AES avec validation par mot de passe.</p>
-					</div>
-					<div class="pf-card-spy">
-						<h4>Interface QG</h4>
-						<p class="mb-0 text-muted" style="font-size: 13px;">Tableau de bord développé sous Tkinter permettant de localiser l'agent et de lui envoyer des ordres visuels (LEDs).</p>
-					</div>
-				</div>
-			</section>
-
-			<section class="pf-section">
-				<h2 class="pf-section-title">Compétences Techniques</h2>
+				<h2 class="pf-section-title">Fonctionnalités développées</h2>
 				<div class="pf-prose">
-					<div style="margin-bottom: 1.5rem;">
-						<span class="pf-skill-pill">Socket Python</span>
-						<span class="pf-skill-pill">Cryptography</span>
-						<span class="pf-skill-pill">GPIO Programming</span>
-						<span class="pf-skill-pill">Tkinter GUI</span>
-						<span class="pf-skill-pill">Linux/SSH</span>
-					</div>
-					<ul class="text-muted">
+					<ul>
 						<li>
-							<strong>Systèmes embarqués :</strong>
-							Configuration complète d'un environnement Raspberry Pi et gestion des entrées/sorties physiques.</li>
+							<strong>Gestion des fichiers :</strong>
+							Ajout, téléchargement et suppression de fichiers avec validation des formats (PDF, JPEG, PNG) et de la taille.</li>
 						<li>
-							<strong>Réseau :</strong>
-							Mise en place d'une architecture Serveur (QG) / Client (Montre).</li>
+							<strong>Espace personnel :</strong>
+							Page "Mes fichiers" affichant uniquement les fichiers de l'utilisateur connecté, avec calcul du stockage utilisé.</li>
+						<li>
+							<strong>Administration :</strong>
+							Liste générale réservée aux admins, classement des utilisateurs les plus actifs, détection des mots de passe expirés.</li>
 						<li>
 							<strong>Sécurité :</strong>
-							Implémentation d'une couche de chiffrement de bout en bout et gestion de leurres en cas d'intrusion.</li>
+							Barre de force du mot de passe, validation JS en temps réel, protection contre les injections SQL via Query Builder.</li>
 					</ul>
+				</div>
+			</section>
+
+			<section class="pf-section">
+				<h2 class="pf-section-title">Expertises mobilisées</h2>
+				<div class="pf-prose">
+					<div style="margin-bottom: 1.5rem;">
+						<span class="pf-skill-pill">Symfony</span>
+						<span class="pf-skill-pill">Doctrine ORM</span>
+						<span class="pf-skill-pill">Twig</span>
+						<span class="pf-skill-pill">JavaScript</span>
+						<span class="pf-skill-pill">Bootstrap</span>
+						<span class="pf-skill-pill">MySQL</span>
+					</div>
+					<p>
+						Ce projet m'a permis de mettre en pratique la conception d'une architecture MVC complète, la gestion des droits utilisateurs, et le développement de requêtes personnalisées avec le Query Builder de Doctrine.
+					</p>
 				</div>
 			</section>
 		</main>
@@ -430,24 +425,10 @@
 					</div>
 				</div>
 				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
-					<strong style="display: block; font-size: 13px; color: #111827;">Travailler en mode projet</strong>
-					<span style="font-size: 12px; color: #6b7280;">Répartition des tâches, analyse des écarts, gestion d'équipe à 5.</span>
-					<div class="pf-comp-block">
-						<a href="{{ path('app_travailler_mode_projet') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
-					</div>
-				</div>
-				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
 					<strong style="display: block; font-size: 13px; color: #111827;">Mettre à disposition un service informatique</strong>
 					<span style="font-size: 12px; color: #6b7280;">Déployer, tester et accompagner la mise en service DHCP/réseau.</span>
 					<div class="pf-comp-block">
 						<a href="{{ path('app_service_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
-					</div>
-				</div>
-				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
-					<strong style="display: block; font-size: 13px; color: #111827;">Organiser son développement professionnel</strong>
-					<span style="font-size: 12px; color: #6b7280;">Veille technologique, auto-formation et mise en valeur des compétences acquises tout au long du BTS SIO.</span>
-					<div class="pf-comp-block">
-						<a href="{{ path('app_dev_pro') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
 					</div>
 				</div>
 			</div>
@@ -464,7 +445,7 @@
 		<div id="pf-lb-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
 	</div>
 
-	{# ── Lightbox C4 ── #}
+	{# ── Lightbox C5 ── #}
 	<div id="pf-lightbox2" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
 		<button onclick="closeLightbox(2)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
 		<div id="pf-lb2-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
@@ -474,50 +455,26 @@
 		<div id="pf-lb2-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
 	</div>
 
-	{# ── Lightbox C6 ── #}
-	<div id="pf-lightbox4" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
-		<button onclick="closeLightbox(4)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
-		<div id="pf-lb4-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
-		<button onclick="prevImage(4)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
-		<img id="pf-lb4-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
-		<button onclick="nextImage(4)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
-		<div id="pf-lb4-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
-	</div>
-
 	{# ── Grille des preuves ── #}
 	<div
-		class="pf-preuves-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 2rem 3rem; border-top: 1px solid #e5e7eb;">
+		class="pf-preuves-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; padding: 2rem 3rem; border-top: 1px solid #e5e7eb;">
 
 		{# C1 - Gérer le patrimoine #}
 		<div class="pf-preuve-card" onclick="openLightbox(1)">
 			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-				<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
-					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+				<div style="background: #e6f7f7; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#0d7377" stroke-width="2">
 						<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
 					</svg>
 				</div>
 				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Gérer le patrimoine informatique</h3>
 			</div>
-			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma réseau, sauvegardes NVRAM et TFTP, configuration des équipements.</p>
-			<span class="pf-preuve-badge">C3 — La présence en ligne</span>
-		</div>
-
-		{# C4 - Travailler en mode projet #}
-		<div class="pf-preuve-card" onclick="openLightbox(2)">
-			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-				<div style="background: #EEEDFE; padding: 8px; border-radius: 8px;">
-					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
-						<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
-					</svg>
-				</div>
-				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Travailler en mode projet</h3>
-			</div>
-			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Répartition des tâches, analyse des écarts et erreur d'overlap documentée.</p>
-			<span class="pf-preuve-badge" style="color:#534AB7; background:#EEEDFE; border-color:#CECBF6;">C4 — Mode projet</span>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Gestion des droits d'accès, validation des formats, traçabilité des fichiers via métadonnées.</p>
+			<span class="pf-preuve-badge">C1 — Patrimoine informatique</span>
 		</div>
 
 		{# C5 - Mettre à disposition #}
-		<div class="pf-preuve-card" onclick="openLightbox(4)">
+		<div class="pf-preuve-card" onclick="openLightbox(2)">
 			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
 				<div style="background: #FAEEDA; padding: 8px; border-radius: 8px;">
 					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
@@ -526,10 +483,10 @@
 						<path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
 					</svg>
 				</div>
-				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Organiser son développement professionnel</h3>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Mettre à disposition un service</h3>
 			</div>
-			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement DHCP, tests de connectivité et log de restauration.</p>
-			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C6 — Développement professionnel</span>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement de l'application, tests d'intégration, interface utilisateur fonctionnelle.</p>
+			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C5 — Service informatique</span>
 		</div>
 
 	</div>
@@ -546,37 +503,33 @@
 	<script>
 		const lbMap = {
 1: 'pf-lightbox',
-2: 'pf-lightbox2',
-4: 'pf-lightbox4'
+2: 'pf-lightbox2'
 };
 const suffixMap = {
 1: '',
-2: '2',
-4: '4'
+2: '2'
 };
 
 const pfGalleries = {
 1: [
-"{{ asset('documents/preuves/workshopSN2/composants électroniques.png') }}",
-"{{ asset('documents/preuves/workshopSN2/formatage micro SD.png') }}",
-"{{ asset('documents/preuves/workshopSN2/securite et log.png') }}",
-
+"{{ asset('documents/preuves/projet AP2/fichiers user.png') }}",
+"{{ asset('documents/preuves/projet AP2/liste fichiers admin.png') }}",
+"{{ asset('documents/preuves/projet AP2/anciens mdp.png') }}",
+"{{ asset('documents/preuves/projet AP2/validation des formats.png') }}",
+"{{ asset('documents/preuves/projet AP2/traçabilite via metadonnees.png') }}",
 ],
-2: [
-"{{ asset('documents/preuves/workshopSN2/trello workshop2.png') }}",
-"{{ asset('documents/preuves/workshopSN2/planning.png') }}",
-"{{ asset('documents/preuves/workshopSN2/discord workshop.png') }}",
-],
-4: ["{{ asset('documents/preuves/workshopSN2/ameliorations.png') }}",
-"{{ asset('documents/preuves/workshopSN2/problemes.png') }}",
-"{{ asset('documents/preuves/workshopSN2/probleme2.png') }}",
+2: ["{{ asset('documents/preuves/projet AP2/traçabilite via metadonnees.png') }}",
+"{{ asset('documents/preuves/projet AP2/validation des formats.png') }}",
+"{{ asset('documents/preuves/projet AP2/ajout fichier.png') }}",
+"{{ asset('documents/preuves/projet AP2/telechargement fichier.png') }}",
+"{{ asset('documents/preuves/projet AP2/liste fichier.png') }}",
+"{{ asset('documents/preuves/projet AP2/top user.png') }}",
 ]
 }
 
 const pfState = {
 1: 0,
-2: 0,
-4: 0
+2: 0
 };
 
 function openLightbox(id) {
@@ -620,11 +573,10 @@ i === cur ? '#fff' : 'rgba(255,255,255,0.3)'
 }`;
 thumbs.appendChild(dot);
 });
-}[1, 2, 3, 4].forEach(id => {
+}[1, 2].forEach(id => {
 document.getElementById(lbMap[id]).addEventListener('click', function (e) {
 if (e.target === this) 
 closeLightbox(id);
-
 
 });
 });
@@ -632,23 +584,18 @@ closeLightbox(id);
 document.addEventListener('keydown', function (e) {
 const lb1 = document.getElementById('pf-lightbox').style.display !== 'none';
 const lb2 = document.getElementById('pf-lightbox2').style.display !== 'none';
-const lb4 = document.getElementById('pf-lightbox4').style.display !== 'none';
-const id = lb1 ? 1 : lb2 ? 2 : lb4 ? 4 : null;
+const id = lb1 ? 1 : lb2 ? 2 : null;
 if (! id) 
 return;
-
 
 if (e.key === 'ArrowRight') 
 nextImage(id);
 
-
 if (e.key === 'ArrowLeft') 
 prevImage(id);
 
-
 if (e.key === 'Escape') 
 closeLightbox(id);
-
 
 });
 	</script>

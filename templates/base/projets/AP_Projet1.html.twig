@@ -418,65 +418,116 @@
 		</main>
 	</div>
 
-	<section class="pf-section" style="background: #f8fafc;">
-		<h2 class="pf-section-title">Preuves de réalisation</h2>
+	{# ── Compétences mobilisées ── #}
+	<div class="pf-section" style="background: #ffffff; border-top: 1px solid #e5e7eb;">
+		<h2 class="pf-section-title">Compétences du référentiel mobilisées</h2>
 		<div class="pf-prose">
-			<p style="margin-bottom: 2rem;">Cliquez sur une carte pour visualiser la preuve (capture d'écran, schéma ou compte-rendu).</p>
-
-			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
-
-				<a href="{{ asset('images/preuves/ap1_script.png') }}" target="_blank" style="text-decoration: none; color: inherit;">
-					<div class="pf-preuve-card">
-						<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-							<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
-								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
-									<polyline points="16 18 22 12 16 6"></polyline>
-									<polyline points="8 6 2 12 8 18"></polyline>
-								</svg>
-							</div>
-							<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Scripts de Sauvegarde</h3>
-						</div>
-						<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Capture d'écran du script Bash automatisant les dumps MySQL.</p>
-						<span class="pf-preuve-badge">L01.1 - Code Source</span>
+			<p style="margin-bottom: 20px;">Conformément au tableau de synthèse des réalisations, ce projet a permis de valider les blocs de compétences suivants :</p>
+			<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px;">
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Gérer le patrimoine informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Schéma réseau, sauvegardes NVRAM/TFTP, recensement des équipements.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_patrimoine_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
 					</div>
-				</a>
-
-				<a href="{{ asset('images/preuves/ap1_schema.png') }}" target="_blank" style="text-decoration: none; color: inherit;">
-					<div class="pf-preuve-card">
-						<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-							<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
-								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
-									<rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-									<line x1="3" y1="9" x2="21" y2="9"></line>
-									<line x1="9" y1="21" x2="9" y2="9"></line>
-								</svg>
-							</div>
-							<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Infrastructure 3-2-1</h3>
-						</div>
-						<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma visuel de la stratégie de sauvegarde déportée.</p>
-						<span class="pf-preuve-badge">L04.1 - Architecture</span>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Travailler en mode projet</strong>
+					<span style="font-size: 12px; color: #6b7280;">Répartition des tâches, analyse des écarts, gestion d'équipe à 5.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_travailler_mode_projet') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
 					</div>
-				</a>
-
-				<a href="{{ asset('documents/atelier_CNIL/Attestation module 3.pdf') }}" target="_blank" style="text-decoration: none; color: inherit;">
-					<div class="pf-preuve-card">
-						<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
-							<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
-								<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
-									<path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-									<polyline points="22 4 12 14.01 9 11.01"></polyline>
-								</svg>
-							</div>
-							<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Restauration Réussie</h3>
-						</div>
-						<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Log de console prouvant l'intégrité de la restauration.</p>
-						<span class="pf-preuve-badge">L03.2 - Tests</span>
+				</div>
+				<div style="padding: 15px; border-left: 3px solid #1D9E75; background: #f9fafb; border-radius: 0 8px 8px 0;">
+					<strong style="display: block; font-size: 13px; color: #111827;">Mettre à disposition un service informatique</strong>
+					<span style="font-size: 12px; color: #6b7280;">Déployer, tester et accompagner la mise en service DHCP/réseau.</span>
+					<div class="pf-comp-block">
+						<a href="{{ path('app_service_info') }}" class="pf-btn-comp-highlight">Voir la compétence</a>
 					</div>
-				</a>
-
+				</div>
 			</div>
 		</div>
-	</section>
+	</div>
+
+	{# ── Lightbox C1 ── #}
+	<div id="pf-lightbox" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(1)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(1)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(1)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C4 ── #}
+	<div id="pf-lightbox2" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(2)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb2-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(2)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb2-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(2)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb2-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Lightbox C5 ── #}
+	<div id="pf-lightbox3" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.85); z-index:9999; align-items:center; justify-content:center;">
+		<button onclick="closeLightbox(3)" style="position:absolute; top:20px; right:24px; background:none; border:none; color:#fff; font-size:28px; cursor:pointer; line-height:1;">✕</button>
+		<div id="pf-lb3-counter" style="position:absolute; top:22px; left:50%; transform:translateX(-50%); font-family:'Space Mono',monospace; font-size:12px; color:#9ca3af;"></div>
+		<button onclick="prevImage(3)" style="position:absolute; left:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">‹</button>
+		<img id="pf-lb3-img" src="" alt="" style="max-height:85vh; max-width:85vw; border-radius:8px; object-fit:contain;">
+		<button onclick="nextImage(3)" style="position:absolute; right:20px; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; border-radius:8px; width:44px; height:44px; font-size:20px; cursor:pointer; display:flex; align-items:center; justify-content:center;">›</button>
+		<div id="pf-lb3-thumbs" style="position:absolute; bottom:20px; left:50%; transform:translateX(-50%); display:flex; gap:8px;"></div>
+	</div>
+
+	{# ── Grille des preuves ── #}
+	<div
+		class="pf-preuves-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 2rem 3rem; border-top: 1px solid #e5e7eb;">
+
+		{# C1 - Gérer le patrimoine #}
+		<div class="pf-preuve-card" onclick="openLightbox(1)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #E6F1FB; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#185FA5" stroke-width="2">
+						<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Gérer le patrimoine informatique</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Schéma réseau, sauvegardes NVRAM et TFTP, configuration des équipements.</p>
+			<span class="pf-preuve-badge">C3 — La présence en ligne</span>
+		</div>
+
+		{# C4 - Travailler en mode projet #}
+		<div class="pf-preuve-card" onclick="openLightbox(2)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #EEEDFE; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#534AB7" stroke-width="2">
+						<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Travailler en mode projet</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Répartition des tâches, analyse des écarts et erreur d'overlap documentée.</p>
+			<span class="pf-preuve-badge" style="color:#534AB7; background:#EEEDFE; border-color:#CECBF6;">C4 — Mode projet</span>
+		</div>
+
+		{# C5 - Mettre à disposition #}
+		<div class="pf-preuve-card" onclick="openLightbox(3)">
+			<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 15px;">
+				<div style="background: #FAEEDA; padding: 8px; border-radius: 8px;">
+					<svg width="20" height="20" viewbox="0 0 24 24" fill="none" stroke="#854F0B" stroke-width="2">
+						<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+						<circle cx="9" cy="7" r="4"/>
+						<path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+					</svg>
+				</div>
+				<h3 style="margin: 0; font-size: 15px; font-weight: 700;">Mettre à disposition un service</h3>
+			</div>
+			<p style="font-size: 13px; color: #6b7280; margin-bottom: 15px;">Déploiement DHCP, tests de connectivité et log de restauration.</p>
+			<span class="pf-preuve-badge" style="color:#854F0B; background:#FAEEDA; border-color:#FAC775;">C5 — Service info</span>
+		</div>
+
+	</div>
 
 	<div class="pf-back-bar">
 		<a href="{{ path('app_projets') }}" class="pf-btn-back">
@@ -487,5 +538,119 @@
 		</a>
 	</div>
 
+	
+	<script>
+		const lbMap = {
+1: 'pf-lightbox',
+2: 'pf-lightbox2',
+3: 'pf-lightbox3',
+};
+const suffixMap = {
+1: '',
+2: '2',
+3: '3',
+};
+
+const pfGalleries = {
+1: [
+"{{ asset('documents/preuves/projet AP1/environnement.png') }}",
+"{{ asset('documents/preuves/projet AP1/service actif.png') }}",
+"{{ asset('documents/preuves/projet AP1/fichier .env.png') }}",
+"{{ asset('documents/preuves/projet AP1/sauvegarde sur le serveur distant.png') }}",
+"{{ asset('documents/preuves/projet AP1/cron.png') }}",
+"{{ asset('documents/preuves/projet AP1/verif logs.png') }}",
+
+],
+2: [
+"{{ asset('documents/preuves/projet AP1/methode scrum.png') }}",
+],
+3: [
+"{{ asset('documents/preuves/projet AP1/restauration.png') }}",
+"{{ asset('documents/preuves/projet AP1/backup.png') }}",
+]
+}
+
+const pfState = {
+1: 0,
+2: 0,
+3: 0
+};
+
+function openLightbox(id) {
+pfState[id] = 0;
+document.getElementById(lbMap[id]).style.display = 'flex';
+document.body.style.overflow = 'hidden';
+renderLightbox(id);
+}
+
+function closeLightbox(id) {
+document.getElementById(lbMap[id]).style.display = 'none';
+document.body.style.overflow = '';
+}
+
+function nextImage(id) {
+pfState[id] = (pfState[id] + 1) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function prevImage(id) {
+pfState[id] = (pfState[id] - 1 + pfGalleries[id].length) % pfGalleries[id].length;
+renderLightbox(id);
+}
+
+function renderLightbox(id) {
+const imgs = pfGalleries[id];
+const cur = pfState[id];
+const suffix = suffixMap[id];
+document.getElementById('pf-lb' + suffix + '-img').src = imgs[cur];
+document.getElementById('pf-lb' + suffix + '-counter').textContent = (cur + 1) + ' / ' + imgs.length;
+const thumbs = document.getElementById('pf-lb' + suffix + '-thumbs');
+thumbs.innerHTML = '';
+imgs.forEach((src, i) => {
+const dot = document.createElement('div');
+dot.onclick = () => {
+pfState[id] = i;
+renderLightbox(id);
+};
+dot.style.cssText = `width:8px; height:8px; border-radius:50%; cursor:pointer; transition:background 0.2s; background:${
+i === cur ? '#fff' : 'rgba(255,255,255,0.3)'
+}`;
+thumbs.appendChild(dot);
+});
+}[1, 2, 3].forEach(id => {
+document.getElementById(lbMap[id]).addEventListener('click', function (e) {
+if (e.target === this) 
+closeLightbox(id);
+
+
+});
+});
+
+document.addEventListener('keydown', function (e) {
+const lb1 = document.getElementById('pf-lightbox').style.display !== 'none';
+const lb2 = document.getElementById('pf-lightbox2').style.display !== 'none';
+const lb3 = document.getElementById('pf-lightbox3').style.display !== 'none';
+const id = lb1 ? 1 : lb2 ? 2 : lb3 ? 3 : null;
+if (! id) 
+return;
+
+
+if (e.key === 'ArrowRight') 
+nextImage(id);
+
+
+if (e.key === 'ArrowLeft') 
+prevImage(id);
+
+
+if (e.key === 'Escape') 
+closeLightbox(id);
+
+
+});
+	</script>
 
 {% endblock %}
+
+
+

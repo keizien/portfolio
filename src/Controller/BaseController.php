@@ -152,6 +152,13 @@ final class BaseController extends AbstractController
         ]);
     }
 
+    #[Route('/apProjet2', name: 'app_apProjet2')]
+    public function apProjet2(): Response
+    {
+        return $this->render('base/projets/AP_Projet2.html.twig', [
+        ]);
+    }
+
     #[Route('/infra_reseau', name: 'app_infra_reseau')]
     public function infra_reseau(): Response
     {
