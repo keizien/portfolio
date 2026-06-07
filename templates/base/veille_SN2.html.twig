@@ -299,6 +299,20 @@
             margin: 0;
         }
 
+        /* Catégorie label au-dessus des articles */
+        .pf-category-label {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            color: #9ca3af;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 1.25rem 0 0.5rem;
+        }
+
+        .pf-category-label:first-child {
+            margin-top: 0;
+        }
+
         @media (max-width: 768px) {
             .pf-page-header { padding: 2rem 1.5rem; }
             .pf-veille-layout { grid-template-columns: 1fr; }
@@ -411,40 +425,78 @@
 
         <div class="pf-divider"></div>
 
-        {# Sources & liens #}
+        {# Sources & articles #}
         <div>
             <h2 class="pf-section-title">Sources & articles</h2>
             <div class="pf-links-grid">
 
-                <a href="https://www.forbes.com/councils/forbesbusinesscouncil/2025/05/07/the-future-of-mental-health-how-ai-vr-and-ar-are-changing-treatment/" target="_blank" class="pf-link-item">
-                    <span class="pf-link-source">Forbes</span>
+                <div class="pf-category-label">Réalité virtuelle thérapeutique</div>
+
+                <a href="https://www.realite-virtuelle.com/acrophobie-vr/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Réalité Virtuelle</span>
                     <div>
-                        <p class="pf-link-title">The Future Of Mental Health: How AI, VR And AR Are Changing Treatment</p>
-                        <p class="pf-link-desc">Tour d'horizon des technologies émergentes (IA, réalité virtuelle, réalité augmentée) appliquées aux soins psychiatriques.</p>
+                        <p class="pf-link-title">La VR peut réduire la peur du vide de 66%, les résultats dépassent toutes attentes</p>
+                        <p class="pf-link-desc">Étude du Pr. Daniel Freeman (Université d'Oxford) sur 100 patients acrophobes — résultats jugés supérieurs à une thérapie humaine classique.</p>
                     </div>
                 </a>
 
-                <a href="https://www.lemonde.fr/sciences/article/2026/01/14/sante-mentale-grace-a-l-ia-callyope-veut-aider-les-psychiatres-a-prevenir-les-rechutes-de-leurs-patients_6662194_1650684.html" target="_blank" class="pf-link-item">
-                    <span class="pf-link-source">Le Monde</span>
+                <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6063994/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">The Lancet</span>
                     <div>
-                        <p class="pf-link-title">Santé mentale : grâce à l'IA, Callyope veut aider les psychiatres à prévenir les rechutes</p>
-                        <p class="pf-link-desc">Présentation de Callyope, un outil d'IA français conçu pour anticiper les rechutes chez les patients psychiatriques.</p>
+                        <p class="pf-link-title">Automated psychological therapy using immersive VR for treatment of fear of heights</p>
+                        <p class="pf-link-desc">Étude scientifique originale publiée dans The Lancet Psychiatry — source primaire de l'étude Oxford.</p>
                     </div>
                 </a>
 
-                <a href="https://www.lemonde.fr/pixels/article/2026/02/09/les-failles-de-chatgpt-pour-l-autodiagnostic-medical-revelees-par-une-etude_6666026_4408996.html" target="_blank" class="pf-link-item">
-                    <span class="pf-link-source">Le Monde</span>
+                <a href="https://www.inicea.fr/actualites/la-realite-virtuelle-ma-permis-davoir-une-meilleure-estime-de-moi" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Inicea</span>
                     <div>
-                        <p class="pf-link-title">Les failles de ChatGPT pour l'autodiagnostic médical révélées par une étude</p>
-                        <p class="pf-link-desc">Une étude pointe les limites des LLM grand public pour poser des diagnostics médicaux fiables.</p>
+                        <p class="pf-link-title">"La réalité virtuelle m'a permis d'avoir une meilleure estime de moi"</p>
+                        <p class="pf-link-desc">Témoignage concret d'une patiente ayant suivi une thérapie par exposition en réalité virtuelle pour traiter phobies et angoisses.</p>
                     </div>
                 </a>
 
-                <a href="https://www.info.gouv.fr/actualite/lintelligence-artificielle-au-service-de-la-sante-mentale" target="_blank" class="pf-link-item">
-                    <span class="pf-link-source">Gouvernement FR</span>
+                <a href="https://www.lequotidiendumedecin.fr/des-therapies-de-realite-virtuelle-pour-combattre-lagoraphobie" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Le Quotidien du Médecin</span>
                     <div>
-                        <p class="pf-link-title">L'intelligence artificielle au service de la santé mentale</p>
-                        <p class="pf-link-desc">Position officielle du gouvernement français sur l'usage de l'IA (chatbots, agents conversationnels) en psychiatrie.</p>
+                        <p class="pf-link-title">Des thérapies de réalité virtuelle pour combattre l'agoraphobie</p>
+                        <p class="pf-link-desc">Présentation du programme gameChange d'Oxford VR : 6 séances suffisent pour aider les patients souffrant de psychose à reprendre des activités sociales.</p>
+                    </div>
+                </a>
+
+                <div class="pf-category-label">Chatbots IA & résultats cliniques</div>
+
+                <a href="https://www.researchgate.net/publication/387136997_Artificial_Intelligence-Powered_Cognitive_Behavioral_Therapy_Chatbots_a_Systematic_Review" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">ResearchGate</span>
+                    <div>
+                        <p class="pf-link-title">AI-Powered CBT Chatbots — Systematic Review (2024)</p>
+                        <p class="pf-link-desc">Revue de 10 études sur Woebot, Wysa et Youper : réduction de 48% des symptômes dépressifs et 43% des troubles anxieux avec Youper.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.ifemdr.fr/ia-generative-en-sante-mentale-le-premier-essai-randomise-et-ses-implications-pour-lemdr/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">IFEMDR</span>
+                    <div>
+                        <p class="pf-link-title">Therabot — premier essai randomisé d'un chatbot génératif (NEJM 2025)</p>
+                        <p class="pf-link-desc">Premier chatbot IA générative validé cliniquement, publié dans le New England Journal of Medicine sur 210 participants.</p>
+                    </div>
+                </a>
+
+                <a href="https://www.ifemdr.fr/woebot-2017-2025-naissance-vie-et-fin-du-chatbot-therapeute-le-plus-etudie-au-monde/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">IFEMDR</span>
+                    <div>
+                        <p class="pf-link-title">Woebot (2017–2025) : naissance et fin du chatbot thérapeute le plus étudié au monde</p>
+                        <p class="pf-link-desc">Retour sur la fermeture de Woebot en juin 2025 malgré 123 millions levés — la validation clinique ne garantit pas la viabilité économique.</p>
+                    </div>
+                </a>
+
+                <div class="pf-category-label">Risques & enjeux éthiques</div>
+
+                <a href="https://www.ifemdr.fr/chatbots-et-agents-conversationnels-en-sante-mentale-un-panorama-pour-le-clinicien-emdr/" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">IFEMDR</span>
+                    <div>
+                        <p class="pf-link-title">Chatbots en santé mentale : risques documentés — décompensation psychotique, dépendance émotionnelle</p>
+                        <p class="pf-link-desc">Panorama clinique des risques réels : cas de décompensation avec Character.AI, dépendance affective aux chatbots, limites dans l'évaluation du risque suicidaire.</p>
                     </div>
                 </a>
 
@@ -452,15 +504,17 @@
                     <span class="pf-link-source">Ouest France</span>
                     <div>
                         <p class="pf-link-title">ChatGPT accusé d'avoir poussé un Américain au suicide après de longs échanges</p>
-                        <p class="pf-link-desc">Un cas emblématique illustrant les risques éthiques et humains des IA conversationnelles en contexte de fragilité psychologique.</p>
+                        <p class="pf-link-desc">Cas emblématique illustrant les risques éthiques et humains des IA conversationnelles en contexte de fragilité psychologique.</p>
                     </div>
                 </a>
 
-                <a href="https://www.franceinfo.fr/replay-radio/les-voies-de-l-ia/podcast-les-algorithmes-de-recommandation-et-les-consequences-sur-la-sante-mentale_7798652.html" target="_blank" class="pf-link-item">
-                    <span class="pf-link-source">France Info</span>
+                <div class="pf-category-label">Réglementation & données de santé</div>
+
+                <a href="https://www.info.gouv.fr/actualite/lintelligence-artificielle-au-service-de-la-sante-mentale" target="_blank" class="pf-link-item">
+                    <span class="pf-link-source">Gouvernement FR</span>
                     <div>
-                        <p class="pf-link-title">Les algorithmes de recommandation et les conséquences sur la santé mentale</p>
-                        <p class="pf-link-desc">Podcast analysant l'impact des algorithmes des réseaux sociaux sur le bien-être psychologique des utilisateurs.</p>
+                        <p class="pf-link-title">L'intelligence artificielle au service de la santé mentale</p>
+                        <p class="pf-link-desc">Position officielle du gouvernement français sur l'usage de l'IA en psychiatrie.</p>
                     </div>
                 </a>
 
@@ -494,7 +548,7 @@
                     <p class="pf-pdf-name">Synthèse — Technologies & santé mentale</p>
                     <p class="pf-pdf-desc">En cours de rédaction — IA, VR, objets connectés, enjeux éthiques et réglementaires.</p>
                 </div>
-                <a href="#" download class="pf-btn-download">
+                <a href="{{ asset('documents/veille/Synthese_Veille_SN2.pdf') }}" download class="pf-btn-download">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
                         <polyline points="7 10 12 15 17 10"/>
